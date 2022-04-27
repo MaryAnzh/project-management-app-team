@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { AuthModule } from './auth/auth.module';
 import { ProjectManagementModule } from './project-management/project-management.module';
 import { InformationModule } from './information/information.module';
 
@@ -16,7 +15,6 @@ import { InformationModule } from './information/information.module';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    AuthModule,
     ProjectManagementModule,
     InformationModule
   ],
