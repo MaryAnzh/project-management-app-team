@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MyValidators } from '../my-validators';
 
 @Component({
   selector: 'app-login-page',
@@ -19,15 +20,29 @@ export class LoginPageComponent implements OnInit {
       password: new FormControl(null, [
         Validators.required,
         Validators.minLength(8),
+        MyValidators.digitValidator,
+        MyValidators.lowercaseValidator,
+        MyValidators.uppercaseValidator,
+        MyValidators.symbolsValidator,
       ]),
     });
   }
 
-  onSubmit(): void {
-    const formData = this.loginForm.value;
-    console.log(formData);
+  get email(): AbstractControl {
+    return <AbstractControl>this.loginForm.get('email');
+  }
 
-    this.loginForm.reset();
+  get password(): AbstractControl {
+    return <AbstractControl>this.loginForm.get('password');
+  }
+
+  onSubmit(): void {
+    if (this.loginForm.valid) {
+      const formData = this.loginForm.value;
+      console.log(formData);
+
+      this.loginForm.reset();
+    }
   }
 
   goToRegistrationPage(): void {

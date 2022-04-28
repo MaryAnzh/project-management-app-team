@@ -40,6 +40,23 @@
       display: inline-block;
       border: 1px solid #ccc;
       box-sizing: border-box;
+
+      &.ng-touched.ng-invalid {
+        border: 2px solid red;
+        background: #f2dede;
+      }
+
+      &.ng-touched.ng-valid {
+        border: 2px solid green;
+        background: #e3f2de;
+      }
+    }
+
+    .validation {
+      color: red;
+      background: #f2dede;
+      padding: 4px;
+      border-radius: 5px;
     }
   }
 
@@ -57,6 +74,13 @@
       background: #2A4480;
       color: #2F80ED;
       cursor: pointer;
+      transition: all 0.7s ease;
+    }
+
+    .login-btn:hover {
+      box-shadow: 0 0 20px 10px #2A4480;
+      background: #E2E8E7;
+      transform: scale(1.1);
     }
 
     .registration-link{
