@@ -6,7 +6,7 @@
   align-items: center;
 }
 
-.form{
+.auth-form{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -21,7 +21,7 @@
     margin: 0;
     color: #2A4480;
   }
-  &_container{
+  &_input-container{
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -60,13 +60,13 @@
     }
   }
 
-  .button-container{
+  &_btn-container{
     display: flex;
     flex-direction: row;
     justify-content: right;
     margin-top: 20px;
 
-    .login-btn {
+    &_submit-btn {
       width: 100px;
       height: 40px;
       margin-left: 5px;
@@ -74,16 +74,21 @@
       background: #2A4480;
       color: #2F80ED;
       cursor: pointer;
-      transition: all 0.7s ease;
+      transition: all 0.8s ease;
     }
 
-    .login-btn:hover {
+    &_submit-btn:disabled {
+      opacity: 0.6;
+      pointer-events:none;
+    }
+
+    &_submit-btn:hover {
       box-shadow: 0 0 20px 10px #2A4480;
       background: #E2E8E7;
       transform: scale(1.1);
     }
 
-    .registration-link{
+    &_redirect-btn {
       background: none;
       border: none;
       text-decoration: underline;

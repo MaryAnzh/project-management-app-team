@@ -1,1 +1,31 @@
-<p i18n>registration-page works!</p>
+<form class="auth-form">
+  <h2 class="auth-form_title">Registration</h2>
+
+  <div class="auth-form_input-container">
+    <div class="auth-form_input-container_control">
+      <label for="user-name">User Name</label>
+      <input type="text" class="user-name" placeholder="Enter User  Name" name="user-name" required>
+    </div>
+
+    <div class="auth-form_input-container_control">
+      <label for="email">Email</label>
+      <input type="text" class="email" placeholder="Enter Email"  name="email" required>
+    </div>
+
+    <div class="auth-form_input-container_control">
+      <label for="psw">Password</label>
+      <input type="password" class="password" placeholder="Enter  Password" name="psw" required>
+    </div>
+
+    <div class="auth-form_input-container_control">
+      <label for="repeat-password">Repeat password</label>
+      <input type="text" class="repeat-password" placeholder="Repeat password" name="repeat-password" required>
+    </div>
+  </div>
+
+  <div class="auth-form_btn-container">
+    <button class="auth-form_btn-container_redirect-btn" (click)="goToLoginPage()">Login</button>
+    <button  class="auth-form_btn-container_submit-btn" type="submit">Registration</button>
+  </div>
+
+</form>
