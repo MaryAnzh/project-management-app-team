@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { MyValidators } from '../my-validators';
 
 @Component({
@@ -12,7 +13,7 @@ export class LoginPageComponent implements OnInit {
 
   loginForm!: FormGroup;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private auth: AuthService) {}
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -40,6 +41,7 @@ export class LoginPageComponent implements OnInit {
     if (this.loginForm.valid) {
       const formData = this.loginForm.value;
       console.log(formData);
+      this.auth.login();
 
       this.loginForm.reset();
     }
