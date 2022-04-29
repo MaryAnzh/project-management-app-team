@@ -36,38 +36,38 @@
         formControlName="password"
         required
       >
-    </div>
 
-    <div
-      *ngIf="password?.invalid && password?.touched"
-      class="validation"
-    >
-      <small *ngIf="password?.errors?.required">
-        Please enter a password
-      </small>
-      <small *ngIf="password?.errors?.minlength
-        || password?.errors?.digitValidato
-        || password?.errors?.lowercaseValidator
-        || password?.errors?.uppercaseValidator
-        || password?.errors?.symbolsValidator"
-        >
-        The password must contain:
-        <small *ngIf="password?.errors?.minlength">
-          <br> - at least {{password?.errors?.['minlength'].requiredLength}}.
+      <div
+        *ngIf="password?.invalid && password?.touched"
+        class="validation"
+      >
+        <small *ngIf="password?.errors?.required">
+          Please enter a password
         </small>
-        <small *ngIf="password?.errors?.digitValidator">
-          <br> - at least one number
+        <small *ngIf="password?.errors?.minlength
+          || password?.errors?.digitValidato
+          || password?.errors?.lowercaseValidator
+          || password?.errors?.uppercaseValidator
+          || password?.errors?.symbolsValidator"
+          >
+          The password must contain:
+          <small *ngIf="password?.errors?.minlength">
+            <br> - at least {{password?.errors?.minlength.  requiredLength}}.
+          </small>
+          <small *ngIf="password?.errors?.digitValidator">
+            <br> - at least one number
+          </small>
+          <small *ngIf="password?.errors?.lowercaseValidator">
+            <br> - at least one uppercase letter
+          </small>
+          <small *ngIf="password?.errors?.uppercaseValidator">
+            <br> - at least one capital letter
+          </small>
+          <small *ngIf="password?.errors?.symbolsValidator">
+            <br> - at least one special character
+          </small>
         </small>
-        <small *ngIf="password?.errors?.lowercaseValidator">
-          <br> - at least one uppercase letter
-        </small>
-        <small *ngIf="password?.errors?.uppercaseValidator">
-          <br> - at least one capital letter
-        </small>
-        <small *ngIf="password?.errors?.symbolsValidator">
-          <br> - at least one special character
-        </small>
-      </small>
+      </div>
     </div>
   </div>
 

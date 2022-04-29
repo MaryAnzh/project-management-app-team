@@ -39,6 +39,23 @@
       display: inline-block;
       border: 1px solid #ccc;
       box-sizing: border-box;
+
+      &.ng-touched.ng-invalid {
+        border: 2px solid red;
+        background: #f2dede;
+      }
+
+      &.ng-touched.ng-valid {
+        border: 2px solid green;
+        background: #e3f2de;
+      }
+    }
+
+    .validation {
+      color: red;
+      background: #f2dede;
+      padding: 4px;
+      border-radius: 5px;
     }
   }
 
