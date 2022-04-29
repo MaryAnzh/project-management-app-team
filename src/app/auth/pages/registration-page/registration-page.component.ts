@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/core/services/auth.service';
-import { MyValidators } from '../my-validators';
+import { loginFormValidators } from '../../../shared/utils/login-form-validators';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-registration-page',
@@ -28,10 +28,10 @@ export class RegistrationPageComponent implements OnInit {
       password: new FormControl(null, [
         Validators.required,
         Validators.minLength(8),
-        MyValidators.digitValidator,
-        MyValidators.lowercaseValidator,
-        MyValidators.uppercaseValidator,
-        MyValidators.symbolsValidator,
+        loginFormValidators.digitValidator,
+        loginFormValidators.lowercaseValidator,
+        loginFormValidators.uppercaseValidator,
+        loginFormValidators.symbolsValidator,
       ]),
       confirmPassword: new FormControl(null, [
         Validators.required,

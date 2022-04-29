@@ -11,8 +11,7 @@
         placeholder="Enter Email"
         name="email"
         formControlName="email"
-        required
-      >
+        required>
 
       <div *ngIf="email?.invalid && email?.touched" class="validation">
         <small *ngIf="email?.errors?.required">
@@ -45,7 +44,7 @@
           Please enter a password
         </small>
         <small *ngIf="password?.errors?.minlength
-          || password?.errors?.digitValidato
+          || password?.errors?.digitValidator
           || password?.errors?.lowercaseValidator
           || password?.errors?.uppercaseValidator
           || password?.errors?.symbolsValidator"
