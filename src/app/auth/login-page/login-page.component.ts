@@ -10,6 +10,7 @@ import { MyValidators } from '../my-validators';
   styleUrls: ['./login-page.component.scss']
 })
 export class LoginPageComponent implements OnInit {
+  private _pass = '';
 
   loginForm!: FormGroup;
 
@@ -49,6 +50,11 @@ export class LoginPageComponent implements OnInit {
 
   goToRegistrationPage(): void {
     this.router.navigate(['/auth/registration']);
+  }
+
+  passInput(vallue: string): void {
+    this._pass = this.loginForm.value._pass
+    console.log(this.loginForm.value._pass);
   }
 
 }
