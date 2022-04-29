@@ -11,8 +11,7 @@
         placeholder="Enter Email"
         name="email"
         formControlName="email"
-        required
-      >
+        required>
 
       <div *ngIf="email?.invalid && email?.touched" class="validation">
         <small *ngIf="email?.errors?.required">
@@ -35,13 +34,12 @@
         name="password"
         formControlName="password"
         required
-      >
+        (input)="passInput(inputPassword.value)">
     </div>
 
     <div
       *ngIf="password?.invalid && password?.touched"
-      class="validation"
-    >
+      class="validation">
       <small *ngIf="password?.errors?.required">
         Please enter a password
       </small>
@@ -49,8 +47,7 @@
         || password?.errors?.digitValidato
         || password?.errors?.lowercaseValidator
         || password?.errors?.uppercaseValidator
-        || password?.errors?.symbolsValidator"
-        >
+        || password?.errors?.symbolsValidator">
         The password must contain:
         <small *ngIf="password?.errors?.minlength">
           <br> - at least {{password?.errors?.['minlength'].requiredLength}}.
@@ -72,7 +69,8 @@
   </div>
 
   <div class="button-container">
-    <button type="button" class="registration-link" (click)="goToRegistrationPage()">Registration</button>
+    <button type="button" class="registration-link"
+      (click)="goToRegistrationPage()">Registration</button>
     <button class="login-btn" type="submit" [disabled]="loginForm.invalid">Login</button>
   </div>
 </form>
