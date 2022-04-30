@@ -3,10 +3,9 @@
     <section class="header__wrap__section">
       <div class="header__wrap__section__logo">
         <img
-        src="../../../../assets/header/logo.png"
-        alt="logo"
-         [routerLink]="['/']"
-        >
+          src="../../../../assets/header/logo.png"
+          alt="logo"
+          [routerLink]="['/']">
         <p class="header__wrap__section__logo__text">
           Your Way <br>
           to Success
@@ -22,13 +21,21 @@
     <section class="header__wrap__section">
       <div class="header__wrap__section__auth">
         <a
-        class="header__wrap__section__auth__login"
-         [routerLink]="['/auth/login']"
-        >Login</a>
+          class="header__wrap__section__auth__login"
+          [routerLink]="['/auth/login']">Login</a>
         <a
-        class="header__wrap__section__auth__registration"
-        routerLink="/auth/registration"
-        >Registration</a>
+          class="header__wrap__section__auth__registration"
+          routerLink="/auth/registration">Registration</a>
+      </div>
+
+      <div class="header__wrap__section__languages">
+        <div class="header__wrap__section__languages__contaner active">
+          <p>En</p>
+        </div>
+
+        <div class="header__wrap__section__languages__contaner active-not">
+          <p>Ru</p>
+        </div>
       </div>
 
     </section>
