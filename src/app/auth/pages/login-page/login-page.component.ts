@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/core/services/auth.service';
-import { MyValidators } from '../my-validators';
+import { loginFormValidators } from '../../../shared/utils/login-form-validators';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -10,7 +10,6 @@ import { MyValidators } from '../my-validators';
   styleUrls: ['./login-page.component.scss']
 })
 export class LoginPageComponent implements OnInit {
-  private _pass = '';
 
   loginForm!: FormGroup;
 
@@ -22,10 +21,10 @@ export class LoginPageComponent implements OnInit {
       password: new FormControl(null, [
         Validators.required,
         Validators.minLength(8),
-        MyValidators.digitValidator,
-        MyValidators.lowercaseValidator,
-        MyValidators.uppercaseValidator,
-        MyValidators.symbolsValidator,
+        loginFormValidators.digitValidator,
+        loginFormValidators.lowercaseValidator,
+        loginFormValidators.uppercaseValidator,
+        loginFormValidators.symbolsValidator,
       ]),
     });
   }
@@ -40,10 +39,9 @@ export class LoginPageComponent implements OnInit {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
-      const formData = this.loginForm.value;
-      console.log(formData);
+      // const formData = this.loginForm.value;
+      // console.log(formData);
       this.auth.login();
-
       this.loginForm.reset();
     }
   }
@@ -51,10 +49,4 @@ export class LoginPageComponent implements OnInit {
   goToRegistrationPage(): void {
     this.router.navigate(['/auth/registration']);
   }
-
-  passInput(vallue: string): void {
-    this._pass = this.loginForm.value._pass
-    console.log(this.loginForm.value._pass);
-  }
-
 }

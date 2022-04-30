@@ -1,0 +1,117 @@
+<form class="auth-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <h2 class="auth-form_title">Registration</h2>
+
+  <div class="auth-form_input-container">
+    <div class="auth-form_input-container_control">
+      <label for="user-name">User Name</label>
+      <input
+      #inputUser
+      type="text"
+      class="user-name"
+      placeholder="Enter User  Name"
+      name="user-name"
+      formControlName="userName"
+      required>
+
+      <div *ngIf="userName?.invalid && userName?.touched" class="validation">
+        <small *ngIf="userName?.errors?.required">
+          Please enter a user-name
+        </small>
+
+        <small *ngIf="userName?.errors?.minlength">
+          length must be at least {{userName?.errors?.minlength.requiredLength}}
+        </small>
+      </div>
+    </div>
+
+    <div class="auth-form_input-container_control">
+      <label for="email">Email</label>
+      <input
+      #inputEmail
+      type="text"
+      class="email"
+      placeholder="Enter Email"
+      name="email"
+      formControlName="email"
+      required>
+
+      <div *ngIf="email?.invalid && email?.touched" class="validation">
+        <small *ngIf="email?.errors?.required">
+          Please enter a login email
+        </small>
+
+        <small *ngIf="email?.errors?.email">
+          The login email is invalid
+        </small>
+      </div>
+    </div>
+
+    <div class="auth-form_input-container_control">
+      <label for="password">Password</label>
+      <input
+      #inputPassword
+      type="password"
+      class="password"
+      placeholder="Enter Password"
+      name="password"
+      formControlName="password"
+      required>
+
+      <div
+        *ngIf="password?.invalid && password?.touched"
+        class="validation"
+      >
+        <small *ngIf="password?.errors?.required">
+          Please enter a password
+        </small>
+        <small *ngIf="password?.errors?.minlength
+          || password?.errors?.digitValidator
+          || password?.errors?.lowercaseValidator
+          || password?.errors?.uppercaseValidator
+          || password?.errors?.symbolsValidator"
+          >
+          The password must contain:
+          <small *ngIf="password?.errors?.minlength">
+            <br> - at least {{password?.errors?.  ['minlength'].requiredLength}}.
+          </small>
+          <small *ngIf="password?.errors?.digitValidator">
+            <br> - at least one number
+          </small>
+          <small *ngIf="password?.errors?.  lowercaseValidator">
+            <br> - at least one uppercase letter
+          </small>
+          <small *ngIf="password?.errors?.  uppercaseValidator">
+            <br> - at least one capital letter
+          </small>
+          <small *ngIf="password?.errors?.symbolsValidator">
+            <br> - at least one special character
+          </small>
+        </small>
+      </div>
+    </div>
+
+    <div class="auth-form_input-container_control">
+      <label for="confirm-password">Сonfirm password</label>
+      <input
+      #inputСonfirmPasswordd
+      type="password"
+      class="confirm-password"
+      placeholder="Сonfirm password"
+      name="confirm-password"
+      formControlName="confirmPassword"
+      required>
+
+      <div *ngIf="confirmPassword?.invalid && confirmPassword?.touched" class="validation">
+        <small *ngIf="confirmPassword?.errors?.notSame || confirmPassword?.errors?.required">
+          Please repeat a password
+        </small>
+      </div>
+    </div>
+  </div>
+
+  <div class="auth-form_btn-container">
+    <button class="auth-form_btn-container_redirect-btn" (click)="goToLoginPage()">Login</button>
+    <button  class="auth-form_btn-container_submit-btn" type="submit" [disabled]="loginForm.invalid">Registration</button>
+  </div>
+
+</form>

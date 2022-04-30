@@ -1,6 +1,6 @@
 import { FormControl } from '@angular/forms';
 
-export class MyValidators {
+export class loginFormValidators {
   static digitValidator(control: FormControl): { [key: string]: boolean } | null {
     const digitRgEx: RegExp = /^(?=(.*[\\\d])).{1,}$/;
 
