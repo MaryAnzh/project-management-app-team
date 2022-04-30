@@ -1,8 +1,8 @@
 <form class="auth-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <h2 class="auth-form_title">Login</h2>
+  <h2 class="auth-form__title">Login</h2>
 
-  <div class="auth-form_input-container">
-    <div class="auth-form_input-container_control">
+  <div class="auth-form__input-container">
+    <div class="auth-form__input-container__field">
       <label for="email">Email</label>
       <input
         #inputEmail
@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    <div class="auth-form_input-container_control">
+    <div class="auth-form__input-container__field">
       <label for="password">Password</label>
       <input
         #inputPassword
@@ -70,8 +70,10 @@
     </div>
   </div>
 
-  <div class="auth-form_btn-container">
-    <button type="button" class="auth-form_btn-container_redirect-btn" (click)="goToRegistrationPage()">Registration</button>
-    <button class="auth-form_btn-container_submit-btn" type="submit" [disabled]="loginForm.invalid">Login</button>
+  <div class="auth-form__button-container">
+    <a
+    routerLink="/auth/registration">
+      Registration</a>
+    <button type="submit" [disabled]="loginForm.invalid">Login</button>
   </div>
 </form>

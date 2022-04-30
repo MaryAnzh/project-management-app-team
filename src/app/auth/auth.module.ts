@@ -5,15 +5,23 @@ import { RouterModule } from '@angular/router';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { SharedModule } from '../shared/shared.module';
 import { RegistrationPageComponent } from './pages/registration-page/registration-page.component';
+import { AuthComponent } from './auth.component';
 
 @NgModule({
-  declarations: [LoginPageComponent, RegistrationPageComponent],
+  declarations: [LoginPageComponent,
+    RegistrationPageComponent,
+    AuthComponent],
   imports: [
     CommonModule,
     SharedModule,
     RouterModule.forChild([
-      { path: 'login', component: LoginPageComponent },
-      { path: 'registration', component: RegistrationPageComponent },
+      { path: '', component: AuthComponent },
+      {
+        path: '', component: AuthComponent, children: [
+          { path: 'login', component: LoginPageComponent },
+          { path: 'registration', component: RegistrationPageComponent },
+        ]
+      },
     ]),
   ],
   exports: [RouterModule],
