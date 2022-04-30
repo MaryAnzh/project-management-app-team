@@ -32,6 +32,10 @@ $additionalColorLight: #8ddada;
         img {
           height: 60px;
           cursor: pointer;
+
+          &:hover {
+            animation: turn 1s;
+          }
         }
 
         &__text {
@@ -114,5 +118,15 @@ $additionalColorLight: #8ddada;
 
       }
     }
+  }
+}
+
+@keyframes turn {
+  20% {transform: rotate(15deg)}
+  60% {
+    transform: rotate(-15deg)
+  }
+  100% {
+    transform: rotate(0deg)
   }
 }
