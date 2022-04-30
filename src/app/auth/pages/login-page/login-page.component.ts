@@ -7,8 +7,11 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss']
+  styleUrls: [
+    './login-page.component.scss',
+    '../../auth.component.scss']
 })
+
 export class LoginPageComponent implements OnInit {
 
   loginForm!: FormGroup;
@@ -44,9 +47,5 @@ export class LoginPageComponent implements OnInit {
       this.auth.login();
       this.loginForm.reset();
     }
-  }
-
-  goToRegistrationPage(): void {
-    this.router.navigate(['/auth/registration']);
   }
 }
