@@ -114,8 +114,11 @@
       routerLink="/auth/login">
       Login
     </a>
-    <button type="submit"
-      [disabled]="loginForm.invalid">Registration</button>
+    <button
+      type="submit"
+      [ngClass]="{visible: loginForm.valid}"
+      >Registration
+    </button>
   </div>
 
 </form>
