@@ -1,0 +1,70 @@
+@import '../../vareable';
+
+:host {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 100px;
+
+  .main {
+    width: 100%;
+    max-width: 1080px;
+
+    &__app-info {
+      width: 720px;
+      height: 600px;
+      padding: 30px;
+      background: $mainColorLight;
+      position: relative;
+      border-radius: 0 0 40px 0;
+      box-shadow: 4px 4px 4px 0px rgba(34, 60, 80, 0.2);
+
+      &__title {
+        width: 680px;
+        display: flex;
+        justify-content: space-between;
+
+        img {
+          width: 100px;
+        }
+
+        h1 {
+          width: 500px;
+          text-align: right;
+          font-weight: 200;
+        }
+      }
+
+      &__text {
+        width: 100%;
+       h3 {
+         padding-top: 30px;
+         width: 100%;
+         text-align: right;
+         font-size: 32px;
+         font-weight: 50;
+       }
+
+       ul {
+         padding-top: 20px;
+          li {
+         width: 100%;
+         height: 50px;
+         display: flex;
+         align-items: center;
+         font-size: 24px;
+
+         img {
+           width: 30px;
+           margin-right: 30px;
+         }
+       }
+       }
+
+
+      }
+
+
+    }
+  }
+}
