@@ -12,8 +12,11 @@
         name="email"
         formControlName="email"
         required>
+    </div>
 
-      <div *ngIf="email?.invalid && email?.touched" class="validation">
+    <div class="auth-form__input-container__error">
+      <ng-container
+        *ngIf="email?.invalid && email?.touched">
         <small *ngIf="email?.errors?.required">
           Please enter a login email
         </small>
@@ -21,7 +24,7 @@
         <small *ngIf="email?.errors?.email">
           The login email is invalid
         </small>
-      </div>
+      </ng-container>
     </div>
 
     <div class="auth-form__input-container__field">
@@ -33,46 +36,22 @@
         placeholder="Enter Password"
         name="password"
         formControlName="password"
-        required
-      >
+        required>
+    </div>
 
-      <div
-        *ngIf="password?.invalid && password?.touched"
-        class="validation"
-      >
+    <div class="auth-form__input-container__error">
+      <ng-container
+        *ngIf="password?.invalid && password?.touched">
         <small *ngIf="password?.errors?.required">
           Please enter a password
         </small>
-        <small *ngIf="password?.errors?.minlength
-          || password?.errors?.digitValidator
-          || password?.errors?.lowercaseValidator
-          || password?.errors?.uppercaseValidator
-          || password?.errors?.symbolsValidator"
-          >
-          The password must contain:
-          <small *ngIf="password?.errors?.minlength">
-            <br> - at least {{password?.errors?.minlength.  requiredLength}}.
-          </small>
-          <small *ngIf="password?.errors?.digitValidator">
-            <br> - at least one number
-          </small>
-          <small *ngIf="password?.errors?.lowercaseValidator">
-            <br> - at least one uppercase letter
-          </small>
-          <small *ngIf="password?.errors?.uppercaseValidator">
-            <br> - at least one capital letter
-          </small>
-          <small *ngIf="password?.errors?.symbolsValidator">
-            <br> - at least one special character
-          </small>
-        </small>
-      </div>
+      </ng-container>
     </div>
   </div>
 
   <div class="auth-form__button-container">
     <a
-    routerLink="/auth/registration">
+      routerLink="/auth/registration">
       Registration</a>
     <button type="submit" [disabled]="loginForm.invalid">Login</button>
   </div>
