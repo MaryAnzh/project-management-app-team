@@ -6,7 +6,6 @@ $additionalColorLight: #8ddada;
 
 .header {
   width: 100%;
-  height: 100px;
   display: flex;
   justify-content: center;
   background: linear-gradient(to right, #DEF5F5, #6C8CD5);
@@ -14,12 +13,23 @@ $additionalColorLight: #8ddada;
   &__wrap {
     width: 100%;
     max-width: 1080px;
-    height: 100%;
+    height: 100px;
     display: flex;
+    flex-wrap: wrap;
+    background: linear-gradient(to right, #DEF5F5, #6C8CD5);
+
+    @media (max-width: 1080px) {
+      height: 200px;
+      justify-content: center;
+    }
+
+        @media (max-width: 720px) {
+          height: 300px;
+        }
 
     &__section {
       width: 360px;
-      height: 100%;
+      height: 100px;
       display: flex;
       align-items: center;
 
@@ -32,6 +42,10 @@ $additionalColorLight: #8ddada;
         img {
           height: 60px;
           cursor: pointer;
+
+          &:hover {
+            animation: turn 1s;
+          }
         }
 
         &__text {
@@ -52,6 +66,10 @@ $additionalColorLight: #8ddada;
           cursor: pointer;
           font-weight: 600;
           transition: .3;
+
+          @media (max-width: 1080px) {
+            color: $additionalColor;
+          }
 
           &:hover {
             text-decoration: underline;
@@ -114,5 +132,19 @@ $additionalColorLight: #8ddada;
 
       }
     }
+  }
+}
+
+@keyframes turn {
+  20% {
+    transform: rotate(15deg)
+  }
+
+  60% {
+    transform: rotate(-15deg)
+  }
+
+  100% {
+    transform: rotate(0deg)
   }
 }
