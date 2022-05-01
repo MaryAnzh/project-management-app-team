@@ -3,24 +3,21 @@ $mainColorLight: #DEF5F5;
 $mainColor: hsl(222, 63%, 55%);
 $additionalColor: #2eb1b1;
 $additionalColorLight: #8ddada;
+$contastColor: #A66F00;
 
 :host {
   width: 100%;
-  height: calc(100% - 100px);
-  position: fixed;
-  top: 100px;
-  left: 0;
   display: flex;
   align-items: center;
-  align-content: center;
   justify-content: center;
+  margin-top: 40px;
   overflow: auto;
 
   .auth-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    row-gap: 20px;
+    row-gap: 10px;
     width: 310px;
     padding: 20px;
     background: #E2E8E7;
@@ -34,167 +31,88 @@ $additionalColorLight: #8ddada;
     }
 
     &__input-container {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      row-gap: 15px;
 
-      label {
-        font-size: 14px;
-        line-height: 12px;
-        color: $mainColorDark;
-      }
-
-      input {
+      &__field {
         width: 100%;
-        height: 40px;
-        padding: 10px 15px;
-        margin: 5px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
 
-        &.ng-touched.ng-invalid {
-          border: 2px solid red;
-          background: #f2dede;
+        label {
+          font-size: 14px;
+          line-height: 12px;
+          color: $mainColorDark;
+          padding-bottom: 5px;
         }
 
-        &.ng-touched.ng-valid {
-          border: 2px solid green;
-          background: #e3f2de;
+        input {
+          width: 100%;
+          height: 40px;
+          padding: 10px 15px;
+          margin: 5px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+
+          &.ng-touched.ng-invalid {
+            border: 2px solid $contastColor;
+
+          }
+
+          &.ng-touched.ng-valid {
+            border: 2px solid $additionalColor;
+          }
         }
       }
 
-      .validation {
-        color: red;
-        background: #f2dede;
-        padding: 4px;
-        border-radius: 5px;
-      }
-    }
+        &__error {
+          width: 100%;
+          height: 25PX;
+          padding: 5px;
+          color: $contastColor;
+          font-size: 12px;
 
-    &__button-container {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 20px;
-
-      button {
-        width: 100px;
-        height: 40px;
-      }
-
-      a {
-        color: $mainColor;
-        font-size: 16px;
-
-        &:hover {
-          text-decoration: underline;
         }
 
-        &:active {
-          color: $additionalColorLight;
+        .password-error {
+          height: 90px;
+        }
+      }
+
+      &__button-container {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 20px;
+
+        button {
+          width: 100px;
+          height: 40px;
+          opacity: 0.5;
+          pointer-events: none;
+        }
+
+        .visible {
+          opacity: 1 !important;
+          pointer-events: all !important;
+        }
+
+        a {
+          color: $mainColor;
+          font-size: 16px;
+
+          &:hover {
+            text-decoration: underline;
+          }
+
+          &:active {
+            color: $additionalColorLight;
+          }
         }
       }
     }
   }
 
-}
-
-
-
-.auth-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  row-gap: 20px;
-  width: 310px;
-  padding: 20px;
-  background: #E2E8E7;
-  border-radius: 5px;
-
-  &_title {
-    height: 40px;
-    margin: 0;
-    color: $mainColorDark;
-    font-size: 22px;
+  .visible {
+    opacity: 1;
+    pointer-events: all;
   }
-
-  &_input-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    row-gap: 15px;
-
-    label {
-      font-size: 14px;
-      line-height: 12px;
-      color: $mainColorDark;
-    }
-
-    input {
-      width: 100%;
-      height: 40px;
-      padding: 10px 15px;
-      margin: 5px 0;
-      display: inline-block;
-      border: 1px solid #ccc;
-      box-sizing: border-box;
-
-      &.ng-touched.ng-invalid {
-        border: 2px solid red;
-        background: #f2dede;
-      }
-
-      &.ng-touched.ng-valid {
-        border: 2px solid green;
-        background: #e3f2de;
-      }
-    }
-
-    .validation {
-      color: red;
-      background: #f2dede;
-      padding: 4px;
-      border-radius: 5px;
-    }
-  }
-
-  &_btn-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: right;
-    margin-top: 20px;
-
-    &_submit-btn {
-      width: 100px;
-      height: 40px;
-      margin-left: 5px;
-      border-radius: 5px;
-      background: $mainColorDark;
-      color: #2F80ED;
-      cursor: pointer;
-      transition: all 0.8s ease;
-    }
-
-    &_submit-btn:disabled {
-      opacity: 0.6;
-      pointer-events: none;
-    }
-
-    &_submit-btn:hover {
-      box-shadow: 0 0 20px 10px $mainColorDark;
-      background: #E2E8E7;
-      transform: scale(1.1);
-    }
-
-    &_redirect-btn {
-      background: none;
-      border: none;
-      text-decoration: underline;
-      color: $mainColorDark;
-      cursor: pointer;
-    }
-  }
-}

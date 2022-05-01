@@ -20,12 +20,17 @@
 
     <section class="header__wrap__section">
       <div class="header__wrap__section__auth">
-        <a
-          class="header__wrap__section__auth__login"
-          [routerLink]="['/auth/login']">Login</a>
-        <a
-          class="header__wrap__section__auth__registration"
-          routerLink="/auth/registration">Registration</a>
+        <div>
+          <a
+            class="header__wrap__section__auth__login"
+            [routerLink]="['/auth/login']">Login</a>
+        </div>
+        <div>
+          <a
+            class="header__wrap__section__auth__registration"
+            routerLink="/auth/registration">Registration</a>
+        </div>
+
       </div>
 
       <div class="header__wrap__section__languages">
