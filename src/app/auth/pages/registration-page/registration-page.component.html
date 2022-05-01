@@ -2,6 +2,7 @@
   <h2 class="auth-form__title">Registration</h2>
 
   <div class="auth-form__input-container">
+
     <div class="auth-form__input-container__field">
       <label for="user-name">User Name</label>
       <input
@@ -12,8 +13,10 @@
         name="user-name"
         formControlName="userName"
         required>
-
-      <div *ngIf="userName?.invalid && userName?.touched" class="validation">
+    </div>
+    <div class="auth-form__input-container__error">
+      <ng-container
+        *ngIf="userName?.invalid && userName?.touched">
         <small *ngIf="userName?.errors?.required">
           Please enter a user-name
         </small>
@@ -21,7 +24,7 @@
         <small *ngIf="userName?.errors?.minlength">
           length must be at least {{userName?.errors?.minlength.requiredLength}}
         </small>
-      </div>
+      </ng-container>
     </div>
 
     <div class="auth-form__input-container__field">
@@ -35,7 +38,10 @@
         formControlName="email"
         required>
 
-      <div *ngIf="email?.invalid && email?.touched" class="validation">
+    </div>
+    <div class="auth-form__input-container__error">
+      <ng-container
+        *ngIf="email?.invalid && email?.touched">
         <small *ngIf="email?.errors?.required">
           Please enter a login email
         </small>
@@ -43,7 +49,7 @@
         <small *ngIf="email?.errors?.email">
           The login email is invalid
         </small>
-      </div>
+      </ng-container>
     </div>
 
     <div class="auth-form__input-container__field">
@@ -57,9 +63,10 @@
         formControlName="password"
         required>
 
-      <div
-        *ngIf="password?.invalid && password?.touched"
-        class="validation">
+    </div>
+    <div class="auth-form__input-container__error password-error">
+      <ng-container
+        *ngIf="password?.invalid && password?.touched">
         <small *ngIf="password?.errors?.required">
           Please enter a password
         </small>
@@ -85,10 +92,10 @@
             <br> - at least one special character
           </small>
         </small>
-      </div>
+      </ng-container>
     </div>
 
-    <div class="auth-form_input-container_control">
+    <div class="auth-form__input-container__field">
       <label for="confirm-password">Сonfirm password</label>
       <input
         #inputСonfirmPasswordd
@@ -98,15 +105,18 @@
         name="confirm-password"
         formControlName="confirmPassword"
         required>
+    </div>
 
-      <div *ngIf="confirmPassword?.invalid && confirmPassword?.touched"
-        class="validation">
+    <div class="auth-form__input-container__error">
+      <ng-container
+        *ngIf="confirmPassword?.invalid && confirmPassword?.touched">
         <small *ngIf="confirmPassword?.errors?.notSame ||
           confirmPassword?.errors?.required">
           Please repeat a password
         </small>
-      </div>
+      </ng-container>
     </div>
+
   </div>
 
   <div class="auth-form__button-container">
@@ -116,9 +126,7 @@
     </a>
     <button
       type="submit"
-      [ngClass]="{visible: loginForm.valid}"
-      >Registration
-    </button>
+      [ngClass]="{visible: loginForm.valid}">Registration</button>
   </div>
 
 </form>
