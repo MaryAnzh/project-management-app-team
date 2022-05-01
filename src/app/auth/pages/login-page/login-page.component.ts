@@ -44,8 +44,9 @@ export class LoginPageComponent implements OnInit {
     if (this.loginForm.valid) {
       // const formData = this.loginForm.value;
       // console.log(formData);
-      this.auth.login();
-      this.loginForm.reset();
+      const name = 'Dima'
+      this.auth.login(name);
+      this.router.navigate(['/project-management']);
     }
   }
 }

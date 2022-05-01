@@ -4,6 +4,7 @@ import {
   UrlTree,
   Router,
 } from '@angular/router';
+import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Injectable({
@@ -12,13 +13,7 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(): Promise<boolean | UrlTree> {
-    return this.authService.isLogged().then(() => {
-      if (localStorage.getItem('token')) {
-        return true;
-      } else {
-        return this.router.createUrlTree(['auth', 'login']);
-      }
-    });
+  canActivate(): Observable<boolean> {
+    return this.authService.isLoggedIn$;
   }
 }
