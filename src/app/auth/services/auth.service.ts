@@ -1,31 +1,43 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorSubject, map } from 'rxjs';
+import { StorageService } from './storage.service';
+
+interface IResAuthLogin {
+  login: string,
+  token: string
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  public isAuth = false;
 
-  constructor(private router: Router) {}
+  private _user$$ = new BehaviorSubject<IResAuthLogin | null>(null);
 
-  login(): void {
-    this.isAuth = true;
-    localStorage.setItem('token', 'someToken');
-    this.router.navigate(['/project-management']);
+  public isLoggedIn$ = this._user$$.asObservable().pipe(map(user => user !== null));
+
+  public user$ = this._user$$.asObservable();
+
+  constructor(private router: Router, private storage: StorageService) {
+    const user: IResAuthLogin | null = this.storage.getData('user');
+    if(user) {
+      this._user$$.next(user);
+    }
+  }
+
+  login(name: string): void {
+    const token = 'asdfgh'
+    const userData: IResAuthLogin = {
+      login: name,
+      token: token
+    }
+    this._user$$.next(userData);
+    this.storage.setData('user', userData)
   }
 
   logout(): void {
-    this.isAuth = false;
-    localStorage.removeItem('token');
-    this.router.navigate(['/info']);
-  }
-
-  isLogged(): Promise<boolean> {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(this.isAuth);
-      }, 1000);
-    });
+    this.storage.setData('user', null);
+    this._user$$.next(null)
   }
 }
