@@ -1,4 +1,6 @@
-<form class="auth-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+<form class="auth-form"
+[formGroup]="loginForm"
+(ngSubmit)="onSubmit()">
   <h2 class="auth-form__title">Login</h2>
 
   <div class="auth-form__input-container">
@@ -53,6 +55,8 @@
     <a
       routerLink="/auth/registration">
       Registration</a>
-    <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    <button
+    [ngClass]="{visible: loginForm.valid}"
+    type="submit">Login</button>
   </div>
 </form>

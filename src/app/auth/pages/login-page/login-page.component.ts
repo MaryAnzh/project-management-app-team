@@ -22,12 +22,7 @@ export class LoginPageComponent implements OnInit {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.email, Validators.required]),
       password: new FormControl(null, [
-        Validators.required,
-        Validators.minLength(8),
-        loginFormValidators.digitValidator,
-        loginFormValidators.lowercaseValidator,
-        loginFormValidators.uppercaseValidator,
-        loginFormValidators.symbolsValidator,
+        Validators.required
       ]),
     });
   }
