@@ -1,0 +1,71 @@
+@import '../../../../vareable';
+
+:host {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px 0;
+
+  h2 {
+    text-transform: uppercase;
+    margin-bottom: 80px;
+  }
+
+  .teem-info {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #DEF5F5, #6C8CD5);
+    background-size: 100% 400px;
+    background-position: bottom;
+
+    &__wrap {
+      width: 100%;
+      max-width: 1080px;
+      height: 500px;
+      display: flex;
+      justify-content: end;
+
+      &__about {
+        width: 600px;
+        height: 500px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background: #ffffff;
+        box-shadow: 4px 4px 4px 4px rgba(34, 60, 80, 0.2);
+        border: 2px dashed $mainColorDark;
+
+        &__member {
+          width: 100%;
+          height: 30%;
+          display: flex;
+
+          justify-content: space-between;
+          align-items: center;
+
+          &__foto {
+            width: 120px;
+            height: 120px;
+            background-color: #6C8CD5;
+          }
+
+          &__text {
+            width: 60%;
+            padding-left: 10px;
+          }
+
+
+        }
+
+        &__member:nth-child(2) {
+          flex-direction: row-reverse;
+        }
+      }
+    }
+  }
+}
