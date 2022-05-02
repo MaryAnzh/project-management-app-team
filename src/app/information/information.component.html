@@ -1,24 +1,28 @@
 <main class="main">
 
   <section class="main__app-info">
-    <div class="main__app-info__title">
-      <img src="../../assets/icon/magnet.svg" alt="magnet">
-      <h1>
-        Project management app - Your Way to Success!!!
-      </h1>
+    <div class="main__app-info__sticker">
+      <div class="main__app-info__sticker__title">
+        <img src="../../assets/icon/magnet.svg" alt="magnet">
+        <h2>
+          Project management app - Your Way to Success!!!
+        </h2>
+      </div>
+
+      <section class="main__app-info__sticker__text">
+        <h3>
+          Наши преимущества
+        </h3>
+        <ul
+          *ngFor="let item of ['Текст рыба<', 'Текст рыба', 'Текст рыба']">
+          <li>
+            <img src="../../assets/icon/chack.svg" alt="chack icon">
+            <p>{{item}}</p>
+          </li>
+        </ul>
+      </section>
     </div>
-    <section class="main__app-info__text">
-      <h3>
-        Наши преимущества
-      </h3>
-      <ul
-      *ngFor="let item of ['Текст рыба<', 'Текст рыба', 'Текст рыба']">
-        <li>
-          <img src="../../assets/icon/chack.svg" alt="chack icon">
-          <p>{{item}}</p>
-        </li>
-      </ul>
-    </section>
+
   </section>
 
   <section class="main__team-info">
