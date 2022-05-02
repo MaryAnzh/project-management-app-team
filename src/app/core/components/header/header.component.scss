@@ -9,6 +9,7 @@ $additionalColorLight: #8ddada;
   display: flex;
   justify-content: center;
   background: linear-gradient(to right, #DEF5F5, #6C8CD5);
+  position: relative;
 
   &__wrap {
     width: 100%;
