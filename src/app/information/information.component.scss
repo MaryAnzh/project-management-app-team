@@ -22,13 +22,13 @@
         height: 550px;
         padding: 30px;
         background: $mainColorLight;
-        position: relative;
         border-radius: 0 0 40px 0;
         box-shadow: 4px 4px 4px 0px rgba(34, 60, 80, 0.2);
 
         @media (max-width: 780px) {
           width: 100%;
           height: 100%;
+          padding-right: 5px;
         }
 
         &__title {
@@ -44,7 +44,7 @@
             width: 100px;
 
             @media (max-width: 780px) {
-              width: 50px;
+              width: 40px;
               align-self: start;
             }
           }
@@ -52,6 +52,10 @@
           h2 {
             width: 500px;
             text-align: right;
+
+            @media (max-width: 780px) {
+             font-size: 1.8rem;
+            }
 
           }
         }
