@@ -21,7 +21,7 @@ const routes: Routes = [
   {
     path: 'info',
     loadChildren: () => import('./information/information.module').then(m => m.InformationModule),
-    canActivate: [AuthGuard]
+    //canActivate: [AuthGuard]
   },
   {
     path: '**',
