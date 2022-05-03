@@ -1,1 +1,8 @@
-
+:host {
+  width: 100%;
+  min-height: 98vh;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
