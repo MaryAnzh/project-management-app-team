@@ -15,19 +15,6 @@
     </section>
 
     <section
-      *ngIf="isAuth"
-      [ngClass]="{'header__wrap__section-nav': isAuth}">
-      <nav class="header__wrap__section-nav__nav-wrap">
-        <ul class="header__wrap__section-nav__nav-wrap__list">
-          <li>Welcome</li>
-          <li>My boards</li>
-          <li>Create new board</li>
-          <li>Edit profile</li>
-        </ul>
-      </nav>
-    </section>
-
-    <section
       [ngClass]="{'header__wrap__section-auth-leng-lnfo': true,
       'header-languages': isAuth}">
       <div class="header__wrap__section-auth-leng-lnfo__auth">
@@ -72,6 +59,19 @@
         </div>
       </div>
 
+    </section>
+
+        <section
+      *ngIf="isAuth"
+      [ngClass]="{'header__wrap__section-nav': isAuth}">
+      <nav class="header__wrap__section-nav__nav-wrap">
+        <ul class="header__wrap__section-nav__nav-wrap__list">
+          <li>Welcome</li>
+          <li>My boards</li>
+          <li>Create new board</li>
+          <li>Edit profile</li>
+        </ul>
+      </nav>
     </section>
 
   </div>
