@@ -19,14 +19,13 @@ $additionalColorLight: #8ddada;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    background: linear-gradient(to right, #DEF5F5, #6C8CD5);
 
     @media (max-width: 1080px) {
       justify-content: center;
     }
 
-    &__section {
-      width: 360px;
+    &__section-logo {
+      width: 15%;
       height: 100px;
       display: flex;
       align-items: center;
@@ -51,6 +50,89 @@ $additionalColorLight: #8ddada;
         }
 
       }
+    }
+
+    &__section-nav {
+      width: 55%;
+      height: 100px;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+
+
+      &__nav-wrap {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &__list {
+          width: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 5px;
+          justify-content: space-between;
+
+          li {
+            width: 125px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            border: 1px solid #DEF5F5;
+            border-radius: 5px;
+            transition: .5;
+            text-align: center;
+
+            &:active {
+              transform: scale(115%, 115%);
+            }
+          }
+
+          li:nth-child(1) {
+            background: #009999;
+            color: #ffffff;
+
+            &:hover {
+              background: #90CBCB;
+            }
+          }
+
+          li:nth-child(2) {
+            background: #35ACAC;
+            color: #ffffff;
+
+            &:hover {
+              background: #66BDBD;
+            }
+          }
+
+          li:nth-child(3) {
+            background: #66BDBD;
+            color: #ffffff;
+
+            &:hover {
+              background: #35ACAC;
+            }
+          }
+
+          li:nth-child(4) {
+            background: #90CBCB;
+            color: #ffffff;
+
+            &:hover {
+              background: #009999;
+            }
+          }
+        }
+      }
+    }
+
+    &__section-auth-leng-lnfo {
+      width: 30%;
+      height: 100px;
+      display: flex;
+      align-items: center;
 
       &__auth {
         width: 70%;
@@ -98,8 +180,9 @@ $additionalColorLight: #8ddada;
         &__user-info {
           display: flex;
           width: 100%;
-          justify-content: flex-end;
           align-items: center;
+          padding-right: 20px;
+          justify-content: flex-end;
 
           p {
             color: #ffffff;
