@@ -54,6 +54,7 @@ button {
   background: $mainColor;
   color: #ffffff;
   cursor: pointer;
+  text-transform: uppercase;
   transition: .3s;
 
   &:hover {

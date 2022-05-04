@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-pop-up-auth-error',
@@ -7,5 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class PopUpAuthErrorComponent {
+  @Input() public visible: boolean = true;
+  @Output() public visibleChange = new EventEmitter<boolean>()
+
+  closeOnClick() {
+    this.visible = false;
+    this.visibleChange.emit(this.visible);
+
+  }
 
 }

@@ -1,4 +1,7 @@
-<app-pop-up-auth-error></app-pop-up-auth-error>
+<app-pop-up-auth-error
+[(visible)]="visibleError"
+*ngIf="visibleError">
+</app-pop-up-auth-error>
 <form class="auth-form login-form"
 [formGroup]="loginForm"
 (ngSubmit)="onSubmit()">
