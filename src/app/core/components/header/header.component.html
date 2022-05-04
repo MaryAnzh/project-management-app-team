@@ -1,12 +1,12 @@
 <header class="header">
   <div class="header__wrap">
-    <section class="header__wrap__section">
-      <div class="header__wrap__section__logo">
+    <section class="header__wrap__section-logo">
+      <div class="header__wrap__section-logo__logo">
         <img
           src="../../../../assets/header/logo.png"
           alt="logo"
           [routerLink]="['/']">
-        <p class="header__wrap__section__logo__text">
+        <p class="header__wrap__section-logo__logo__text">
           Your Way <br>
           to Success
         </p>
@@ -14,35 +14,64 @@
 
     </section>
 
-    <section class="header__wrap__section">
+    <section
+      [ngClass]="{'header__wrap__section-auth-leng-lnfo': true,
+      'header-languages': isAuth}">
+      <div class="header__wrap__section-auth-leng-lnfo__auth">
+        <ng-container
+          *ngIf="!isAuth">
+          <div
+            class="header__wrap__section-auth-leng-lnfo__auth__login"
+            [routerLink]="['/auth/login']">
+            <a>Login</a>
+          </div>
+          <div
+            class="header__wrap__section-auth-leng-lnfo__auth__registration"
+            routerLink="/auth/registration">
+            <a>Registration</a>
+          </div>
+        </ng-container>
 
-    </section>
+        <ng-container
+          *ngIf="isAuth">
+          <div class="header__wrap__section-auth-leng-lnfo__auth__user-info">
+            <p>Name</p>
+            <img src="../../../../assets/header/user-icon.svg" alt="user icon">
+          </div>
 
-    <section class="header__wrap__section">
-      <div class="header__wrap__section__auth">
-        <div>
-          <a
-            class="header__wrap__section__auth__login"
-            [routerLink]="['/auth/login']">Login</a>
-        </div>
-        <div>
-          <a
-            class="header__wrap__section__auth__registration"
-            routerLink="/auth/registration">Registration</a>
-        </div>
+          <div
+            class="header__wrap__section-auth-leng-lnfo__auth__logout"
+            [routerLink]="['/info']">
+            <a>LogOut</a>
+          </div>
 
+        </ng-container>
       </div>
 
-      <div class="header__wrap__section__languages">
-        <div class="header__wrap__section__languages__contaner active">
+      <div class="header__wrap__section-auth-leng-lnfo__languages">
+        <div class="header__wrap__section-auth-leng-lnfo__languages__contaner
+          active">
           <p>En</p>
         </div>
 
-        <div class="header__wrap__section__languages__contaner active-not">
+        <div class="header__wrap__section-auth-leng-lnfo__languages__contaner active-not">
           <p>Ru</p>
         </div>
       </div>
 
+    </section>
+
+        <section
+      *ngIf="isAuth"
+      [ngClass]="{'header__wrap__section-nav': isAuth}">
+      <nav class="header__wrap__section-nav__nav-wrap">
+        <ul class="header__wrap__section-nav__nav-wrap__list">
+          <li>Welcome</li>
+          <li>My boards</li>
+          <li>Create new board</li>
+          <li>Edit profile</li>
+        </ul>
+      </nav>
     </section>
 
   </div>
