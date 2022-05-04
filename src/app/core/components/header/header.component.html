@@ -18,8 +18,11 @@
 
     </section>
 
-    <section class="header__wrap__section">
-      <div class="header__wrap__section__auth">
+    <section
+    [ngClass]="{'header__wrap__section': true, 'header-languages': isAuth}">
+      <div class="header__wrap__section__auth"
+      *ngIf="!isAuth"
+      >
         <div>
           <a
             class="header__wrap__section__auth__login"
