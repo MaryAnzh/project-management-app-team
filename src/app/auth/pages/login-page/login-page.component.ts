@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BehaviorSubject, map, Observable } from 'rxjs';
-import { ConfigService, User } from 'src/app/config/config.service';
-import { loginFormValidators } from '../../../shared/utils/login-form-validators';
+import { BehaviorSubject, map, Observable, Subscription } from 'rxjs';
+import { IUserData, Token } from 'src/app/core/models/models';
+import { RequestService } from 'src/app/core/services/request/request.service';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -15,20 +15,15 @@ import { AuthService } from '../../services/auth.service';
 })
 
 export class LoginPageComponent implements OnInit {
+
   public visibleError: boolean = true;
 
   loginForm!: FormGroup;
 
-  // private _token$$ = new BehaviorSubject<string>('');
-
-  // public token$ = this._token$$.asObservable();
-
-  // token = '';
-
   constructor(
     private router: Router,
     private auth: AuthService,
-    private config: ConfigService
+    private request: RequestService
     ) {}
 
   ngOnInit(): void {
@@ -50,31 +45,22 @@ export class LoginPageComponent implements OnInit {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
-      const formData = {
+
+      const formData: IUserData = {
         login: this.loginForm.value.email,
         password: this.loginForm.value.password,
       };
-      console.log(formData);
+
       this.signIn(formData);
-      // console.log(this.token);
-      // this.auth.login(formData.login);
       this.router.navigate(['/project-management']);
     }
   }
 
-  // signIn(user: User): Observable<string> {
-  //   return this.config.logIn(user).pipe(
-  //     map((res) => res.token)
-  //   )
-  // }
-
-  signIn(user: User) {
-    return this.config.logIn(user).subscribe(
-      (resp) => {
-      // this.token = resp.token;
-      console.log({user: user.login, token: resp.token});
+  signIn(user: IUserData): Subscription {
+    return this.request.authorizeUser(user).subscribe(
+      (resp: Token) => {
       this.auth.login(user.login, resp.token);
-      this.config.getUsers(resp.token).subscribe((res) => console.log(res));
+      // this.request.getUsers(resp.token).subscribe((res) => console.log(res));
       });
   }
 }

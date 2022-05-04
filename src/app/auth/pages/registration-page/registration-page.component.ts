@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ConfigService, User } from 'src/app/config/config.service';
+import { Subscription } from 'rxjs';
+import { IUserData, Token, User } from 'src/app/core/models/models';
+import { RequestService } from 'src/app/core/services/request/request.service';
 import { loginFormValidators } from '../../../shared/utils/login-form-validators';
 import { AuthService } from '../../services/auth.service';
 
@@ -11,16 +13,15 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./registration-page.component.scss', '../../auth.component.scss']
 })
 export class RegistrationPageComponent implements OnInit {
+
   public visibleError: boolean = true;
 
   loginForm!: FormGroup;
 
-  passwordValue: string = 'asd'
-
   constructor(
     private router: Router,
     private auth: AuthService,
-    private config: ConfigService
+    private request: RequestService
     ) { }
 
   ngOnInit(): void {
@@ -72,15 +73,13 @@ export class RegistrationPageComponent implements OnInit {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
-      // const formData = this.loginForm.value;
-      const formData = {
+
+      const formData: IUserData = {
         name: this.loginForm.value.userName,
         login: this.loginForm.value.email,
         password: this.loginForm.value.password,
       };
-      console.log(formData);
-      const name = 'Dima'
-      // this.auth.login(name);
+
       this.addUser(formData);
       // this.signIn(formData);
       this.router.navigate(['/project-management']);
@@ -91,19 +90,13 @@ export class RegistrationPageComponent implements OnInit {
     this.router.navigate(['/auth/login']);
   }
 
-  getResponse() {
-    return this.config.getConfig().subscribe((resp) => console.log(resp));
+  addUser(user: IUserData): Subscription {
+    return this.request.createUser(user).subscribe((resp: User) => console.log(resp));
   }
 
-  addUser(user: User) {
-    return this.config.createUser(user).subscribe((resp) => console.log(resp));
-  }
-
-  signIn(user: User) {
-    return this.config.logIn(user).subscribe(
-      (resp) => {
-      // this.token = resp.token;
-      console.log({user: user.login, token: resp.token});
+  signIn(user: IUserData): Subscription {
+    return this.request.authorizeUser(user).subscribe(
+      (resp: Token) => {
       this.auth.login(user.login, resp.token);
       });
   }

@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { IUserData } from '../../models/models';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -10,17 +11,10 @@ const httpOptions = {
   })
 };
 
-export interface User {
-  name?: string,
-  login: string,
-  password: string
-}
-
-
 @Injectable({
   providedIn: 'root'
 })
-export class ConfigService {
+export class RequestService {
 
   // configUrl = 'http://localhost:4200/api';
 
@@ -28,15 +22,11 @@ export class ConfigService {
 
   constructor(private http: HttpClient) { }
 
-  getConfig() {
-    return this.http.get<any>(this.configUrl);
-  }
-
-  createUser(body: User) {
+  createUser(body: IUserData) {
     return this.http.post<any>(`${this.configUrl}/signup`, body, httpOptions);
   }
 
-  logIn(body: User) {
+  authorizeUser(body: IUserData) {
     return this.http.post<any>(`${this.configUrl}/signin`, body, httpOptions);
   }
 

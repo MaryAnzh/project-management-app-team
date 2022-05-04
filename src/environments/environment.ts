@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  configUrl: 'https://stormy-tor-32770.herokuapp.com'
 };
 
 /*
