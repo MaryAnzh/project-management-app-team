@@ -7,4 +7,6 @@ import { RouterModule, Routes } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 
-export class HeaderComponent {  }
+export class HeaderComponent {
+  isAuth: boolean = true;
+ }
