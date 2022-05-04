@@ -78,7 +78,8 @@
             &:hover {
               color: $mainColorDark;
               transition: 0.4s ease;
-              transform: scale(1.05,1.05)
+              transform: scale(1.05,1.05);
+              font-weight: bold;
             }
           }
         }
