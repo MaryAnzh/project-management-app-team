@@ -20,6 +20,10 @@ $additionalColorLight: #8ddada;
     &__section {
       font-weight: 600;
 
+      a:hover {
+        text-decoration: underline;
+      }
+
       &__authors {
 
         &__container {
@@ -34,6 +38,11 @@ $additionalColorLight: #8ddada;
             width: 25px;
             height: 25px;
             margin: 2px 8px;
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            -o-transition: all 0.5s ease;
+            -ms-transition: all 0.5s ease;
+            transition: all 0.5s ease;
 
             img {
               width: 100%;
