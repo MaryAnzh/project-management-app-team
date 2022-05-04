@@ -14,7 +14,9 @@
 
     </section>
 
-    <section class="header__wrap__section">
+    <section
+    *ngIf="isAuth"
+    [ngClass]="{'header__wrap__section': true, 'header__wrap__section__nav': isAuth}">
 
     </section>
 

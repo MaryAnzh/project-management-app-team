@@ -14,18 +14,15 @@ $additionalColorLight: #8ddada;
   &__wrap {
     width: 100%;
     max-width: 1080px;
-    height: 100px;
+    min-height: 100px;
+    height: 100R;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
     background: linear-gradient(to right, #DEF5F5, #6C8CD5);
 
     @media (max-width: 1080px) {
-      height: 200px;
       justify-content: center;
-    }
-
-    @media (max-width: 720px) {
-      height: 300px;
     }
 
     &__section {
@@ -155,6 +152,8 @@ $additionalColorLight: #8ddada;
     .header-languages {
       justify-content: flex-end;
     }
+
+
   }
 }
 
