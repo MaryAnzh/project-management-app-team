@@ -16,6 +16,10 @@ body {
   color: $mainColorDark;
 }
 
+main {
+  margin: 1rem 0;
+}
+
 h1,
 h2,
 h3,
@@ -50,6 +54,7 @@ button {
   background: $mainColor;
   color: #ffffff;
   cursor: pointer;
+  text-transform: uppercase;
   transition: .3s;
 
   &:hover {

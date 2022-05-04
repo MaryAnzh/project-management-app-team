@@ -11,6 +11,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./registration-page.component.scss', '../../auth.component.scss']
 })
 export class RegistrationPageComponent implements OnInit {
+  public visibleError: boolean = true;
 
   loginForm!: FormGroup;
 

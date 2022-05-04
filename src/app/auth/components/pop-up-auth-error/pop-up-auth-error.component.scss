@@ -1,0 +1,145 @@
+@import '../../../../vareable';
+
+:host {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: {
+    color: rgba($color: $mainColor, $alpha: 0.1);
+  }
+
+  z-index: 5;
+
+  .alert-auth-error {
+    width: 320px;
+    height: 300px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: {
+      color: $additionalColor;
+    }
+
+    ;
+    border-radius: 10px;
+
+    animation: {
+      name: popUp;
+      duration: 3s;
+    }
+
+    ;
+
+    h3 {
+      color: #ffffff;
+
+      animation: {
+        name: back;
+        duration: 1s;
+        delay: 3s;
+        fill-mode: backwards;
+      }
+    }
+
+    div {
+      width: 100%;
+      height: 0px;
+      height: 250px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      justify-content: space-between;
+      overflow: hidden;
+
+      animation: {
+        name: visible;
+        duration: 1s;
+        delay: 3s;
+        fill-mode: backwards;
+      }
+
+      p {
+        color: #ffffff;
+        font-size: 24px;
+      }
+
+      button {
+        width: 60px;
+        height: 60px;
+
+        font: {
+          size: 14px;
+          width: 600;
+        }
+
+        border-radius: 50%;
+        background: $mainColorLight;
+        color: $mainColorDark;
+        transition: 0.4;
+
+        &:hover {
+          background: #b6e7e7;
+        }
+
+        &:active {
+          background: #ffffff;
+          border: 1px solid $mainColorDark;
+        }
+      }
+    }
+  }
+}
+
+@keyframes popUp {
+  0% {
+    opacity: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+
+  40% {
+    opacity: 1;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+
+  100% {
+    opacity: 1;
+    width: 320px;
+    height: 300px;
+    border-radius: 10px;
+  }
+}
+
+@keyframes visible {
+
+  0% {
+    height: 0px;
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+    height: 250px;
+  }
+}
+
+@keyframes back {
+  0% {
+    transform: translate(0%, 55%);
+  }
+
+  100% {
+    transform: translate(0%, 0%);
+  }
+}
