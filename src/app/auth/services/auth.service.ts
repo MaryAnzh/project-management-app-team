@@ -26,8 +26,8 @@ export class AuthService {
     }
   }
 
-  login(name: string): void {
-    const token = 'asdfgh'
+  login(name: string, token: string): void {
+    // const token = 'asdfgh'
     const userData: IResAuthLogin = {
       login: name,
       token: token
