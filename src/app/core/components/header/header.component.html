@@ -15,27 +15,41 @@
     </section>
 
     <section
-    *ngIf="isAuth"
-    [ngClass]="{'header__wrap__section': true, 'header__wrap__section__nav': isAuth}">
+      *ngIf="isAuth"
+      [ngClass]="{'header__wrap__section': true, 'header__wrap__section__nav':
+      isAuth}">
 
     </section>
 
     <section
-    [ngClass]="{'header__wrap__section': true, 'header-languages': isAuth}">
-      <div class="header__wrap__section__auth"
-      *ngIf="!isAuth"
-      >
-        <div>
-          <a
+      [ngClass]="{'header__wrap__section': true, 'header-languages': isAuth}">
+      <div class="header__wrap__section__auth">
+        <ng-container
+          *ngIf="!isAuth">
+          <div
             class="header__wrap__section__auth__login"
-            [routerLink]="['/auth/login']">Login</a>
-        </div>
-        <div>
-          <a
+            [routerLink]="['/auth/login']">
+            <a>Login</a>
+          </div>
+          <div
             class="header__wrap__section__auth__registration"
-            routerLink="/auth/registration">Registration</a>
-        </div>
+            routerLink="/auth/registration">
+            <a>Registration</a>
+          </div>
+        </ng-container>
 
+        <ng-container
+          *ngIf="isAuth">
+          <div
+            class="header__wrap__section__auth__logout"
+            [routerLink]="['/info']">
+            <a>LogOut</a>
+          </div>
+          <div class="header__wrap__section__auth__user-info">
+            <p>Name</p>
+            <img src="../../../../assets/header/user-icon.svg" alt="user icon">
+          </div>
+        </ng-container>
       </div>
 
       <div class="header__wrap__section__languages">
