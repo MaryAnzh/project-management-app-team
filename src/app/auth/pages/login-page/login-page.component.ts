@@ -60,7 +60,7 @@ export class LoginPageComponent implements OnInit {
     return this.request.authorizeUser(user).subscribe(
       (resp: Token) => {
       this.auth.login(user.login, resp.token);
-      // this.request.getUsers(resp.token).subscribe((res) => console.log(res));
+      this.request.getUsers(resp.token).subscribe((res) => console.log(res));
       });
   }
 }

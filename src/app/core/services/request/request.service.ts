@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
-import { IUserData } from '../../models/models';
+import { IUserData, User } from '../../models/models';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -31,9 +31,9 @@ export class RequestService {
   }
 
   getUsers(token: string) {
-    httpOptions.headers.append('Authorization', `Bearer ${token}`);
-    console.log(httpOptions)
-    return this.http.get<any>(`${this.configUrl}/users`, httpOptions);
+    // httpOptions.headers.append('Authorization', `Bearer ${token}`);
+    // console.log(httpOptions)
+    return this.http.get<User[]>(`${this.configUrl}/users`, httpOptions);
   }
 
 }

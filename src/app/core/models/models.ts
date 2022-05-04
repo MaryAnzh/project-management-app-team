@@ -4,6 +4,11 @@ export interface IUserData {
   password: string
 }
 
+export interface IResAuthLogin {
+  login: string,
+  token: string
+}
+
 export interface Token { token: string }
 
 export interface User {
