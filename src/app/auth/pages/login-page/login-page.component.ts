@@ -13,6 +13,7 @@ import { AuthService } from '../../services/auth.service';
 })
 
 export class LoginPageComponent implements OnInit {
+  public visibleError: boolean = true;
 
   loginForm!: FormGroup;
 
