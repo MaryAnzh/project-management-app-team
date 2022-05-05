@@ -24,7 +24,7 @@ export class LoginPageComponent implements OnInit {
     private router: Router,
     private auth: AuthService,
     private request: RequestService
-    ) {}
+  ) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -52,15 +52,16 @@ export class LoginPageComponent implements OnInit {
       };
 
       this.signIn(formData);
-      this.router.navigate(['/project-management']);
     }
   }
 
   signIn(user: IUserData): Subscription {
     return this.request.authorizeUser(user).subscribe(
       (resp: Token) => {
-      this.auth.login(user.login, resp.token);
-      this.request.getUsers(resp.token).subscribe((res) => console.log(res));
+        console.log(user.login, resp.token)
+        this.auth.login(user.login, resp.token);
+        this.request.getUsers().subscribe((res) => console.log(res));
+        this.router.navigate(['/project-management']);
       });
   }
 }

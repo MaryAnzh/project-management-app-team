@@ -16,24 +16,18 @@ const httpOptions = {
 })
 export class RequestService {
 
-  // configUrl = 'http://localhost:4200/api';
-
-  configUrl = 'https://stormy-tor-32770.herokuapp.com';
-
   constructor(private http: HttpClient) { }
 
-  createUser(body: IUserData) {
-    return this.http.post<any>(`${this.configUrl}/signup`, body, httpOptions);
+  createUser(body: IUserData): Observable<User> {
+    return this.http.post<User>(`/signup`, body, httpOptions);
   }
 
-  authorizeUser(body: IUserData) {
-    return this.http.post<any>(`${this.configUrl}/signin`, body, httpOptions);
+  authorizeUser(body: IUserData): Observable<any> {
+    return this.http.post<any>(`/signin`, body, httpOptions);
   }
 
-  getUsers(token: string) {
-    // httpOptions.headers.append('Authorization', `Bearer ${token}`);
-    // console.log(httpOptions)
-    return this.http.get<User[]>(`${this.configUrl}/users`, httpOptions);
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`/users`, httpOptions);
   }
 
 }

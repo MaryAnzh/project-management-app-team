@@ -8,9 +8,13 @@ import {
 import { Observable } from 'rxjs';
 import { StorageService } from 'src/app/auth/services/storage.service';
 import { IResAuthLogin } from '../models/models';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
+
 export class HttpClientInterceptor implements HttpInterceptor {
+
+  private _baseURL = environment.configUrl;
 
   constructor(private storage: StorageService) {}
 
@@ -25,7 +29,8 @@ export class HttpClientInterceptor implements HttpInterceptor {
     return request.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`
-        }
+        },
+        url: `${this._baseURL}${request.url}`
     })
   }
 }

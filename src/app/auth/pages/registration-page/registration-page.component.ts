@@ -82,7 +82,7 @@ export class RegistrationPageComponent implements OnInit {
 
       this.addUser(formData);
       // this.signIn(formData);
-      this.router.navigate(['/project-management']);
+      this.router.navigate(['/auth/login']);
     }
   }
 
@@ -91,13 +91,17 @@ export class RegistrationPageComponent implements OnInit {
   }
 
   addUser(user: IUserData): Subscription {
-    return this.request.createUser(user).subscribe((resp: User) => console.log(resp));
+    return this.request.createUser(user).subscribe((resp: User) => {
+      console.log(resp)
+      this.router.navigate(['/auth/login']);
+    });
   }
 
   signIn(user: IUserData): Subscription {
     return this.request.authorizeUser(user).subscribe(
       (resp: Token) => {
       this.auth.login(user.login, resp.token);
+      // this.router.navigate(['/auth/login']);
       });
   }
 
