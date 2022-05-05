@@ -21,3 +21,21 @@ export interface User {
   name: string,
   login: string
 }
+
+export interface IBoardData {
+  id: string,
+  title: string,
+}
+
+export interface BoardTitle { title: string }
+
+export interface IColumnsData {
+  id: string,
+  title: string,
+  order: number,
+}
+
+export interface IColumnsRequestData {
+  title: string,
+  order: number,
+}
