@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { IUserData, Token, User } from 'src/app/core/models/models';
 import { RequestService } from 'src/app/core/services/request/request.service';
 import { loginFormValidators } from '../../../shared/utils/login-form-validators';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-registration-page',
@@ -14,7 +14,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class RegistrationPageComponent implements OnInit {
 
-  public visibleError: boolean = true;
+  public visibleError: boolean =  false;
 
   loginForm!: FormGroup;
 

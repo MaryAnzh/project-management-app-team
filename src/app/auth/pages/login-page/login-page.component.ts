@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, map, Observable, Subscription } from 'rxjs';
 import { IUserData, Token } from 'src/app/core/models/models';
 import { RequestService } from 'src/app/core/services/request/request.service';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -16,7 +16,7 @@ import { AuthService } from '../../services/auth.service';
 
 export class LoginPageComponent implements OnInit {
 
-  public visibleError: boolean = true;
+  public visibleError: boolean = false;
 
   loginForm!: FormGroup;
 
