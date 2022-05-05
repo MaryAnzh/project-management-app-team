@@ -10,7 +10,7 @@
 
   background: {
     color: rgba($color: $mainColor, $alpha: 0.1);
-  }
+  };
 
   z-index: 5;
 
@@ -25,17 +25,14 @@
 
     background: {
       color: $additionalColor;
-    }
+    };
 
-    ;
     border-radius: 10px;
 
     animation: {
       name: popUp;
-      duration: 3s;
-    }
-
-    ;
+      duration: 1s;
+    };
 
     h3 {
       color: #ffffff;
@@ -43,7 +40,7 @@
       animation: {
         name: back;
         duration: 1s;
-        delay: 3s;
+        delay: 1s;
         fill-mode: backwards;
       }
     }
@@ -62,13 +59,14 @@
       animation: {
         name: visible;
         duration: 1s;
-        delay: 3s;
+        delay: 1s;
         fill-mode: backwards;
       }
 
       p {
         color: #ffffff;
         font-size: 24px;
+        text-align: center;
       }
 
       button {
