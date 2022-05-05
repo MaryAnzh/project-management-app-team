@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SubscriptionLike } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth/auth.service';
-import { IResAuthLogin } from '../../models/models';
+import { IResAuthLogin } from '../../models/request.model';
 
 @Component({
   selector: 'app-header',
@@ -27,7 +27,7 @@ export class HeaderComponent {
     )
 
     this._userName$ = this.authService.user$.subscribe(
-      (value: IResAuthLogin | null) => this.userName = value ? value.login : ''
+      (value: IResAuthLogin | null) => this.userName = value ? value.name : ''
     )
   }
 

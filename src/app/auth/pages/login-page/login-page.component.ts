@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BehaviorSubject, map, Observable, Subscription, SubscriptionLike } from 'rxjs';
-import { IUserData, Token } from 'src/app/core/models/models';
+import { IUserLoginData, Token } from 'src/app/core/models/request.model';
 import { RequestService } from 'src/app/core/services/request/request.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { IErrorMessage } from '../../model/respons-error.model';
@@ -33,7 +33,7 @@ export class LoginPageComponent implements OnInit {
         this.errorMessage = value.errorMessage;
       }
     )
-   }
+  }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -55,22 +55,18 @@ export class LoginPageComponent implements OnInit {
   onSubmit(): void {
     if (this.loginForm.valid) {
 
-      const formData: IUserData = {
+      const userData: IUserLoginData = {
         login: this.loginForm.value.email,
         password: this.loginForm.value.password,
       };
+      const respons = this.authService.login(userData);
+      console.log('respons');
+      console.log(respons);
 
-      this.signIn(formData);
+      if (respons) {
+        this.router.navigate(['/project-management']);
+      }
     }
   }
 
-  signIn(user: IUserData): Subscription {
-    return this.request.authorizeUser(user).subscribe(
-      (resp: Token) => {
-        console.log(user.login, resp.token)
-        this.authService.login(user.login, resp.token);
-        this.request.getUsers().subscribe((res) => console.log(res));
-        this.router.navigate(['/project-management']);
-      });
-  }
 }

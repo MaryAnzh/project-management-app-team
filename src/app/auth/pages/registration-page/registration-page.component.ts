@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Subscription, SubscriptionLike } from 'rxjs';
-import { IUserData, Token, User } from 'src/app/core/models/models';
-import { RequestService } from 'src/app/core/services/request/request.service';
+import { SubscriptionLike } from 'rxjs';
+import { IUseRegistrationData } from 'src/app/core/models/request.model';
 import { loginFormValidators } from '../../../shared/utils/login-form-validators';
 import { AuthService } from '../../services/auth/auth.service';
 import { IErrorMessage } from '../../model/respons-error.model';
@@ -13,6 +12,7 @@ import { IErrorMessage } from '../../model/respons-error.model';
   templateUrl: './registration-page.component.html',
   styleUrls: ['./registration-page.component.scss', '../../auth.component.scss']
 })
+
 export class RegistrationPageComponent implements OnInit {
   public errorMessage$: SubscriptionLike;
   public errorMessage: string = '';
@@ -22,8 +22,7 @@ export class RegistrationPageComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: AuthService,
-    private request: RequestService
+    private authService: AuthService
   ) {
 
     this.errorMessage$ = this.authService.errorMessage$.subscribe(
@@ -84,35 +83,23 @@ export class RegistrationPageComponent implements OnInit {
   onSubmit(): void {
     if (this.registrationForm.valid) {
 
-      const userData: IUserData = {
+      const userData: IUseRegistrationData = {
         name: this.registrationForm.value.userName,
         login: this.registrationForm.value.email,
         password: this.registrationForm.value.password,
       };
-
       this.authService.registration(userData);
 
       //this.router.navigate(['/auth/login']);
     }
   }
 
-  goToLoginPage(): void {
-    this.router.navigate(['/auth/login']);
-  }
-
-  // addUser(user: IUserData): Subscription {
-  //   return this.request.createUser(user).subscribe((resp: User) => {
-  //     console.log(resp)
-  //     this.router.navigate(['/auth/login']);
-  //   });
+  // signIn(user: IUserLoginData): Subscription {
+  //   return this.request.authorizeUser(user).subscribe(
+  //     (resp: Token) => {
+  //       this.authService.login(user.login, resp.token);
+  //       // this.router.navigate(['/auth/login']);
+  //     });
   // }
-
-  signIn(user: IUserData): Subscription {
-    return this.request.authorizeUser(user).subscribe(
-      (resp: Token) => {
-        this.authService.login(user.login, resp.token);
-        // this.router.navigate(['/auth/login']);
-      });
-  }
 
 }

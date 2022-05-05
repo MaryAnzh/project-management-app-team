@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, map, Observable, Subject } from 'rxjs';
-import { IResAuthLogin } from 'src/app/core/models/models';
+import { IResAuthLogin, IUseRegistrationData, Token } from 'src/app/core/models/request.model';
 import { StorageService } from '../storage/storage.service';
-import { IUserData } from 'src/app/core/models/models';
+import { IUserLoginData } from 'src/app/core/models/request.model';
 import { RequestService } from 'src/app/core/services/request/request.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { IErrorMessage } from '../../model/respons-error.model';
@@ -33,9 +33,9 @@ export class AuthService {
     }
   }
 
-  registration(user: IUserData) {
+  registration(user: IUseRegistrationData) {
     return this.requestService.createUser(user).subscribe(
-      (response) => {                           //Next callback
+      (response) => {
         console.log('response received');
         console.log(response);
       },
@@ -49,16 +49,30 @@ export class AuthService {
         this._errorMessage$$.next(errorMessage);
       }
     )
-
   }
 
-  login(name: string, token: string): void {
-    const userData: IResAuthLogin = {
-      login: name,
-      token: token
-    }
-    this._user$$.next(userData);
-    this.storage.setData('user', userData)
+  login(userData: IUserLoginData): boolean {
+    let auth = true;
+    this.requestService.authorizeUser(userData).subscribe(
+      (response: Token) => {
+        const storageData: IResAuthLogin = {
+          name: userData.login,
+          token: response.token
+        }
+        this.storage.setData('user', storageData);
+        this._user$$.next(storageData);
+
+      },
+      (error: HttpErrorResponse) => {
+        console.error(`Ощибка ${error.status} поймана`);
+        const errorMessage: IErrorMessage = {
+          errorMessage: error.error.message,
+          isError: true,
+        }
+        this._errorMessage$$.next(errorMessage);
+        auth = false;
+      });
+    return auth;
   }
 
   logout(): void {
