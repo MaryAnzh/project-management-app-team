@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { StorageService } from 'src/app/auth/services/storage/storage.service';
-import { IResAuthLogin } from '../models/models';
+import { IResAuthLogin } from '../models/request.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable()

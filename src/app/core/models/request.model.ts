@@ -1,11 +1,16 @@
-export interface IUserData {
-  name?: string,
+export interface IUseRegistrationData {
+  name: string,
+  login: string,
+  password: string
+}
+
+export interface IUserLoginData {
   login: string,
   password: string
 }
 
 export interface IResAuthLogin {
-  login: string,
+  name: string,
   token: string
 }
 

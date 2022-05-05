@@ -1,4 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { AuthService } from '../../services/auth/auth.service';
+import { IErrorMessage } from '../../model/respons-error.model';
+import { Observable, SubjectLike, Subscribable, SubscriptionLike } from 'rxjs';
 
 @Component({
   selector: 'app-pop-up-auth-error',
@@ -7,8 +10,13 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 
 export class PopUpAuthErrorComponent {
-  @Input() public visible: boolean = true;
-  @Output() public visibleChange = new EventEmitter<boolean>()
+  @Input() public visible: boolean = false;
+  @Input() public errorMessage: string = '';
+  @Output() public visibleChange = new EventEmitter<boolean>();
+
+  constructor(private authService: AuthService) {
+
+  }
 
   closeOnClick() {
     this.visible = false;

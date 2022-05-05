@@ -1,31 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { IUserData, Token, User } from 'src/app/core/models/models';
-import { RequestService } from 'src/app/core/services/request/request.service';
+import { SubscriptionLike } from 'rxjs';
+import { IUseRegistrationData } from 'src/app/core/models/request.model';
 import { loginFormValidators } from '../../../shared/utils/login-form-validators';
 import { AuthService } from '../../services/auth/auth.service';
+import { IErrorMessage } from '../../model/respons-error.model';
 
 @Component({
   selector: 'app-registration-page',
   templateUrl: './registration-page.component.html',
   styleUrls: ['./registration-page.component.scss', '../../auth.component.scss']
 })
+
 export class RegistrationPageComponent implements OnInit {
+  public errorMessage$: SubscriptionLike;
+  public errorMessage: string = '';
+  public visibleError: boolean = false;
 
-  public visibleError: boolean =  false;
-
-  loginForm!: FormGroup;
+  registrationForm!: FormGroup;
 
   constructor(
     private router: Router,
-    private auth: AuthService,
-    private request: RequestService
-    ) { }
+    private authService: AuthService
+  ) {
+
+    this.errorMessage$ = this.authService.errorMessage$.subscribe(
+      (value: IErrorMessage) => {
+        this.visibleError = value.isError;
+        this.errorMessage = value.errorMessage;
+      }
+    )
+  }
 
   ngOnInit(): void {
-    this.loginForm = new FormGroup({
+    this.registrationForm = new FormGroup({
       userName: new FormControl('', [
         Validators.required,
         Validators.minLength(2)
@@ -56,53 +65,41 @@ export class RegistrationPageComponent implements OnInit {
   }
 
   get userName(): AbstractControl {
-    return <AbstractControl>this.loginForm.get('userName');
+    return <AbstractControl>this.registrationForm.get('userName');
   }
 
   get email(): AbstractControl {
-    return <AbstractControl>this.loginForm.get('email');
+    return <AbstractControl>this.registrationForm.get('email');
   }
 
   get password(): AbstractControl {
-    return <AbstractControl>this.loginForm.get('password');
+    return <AbstractControl>this.registrationForm.get('password');
   }
 
   get confirmPassword(): AbstractControl {
-    return <AbstractControl>this.loginForm.get('confirmPassword');
+    return <AbstractControl>this.registrationForm.get('confirmPassword');
   }
 
   onSubmit(): void {
-    if (this.loginForm.valid) {
+    if (this.registrationForm.valid) {
 
-      const formData: IUserData = {
-        name: this.loginForm.value.userName,
-        login: this.loginForm.value.email,
-        password: this.loginForm.value.password,
+      const userData: IUseRegistrationData = {
+        name: this.registrationForm.value.userName,
+        login: this.registrationForm.value.email,
+        password: this.registrationForm.value.password,
       };
+      this.authService.registration(userData);
 
-      this.addUser(formData);
-      // this.signIn(formData);
-      this.router.navigate(['/auth/login']);
+      //this.router.navigate(['/auth/login']);
     }
   }
 
-  goToLoginPage(): void {
-    this.router.navigate(['/auth/login']);
-  }
-
-  addUser(user: IUserData): Subscription {
-    return this.request.createUser(user).subscribe((resp: User) => {
-      console.log(resp)
-      this.router.navigate(['/auth/login']);
-    });
-  }
-
-  signIn(user: IUserData): Subscription {
-    return this.request.authorizeUser(user).subscribe(
-      (resp: Token) => {
-      this.auth.login(user.login, resp.token);
-      // this.router.navigate(['/auth/login']);
-      });
-  }
+  // signIn(user: IUserLoginData): Subscription {
+  //   return this.request.authorizeUser(user).subscribe(
+  //     (resp: Token) => {
+  //       this.authService.login(user.login, resp.token);
+  //       // this.router.navigate(['/auth/login']);
+  //     });
+  // }
 
 }
