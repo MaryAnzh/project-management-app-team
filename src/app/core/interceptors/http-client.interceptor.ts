@@ -6,7 +6,7 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { StorageService } from 'src/app/auth/services/storage.service';
+import { StorageService } from 'src/app/auth/services/storage/storage.service';
 import { IResAuthLogin } from '../models/models';
 import { environment } from 'src/environments/environment';
 

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SubscriptionLike } from 'rxjs';
+import { AuthService } from 'src/app/auth/services/auth/auth.service';
+import { IResAuthLogin } from '../../models/models';
 
 @Component({
   selector: 'app-header',
@@ -8,5 +11,27 @@ import { RouterModule, Routes } from '@angular/router';
 })
 
 export class HeaderComponent {
-  isAuth: boolean = true;
+  private _isAuth$: SubscriptionLike;
+
+  public isAuth: boolean = false;
+
+  private _userName$: SubscriptionLike;
+
+  public userName: string = '';
+
+
+
+  constructor(private authService: AuthService) {
+    this._isAuth$ = this.authService.isLoggedIn$.subscribe(
+      (value: boolean) => this.isAuth = value
+    )
+
+    this._userName$ = this.authService.user$.subscribe(
+      (value: IResAuthLogin | null) => this.userName = value ? value.login : ''
+    )
+  }
+
+  logOutOnClick(): void {
+    this.authService.logout();
+  }
  }

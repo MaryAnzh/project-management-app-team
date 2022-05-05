@@ -35,13 +35,14 @@
         <ng-container
           *ngIf="isAuth">
           <div class="header__wrap__section-auth-leng-lnfo__auth__user-info">
-            <p>Name</p>
+            <p>{{userName}}</p>
             <img src="../../../../assets/header/user-icon.svg" alt="user icon">
           </div>
 
           <div
             class="header__wrap__section-auth-leng-lnfo__auth__logout"
-            [routerLink]="['/info']">
+            [routerLink]="['/info']"
+            (click)="logOutOnClick()">
             <a>LogOut</a>
           </div>
 

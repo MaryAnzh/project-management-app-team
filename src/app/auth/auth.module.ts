@@ -7,12 +7,16 @@ import { SharedModule } from '../shared/shared.module';
 import { RegistrationPageComponent } from './pages/registration-page/registration-page.component';
 import { AuthComponent } from './auth.component';
 import { PopUpAuthErrorComponent } from './components/pop-up-auth-error/pop-up-auth-error.component';
+import { AuthService } from './services/auth/auth.service';
 
 @NgModule({
-  declarations: [LoginPageComponent,
+  declarations: [
+    LoginPageComponent,
     RegistrationPageComponent,
     AuthComponent,
-    PopUpAuthErrorComponent],
+    PopUpAuthErrorComponent,
+
+  ],
   imports: [
     CommonModule,
     SharedModule,
