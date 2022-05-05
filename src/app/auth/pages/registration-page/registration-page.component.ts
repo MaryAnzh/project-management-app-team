@@ -18,7 +18,7 @@ export class RegistrationPageComponent implements OnInit {
   public errorMessage: string = '';
   public visibleError: boolean = false;
 
-  loginForm!: FormGroup;
+  registrationForm!: FormGroup;
 
   constructor(
     private router: Router,
@@ -35,7 +35,7 @@ export class RegistrationPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loginForm = new FormGroup({
+    this.registrationForm = new FormGroup({
       userName: new FormControl('', [
         Validators.required,
         Validators.minLength(2)
@@ -66,28 +66,28 @@ export class RegistrationPageComponent implements OnInit {
   }
 
   get userName(): AbstractControl {
-    return <AbstractControl>this.loginForm.get('userName');
+    return <AbstractControl>this.registrationForm.get('userName');
   }
 
   get email(): AbstractControl {
-    return <AbstractControl>this.loginForm.get('email');
+    return <AbstractControl>this.registrationForm.get('email');
   }
 
   get password(): AbstractControl {
-    return <AbstractControl>this.loginForm.get('password');
+    return <AbstractControl>this.registrationForm.get('password');
   }
 
   get confirmPassword(): AbstractControl {
-    return <AbstractControl>this.loginForm.get('confirmPassword');
+    return <AbstractControl>this.registrationForm.get('confirmPassword');
   }
 
   onSubmit(): void {
-    if (this.loginForm.valid) {
+    if (this.registrationForm.valid) {
 
       const userData: IUserData = {
-        name: this.loginForm.value.userName,
-        login: this.loginForm.value.email,
-        password: this.loginForm.value.password,
+        name: this.registrationForm.value.userName,
+        login: this.registrationForm.value.email,
+        password: this.registrationForm.value.password,
       };
 
       this.authService.registration(userData);

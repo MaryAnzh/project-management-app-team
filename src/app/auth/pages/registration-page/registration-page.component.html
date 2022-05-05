@@ -3,7 +3,8 @@
 [errorMessage]="errorMessage"
 *ngIf="visibleError"
 ></app-pop-up-auth-error>
-<form class="auth-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+<form class="auth-form" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
   <h2 class="auth-form__title">Registration</h2>
 
   <div class="auth-form__input-container">
@@ -131,7 +132,7 @@
     </a>
     <button
       type="submit"
-      [ngClass]="{visible: loginForm.valid}">Registration</button>
+      [ngClass]="{visible: registrationForm.valid}">Registration</button>
   </div>
 
 </form>

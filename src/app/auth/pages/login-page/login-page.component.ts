@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BehaviorSubject, map, Observable, Subscription } from 'rxjs';
+import { BehaviorSubject, map, Observable, Subscription, SubscriptionLike } from 'rxjs';
 import { IUserData, Token } from 'src/app/core/models/models';
 import { RequestService } from 'src/app/core/services/request/request.service';
 import { AuthService } from '../../services/auth/auth.service';
+import { IErrorMessage } from '../../model/respons-error.model';
 
 @Component({
   selector: 'app-login-page',
@@ -15,16 +16,24 @@ import { AuthService } from '../../services/auth/auth.service';
 })
 
 export class LoginPageComponent implements OnInit {
-
+  public errorMessage$: SubscriptionLike;
+  public errorMessage: string = '';
   public visibleError: boolean = false;
 
   loginForm!: FormGroup;
 
   constructor(
     private router: Router,
-    private auth: AuthService,
+    private authService: AuthService,
     private request: RequestService
-  ) { }
+  ) {
+    this.errorMessage$ = this.authService.errorMessage$.subscribe(
+      (value: IErrorMessage) => {
+        this.visibleError = value.isError;
+        this.errorMessage = value.errorMessage;
+      }
+    )
+   }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -59,7 +68,7 @@ export class LoginPageComponent implements OnInit {
     return this.request.authorizeUser(user).subscribe(
       (resp: Token) => {
         console.log(user.login, resp.token)
-        this.auth.login(user.login, resp.token);
+        this.authService.login(user.login, resp.token);
         this.request.getUsers().subscribe((res) => console.log(res));
         this.router.navigate(['/project-management']);
       });
