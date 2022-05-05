@@ -4,11 +4,14 @@
   <div class="teem-info__wrap">
     <div class="teem-info__wrap__about">
       <div class="teem-info__wrap__about__member"
-      *ngFor="let member of ['Mary','Dima','Margo']">
+           *ngFor="let member of [['Mary', '../../../../../assets/main/mari.jpg', 'Руководитель проекта. Fullstack-разработчик.\tМы команда студентов The Rolling Scopes School, разрабатывающие приложение Project Management App. Время - самое бесценное в нашей жизни. Организуем его правильно!'],
+      ['Dima', '../../../../../assets/main/dim.jpg', 'Fullstack-разработчик. Мы стремимся к эффективному управлению проектами, чтобы ваши цели достигались быстрее и с наименьшими затратами.'],
+      ['Margo', '../../../../../assets/main/rit.jpg', 'Frontend-разработчик. Мы работаем над настройкой связи между человеком и пространством, создавая гармонию их взаимодействия.']]">
         <div class="teem-info__wrap__about__member__foto">
+          <img src={{member[1]}} alt="foto-member">
         </div>
          <div class="teem-info__wrap__about__member__text">
-          {{member}}
+           {{member[0]}}<br>{{member[2]}}
         </div>
       </div>
 

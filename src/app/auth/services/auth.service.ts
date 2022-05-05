@@ -1,12 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, map } from 'rxjs';
+import { IResAuthLogin } from 'src/app/core/models/models';
 import { StorageService } from './storage.service';
-
-interface IResAuthLogin {
-  login: string,
-  token: string
-}
 
 @Injectable({
   providedIn: 'root',
@@ -26,8 +22,7 @@ export class AuthService {
     }
   }
 
-  login(name: string): void {
-    const token = 'asdfgh'
+  login(name: string, token: string): void {
     const userData: IResAuthLogin = {
       login: name,
       token: token
