@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, map, Observable, Subject } from 'rxjs';
-import { IResAuthLogin, IUseRegistrationData, Token } from 'src/app/core/models/request.model';
+import { IResAuthLogin, IUseRegistrationData, Token, User } from 'src/app/core/models/request.model';
 import { StorageService } from '../storage/storage.service';
 import { IUserLoginData } from 'src/app/core/models/request.model';
 import { RequestService } from 'src/app/core/services/request/request.service';
@@ -34,9 +34,13 @@ export class AuthService {
 
   registration(user: IUseRegistrationData) {
     return this.requestService.createUser(user).subscribe(
-      (response) => {
-        console.log('response received');
-        console.log(response);
+      (response: User) => {
+        const userData: IUserLoginData = {
+          login: user.login,
+          password: user.password
+        }
+
+        this.login(userData);
       },
       (error: HttpErrorResponse) => {
         console.error(`Ощибка ${error.status} поймана`);
