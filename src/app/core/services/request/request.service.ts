@@ -1,13 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { IUserLoginData, User, IUseRegistrationData } from '../../models/request.model';
+import { IBordColumn } from '../../models/response.model';
 
 const httpOptions = {
   headers: new HttpHeaders({
     'accept': 'application/json',
-    'Content-Type':  'application/json',
+    'Content-Type': 'application/json',
   })
 };
 
@@ -28,6 +28,10 @@ export class RequestService {
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(`/users`, httpOptions);
+  }
+
+  getBords(): Observable<IBordColumn[]> {
+    return this.http.get<IBordColumn[]>(`/boards`, httpOptions);
   }
 
 }
