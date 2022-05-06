@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BehaviorSubject, map, Observable, Subscription, SubscriptionLike } from 'rxjs';
+import { SubscriptionLike } from 'rxjs';
 import { IUserLoginData, Token } from 'src/app/core/models/request.model';
 import { RequestService } from 'src/app/core/services/request/request.service';
 import { AuthService } from '../../services/auth/auth.service';
@@ -23,10 +23,9 @@ export class LoginPageComponent implements OnInit {
   loginForm!: FormGroup;
 
   constructor(
-    private router: Router,
-    private authService: AuthService,
-    private request: RequestService
+    private authService: AuthService
   ) {
+
     this.errorMessage$ = this.authService.errorMessage$.subscribe(
       (value: IErrorMessage) => {
         this.visibleError = value.isError;
@@ -59,13 +58,7 @@ export class LoginPageComponent implements OnInit {
         login: this.loginForm.value.email,
         password: this.loginForm.value.password,
       };
-      const respons = this.authService.login(userData);
-      console.log('respons');
-      console.log(respons);
-
-      if (respons) {
-        this.router.navigate(['/project-management']);
-      }
+      this.authService.login(userData);
     }
   }
 

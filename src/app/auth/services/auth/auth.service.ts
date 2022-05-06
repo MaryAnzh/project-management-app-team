@@ -8,7 +8,6 @@ import { RequestService } from 'src/app/core/services/request/request.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { IErrorMessage } from '../../model/respons-error.model';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -51,8 +50,8 @@ export class AuthService {
     )
   }
 
-  login(userData: IUserLoginData): boolean {
-    let auth = true;
+  login(userData: IUserLoginData): void {
+
     this.requestService.authorizeUser(userData).subscribe(
       (response: Token) => {
         const storageData: IResAuthLogin = {
@@ -61,7 +60,7 @@ export class AuthService {
         }
         this.storage.setData('user', storageData);
         this._user$$.next(storageData);
-
+        this.router.navigateByUrl('/main');
       },
       (error: HttpErrorResponse) => {
         console.error(`Ощибка ${error.status} поймана`);
@@ -70,9 +69,7 @@ export class AuthService {
           isError: true,
         }
         this._errorMessage$$.next(errorMessage);
-        auth = false;
       });
-    return auth;
   }
 
   logout(): void {
