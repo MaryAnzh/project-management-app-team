@@ -1,4 +1,6 @@
-<app-header></app-header>
+<app-header
+[ngClass]="{'sticky': isScroll}"
+></app-header>
 
   <main>
     <router-outlet></router-outlet>
