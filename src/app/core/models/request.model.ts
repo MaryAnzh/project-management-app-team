@@ -11,7 +11,8 @@ export interface IUserLoginData {
 
 export interface IResAuthLogin {
   name: string,
-  token: string
+  token: string,
+  date: string
 }
 
 export interface Token { token: string }

@@ -23,7 +23,7 @@ export class AuthGuard implements CanActivate {
       value => iwAuth = value
     )
     if (!iwAuth) {
-      this.router.navigateByUrl('info');
+      this.router.navigateByUrl('/welcome');
     }
     return iwAuth;
   }
