@@ -2,12 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundPageComponent } from './core/pages/not-found-page/not-found-page.component';
 import { AuthGuard } from './core/guard/auth.guard';
+import { AuthService } from './auth/services/auth/auth.service';
+
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'info',
+    redirectTo: 'main',
     pathMatch: 'full',
+
   },
   {
     path: 'auth',
@@ -16,12 +19,11 @@ const routes: Routes = [
   {
     path: 'main',
     loadChildren: () => import('./project-management/project-management.module').then(m => m.ProjectManagementModule),
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
     path: 'info',
     loadChildren: () => import('./information/information.module').then(m => m.InformationModule),
-    //canActivate: [AuthGuard]
   },
   {
     path: '**',
@@ -33,4 +35,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }
