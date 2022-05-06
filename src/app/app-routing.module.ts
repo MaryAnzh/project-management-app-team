@@ -22,7 +22,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'info',
+    path: 'welcome',
     loadChildren: () => import('./information/information.module').then(m => m.InformationModule),
   },
   {

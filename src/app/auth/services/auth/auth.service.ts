@@ -19,7 +19,7 @@ export class AuthService {
 
   public isLoggedIn$ = this._user$$.asObservable().pipe(map((user) => {
     return (user !== null
-      && this.tokenDate(user.date))
+      )
   }))
 
 
@@ -67,7 +67,7 @@ export class AuthService {
         const storageData: IResAuthLogin = {
           name: userData.login,
           token: response.token,
-          date: new Date(),
+          date: new Date().toString(),
         }
         this.storage.setData('user', storageData);
         this._user$$.next(storageData);
@@ -88,8 +88,9 @@ export class AuthService {
     this._user$$.next(null)
   }
 
-  tokenDate(date: Date): boolean {
-    const tokenAge = +(new Date()) - +date;
+  tokenDate(date: string): boolean {
+    const tokenAge = Date.now() - new Date(date).getMilliseconds();
+
     let isTokenExpired = (tokenAge > this._millisecond) ? true : false;
     if (isTokenExpired) {
       this.logout;

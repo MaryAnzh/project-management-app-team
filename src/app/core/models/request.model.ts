@@ -12,7 +12,7 @@ export interface IUserLoginData {
 export interface IResAuthLogin {
   name: string,
   token: string,
-  date: Date
+  date: string
 }
 
 export interface Token { token: string }
