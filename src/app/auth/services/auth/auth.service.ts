@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, map, Observable, Subject } from 'rxjs';
-import { IResAuthLogin, IUseRegistrationData, Token } from 'src/app/core/models/request.model';
+import { IResAuthLogin, IUseRegistrationData, Token, User } from 'src/app/core/models/request.model';
 import { StorageService } from '../storage/storage.service';
 import { IUserLoginData } from 'src/app/core/models/request.model';
 import { RequestService } from 'src/app/core/services/request/request.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { IErrorMessage } from '../../model/respons-error.model';
-
 
 @Injectable({
   providedIn: 'root',
@@ -35,9 +34,13 @@ export class AuthService {
 
   registration(user: IUseRegistrationData) {
     return this.requestService.createUser(user).subscribe(
-      (response) => {
-        console.log('response received');
-        console.log(response);
+      (response: User) => {
+        const userData: IUserLoginData = {
+          login: user.login,
+          password: user.password
+        }
+
+        this.login(userData);
       },
       (error: HttpErrorResponse) => {
         console.error(`Ощибка ${error.status} поймана`);
@@ -51,8 +54,8 @@ export class AuthService {
     )
   }
 
-  login(userData: IUserLoginData): boolean {
-    let auth = true;
+  login(userData: IUserLoginData): void {
+
     this.requestService.authorizeUser(userData).subscribe(
       (response: Token) => {
         const storageData: IResAuthLogin = {
@@ -61,7 +64,7 @@ export class AuthService {
         }
         this.storage.setData('user', storageData);
         this._user$$.next(storageData);
-
+        this.router.navigateByUrl('/main');
       },
       (error: HttpErrorResponse) => {
         console.error(`Ощибка ${error.status} поймана`);
@@ -70,9 +73,7 @@ export class AuthService {
           isError: true,
         }
         this._errorMessage$$.next(errorMessage);
-        auth = false;
       });
-    return auth;
   }
 
   logout(): void {

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { SubscriptionLike } from 'rxjs';
 import { IUseRegistrationData } from 'src/app/core/models/request.model';
 import { loginFormValidators } from '../../../shared/utils/login-form-validators';
@@ -21,7 +20,6 @@ export class RegistrationPageComponent implements OnInit {
   registrationForm!: FormGroup;
 
   constructor(
-    private router: Router,
     private authService: AuthService
   ) {
 
@@ -89,17 +87,7 @@ export class RegistrationPageComponent implements OnInit {
         password: this.registrationForm.value.password,
       };
       this.authService.registration(userData);
-
-      //this.router.navigate(['/auth/login']);
     }
   }
-
-  // signIn(user: IUserLoginData): Subscription {
-  //   return this.request.authorizeUser(user).subscribe(
-  //     (resp: Token) => {
-  //       this.authService.login(user.login, resp.token);
-  //       // this.router.navigate(['/auth/login']);
-  //     });
-  // }
 
 }
