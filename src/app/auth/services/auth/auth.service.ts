@@ -15,8 +15,14 @@ export class AuthService {
 
   private _user$$ = new BehaviorSubject<IResAuthLogin | null>(null);
   private _errorMessage$$ = new Subject<IErrorMessage>();
+  private _millisecond: number = 86400000;
 
-  public isLoggedIn$ = this._user$$.asObservable().pipe(map(user => user !== null));
+  public isLoggedIn$ = this._user$$.asObservable().pipe(map((user) => {
+    return (user !== null
+      && this.tokenDate(user.date))
+  }))
+
+
   public user$ = this._user$$.asObservable();
   public errorMessage$ = this._errorMessage$$.asObservable();
 
@@ -60,7 +66,8 @@ export class AuthService {
       (response: Token) => {
         const storageData: IResAuthLogin = {
           name: userData.login,
-          token: response.token
+          token: response.token,
+          date: new Date(),
         }
         this.storage.setData('user', storageData);
         this._user$$.next(storageData);
@@ -79,5 +86,14 @@ export class AuthService {
   logout(): void {
     this.storage.setData('user', null);
     this._user$$.next(null)
+  }
+
+  tokenDate(date: Date): boolean {
+    const tokenAge = +(new Date()) - +date;
+    let isTokenExpired = (tokenAge > this._millisecond) ? true : false;
+    if (isTokenExpired) {
+      this.logout;
+    }
+    return isTokenExpired;
   }
 }
