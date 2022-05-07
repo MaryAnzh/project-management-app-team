@@ -1,0 +1,14 @@
+@import '../../vareable';
+
+:host {
+  max-width: 1080px;
+  width: 100%;
+  height: 60vh;
+  margin: auto;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+ background: $mainColorLight;;
+}
