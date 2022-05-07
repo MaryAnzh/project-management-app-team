@@ -55,21 +55,28 @@
           <p>En</p>
         </div>
 
-        <div class="header__wrap__section-auth-leng-lnfo__languages__contaner active-not">
+        <div class="header__wrap__section-auth-leng-lnfo__languages__contaner
+          active-not">
           <p>Ru</p>
         </div>
       </div>
 
     </section>
 
-        <section
+    <section
       *ngIf="isAuth"
       [ngClass]="{'header__wrap__section-nav': isAuth}">
       <nav class="header__wrap__section-nav__nav-wrap">
         <ul class="header__wrap__section-nav__nav-wrap__list">
-          <li>Welcome</li>
-          <li>My boards</li>
-          <li>Create new board</li>
+          <li
+          [routerLink]="['/welcome']"
+          >Welcome</li>
+          <li
+          [routerLink]="['/main']"
+            >My boards</li>
+          <li
+          [routerLink]="['/main/board']"
+          >Create new board</li>
           <li>Edit profile</li>
         </ul>
       </nav>
