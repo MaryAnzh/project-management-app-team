@@ -30,7 +30,7 @@ export class AuthGuard implements CanActivate {
         (value) => date = value?.date ? value?.date : ''
       )
 
-      this.authService.tokenDateExpired(date.toString());
+      this.authService.checktokenExpiration(date.toString());
     }
 
     return iwAuth;

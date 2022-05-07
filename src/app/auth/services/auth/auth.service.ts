@@ -89,9 +89,9 @@ export class AuthService {
     this.router.navigateByUrl('/welcome')
   }
 
-  tokenDateExpired(date: string): void {
+  checktokenExpiration(tokencreationDate: string): void {
     const dateNow = Date.now();
-    const tokenDate = new Date(date);
+    const tokenDate = new Date(tokencreationDate);
     const tokenAge = (dateNow - tokenDate.getTime()) / this._millisecondInHoure;
     //console.log(`tokenAge = ${tokenAge} часов`);
 
