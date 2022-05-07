@@ -24,7 +24,15 @@ export class AuthGuard implements CanActivate {
     )
     if (!iwAuth) {
       this.router.navigateByUrl('/welcome');
+    } else {
+      let date = ''
+      this.authService.user$.subscribe(
+        (value) => date = value?.date ? value?.date : ''
+      )
+
+      this.authService.tokenDateExpired(date.toString());
     }
+
     return iwAuth;
   }
 }

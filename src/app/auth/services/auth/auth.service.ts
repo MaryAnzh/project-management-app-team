@@ -15,11 +15,11 @@ export class AuthService {
 
   private _user$$ = new BehaviorSubject<IResAuthLogin | null>(null);
   private _errorMessage$$ = new Subject<IErrorMessage>();
-  private _millisecond: number = 86400000;
+  private _millisecondInHoure: number = 3600000;
+  private _tokenLifeTime: number = 24;
 
   public isLoggedIn$ = this._user$$.asObservable().pipe(map((user) => {
-    return (user !== null
-      )
+    return (user !== null)
   }))
 
 
@@ -86,15 +86,18 @@ export class AuthService {
   logout(): void {
     this.storage.setData('user', null);
     this._user$$.next(null)
+    this.router.navigateByUrl('/welcome')
   }
 
-  tokenDate(date: string): boolean {
-    const tokenAge = Date.now() - new Date(date).getMilliseconds();
+  tokenDateExpired(date: string): void {
+    const dateNow = Date.now();
+    const tokenDate = new Date(date);
+    const tokenAge = (dateNow - tokenDate.getTime()) / this._millisecondInHoure;
+    //console.log(`tokenAge = ${tokenAge} часов`);
 
-    let isTokenExpired = (tokenAge > this._millisecond) ? true : false;
-    if (isTokenExpired) {
-      this.logout;
+    if (tokenAge > this._tokenLifeTime) {
+      this.logout();
+      console.log(`tokenAge = ${tokenAge} часов, Токен истек`);
     }
-    return isTokenExpired;
   }
 }
