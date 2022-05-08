@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
-import { IErrorMessage } from '../../model/respons-error.model';
+import { IErrorMessage } from '../../../core/models/respons-error.model';
 import { Observable, SubjectLike, Subscribable, SubscriptionLike } from 'rxjs';
 
 @Component({

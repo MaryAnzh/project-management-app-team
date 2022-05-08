@@ -19,8 +19,6 @@ export class HeaderComponent {
 
   public userName: string = '';
 
-
-
   constructor(private authService: AuthService) {
     this._isAuth$ = this.authService.isLoggedIn$.subscribe(
       (value: boolean) => this.isAuth = value

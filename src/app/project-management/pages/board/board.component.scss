@@ -1,1 +1,61 @@
+@import '../../../../vareable';
 
+:host {
+  max-width: 1080px;
+  width: 100%;
+  height: calc(100vh - 200px - 100px - 80px);
+  margin: auto;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .board {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: $mainColorLight;
+
+    &__main-panel {
+      width: 100%;
+      padding: 10px;
+      display: flex;
+      background: $mainColor;
+      justify-content: space-between;
+
+      button {
+        color: #ffffff;
+        border: 1px dashed #ffffff;
+        height: 40px;
+      }
+
+      &__title {
+        width: 250px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .hidden-button {
+          height: 40px;
+        }
+
+        &__input {
+          width: 150px;
+          background: $mainColor;
+          color: #ffffff;
+          font-size: 34px;
+          padding: 4px;
+          outline: none;
+          border: none;
+
+          &:focus {
+            border-bottom: 1px solid #ffffff;
+          }
+        }
+
+      }
+    }
+  }
+
+
+}

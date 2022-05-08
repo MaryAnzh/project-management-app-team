@@ -5,7 +5,7 @@ import { SubscriptionLike } from 'rxjs';
 import { IUserLoginData, Token } from 'src/app/core/models/request.model';
 import { RequestService } from 'src/app/core/services/request/request.service';
 import { AuthService } from '../../services/auth/auth.service';
-import { IErrorMessage } from '../../model/respons-error.model';
+import { IErrorMessage } from '../../../core/models/respons-error.model';
 
 @Component({
   selector: 'app-login-page',

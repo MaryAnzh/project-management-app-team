@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: center;
 
-  .bord-title-wrap {
+  .board-title-wrap {
     width: 360px;
     height: 260px;
     background: $mainColor;
@@ -21,18 +21,22 @@
     align-items: center;
     justify-content: space-around;
     border: 2px dashed #FFFFFF;
+    color: #FFFFFF;
 
     h2 {
-      color: #ffffff;
+      color: #FFFFFF;
     }
 
     input {
       border: none;
-      padding:{
+      color: #FFFFFF;
+
+      padding: {
         left: 10px;
         top: 10px;
-      };
-      color: #ffffff;
+      }
+
+      ;
       width: 80%;
       height: 40px;
       font-size: 36px;
@@ -42,12 +46,28 @@
       text-align: center;
     }
 
-    button {
-      width: 120px;
-      height: 40px;
+    p {
+      text-align: center;
       font-size: 24px;
-      border: 1px dashed #ffffff;
     }
+
+    &__button-wrap {
+      display: flex;
+      width: 90%;
+      justify-content: center;
+
+      button {
+        width: 120px;
+        height: 40px;
+        font-size: 24px;
+        border: 1px dashed #ffffff;
+        margin: {
+          left: 10px;
+          right: 10px;
+        };
+      }
+    }
+
 
   }
 }

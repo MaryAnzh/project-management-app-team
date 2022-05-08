@@ -28,7 +28,7 @@ export interface IBoardData {
   title: string,
 }
 
-export interface BoardTitle { title: string }
+export interface IBoardTitle { title: string }
 
 export interface IColumnsData {
   id: string,

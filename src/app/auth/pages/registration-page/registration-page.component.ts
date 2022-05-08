@@ -4,7 +4,7 @@ import { SubscriptionLike } from 'rxjs';
 import { IUseRegistrationData } from 'src/app/core/models/request.model';
 import { loginFormValidators } from '../../../shared/utils/login-form-validators';
 import { AuthService } from '../../services/auth/auth.service';
-import { IErrorMessage } from '../../model/respons-error.model';
+import { IErrorMessage } from '../../../core/models/respons-error.model';
 
 @Component({
   selector: 'app-registration-page',

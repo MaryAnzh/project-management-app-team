@@ -6,7 +6,7 @@ import { StorageService } from '../storage/storage.service';
 import { IUserLoginData } from 'src/app/core/models/request.model';
 import { RequestService } from 'src/app/core/services/request/request.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { IErrorMessage } from '../../model/respons-error.model';
+import { IErrorMessage } from '../../../core/models/respons-error.model';
 
 @Injectable({
   providedIn: 'root',
@@ -51,10 +51,15 @@ export class AuthService {
       (error: HttpErrorResponse) => {
         console.error(`Ощибка ${error.status} поймана`);
         const errorMessage: IErrorMessage = {
-          errorMessage: error.error.message,
+          errorMessage: '',
           isError: true,
         }
 
+        if (error.statusText === 'Unknown Error') {
+          errorMessage.errorMessage = 'Check the connection at the network'
+        } else {
+          errorMessage.errorMessage = error.error.message
+        }
         this._errorMessage$$.next(errorMessage);
       }
     )
@@ -76,8 +81,14 @@ export class AuthService {
       (error: HttpErrorResponse) => {
         console.error(`Ощибка ${error.status} поймана`);
         const errorMessage: IErrorMessage = {
-          errorMessage: error.error.message,
+          errorMessage: '',
           isError: true,
+        }
+
+        if (error.statusText === 'Unknown Error') {
+          errorMessage.errorMessage = 'Check the connection at the network'
+        } else {
+          errorMessage.errorMessage = error.error.message
         }
         this._errorMessage$$.next(errorMessage);
       });
@@ -93,7 +104,7 @@ export class AuthService {
     const dateNow = Date.now();
     const tokenDate = new Date(tokencreationDate);
     const tokenAge = (dateNow - tokenDate.getTime()) / this._millisecondInHoure;
-    //console.log(`tokenAge = ${tokenAge} часов`);
+    console.log(`tokenAge = ${tokenAge} часов`);
 
     if (tokenAge > this._tokenLifeTime) {
       this.logout();
