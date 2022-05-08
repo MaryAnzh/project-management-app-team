@@ -15,6 +15,7 @@ const routes: Routes = [{ path: '', component: ProjectManagementComponent }];
   ],
   imports: [
     CommonModule,
+    RouterModule,
     RouterModule.forChild([
       { path: '', component: ProjectManagementComponent },
       { path: 'board', component: BoardComponent}
