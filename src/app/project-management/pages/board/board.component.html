@@ -4,8 +4,8 @@
       <input class="board__main-panel__title__input" type="text"
         #boardTitle
         value="{{boardInfo.title}}"
-        (input)="changeTitleInput(boardTitle.value)"
-        maxlength="12">
+        (focus)="makeButtonVisible()"
+        maxlength="22">
         <button class="hidden-button"
         *ngIf="isTitleChange"
         (click)="changeTitleOnClick(boardTitle.value)"

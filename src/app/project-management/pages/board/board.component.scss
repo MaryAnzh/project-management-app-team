@@ -30,7 +30,7 @@
       }
 
       &__title {
-        width: 250px;
+        width: 360px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -40,13 +40,14 @@
         }
 
         &__input {
-          width: 150px;
+          width: 280px;
           background: $mainColor;
           color: #ffffff;
-          font-size: 34px;
+          font-size: 22px;
           padding: 4px;
           outline: none;
           border: none;
+          box-sizing: border-box;
 
           &:focus {
             border-bottom: 1px solid #ffffff;
