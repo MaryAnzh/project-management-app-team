@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterLinkWithHref } from '@angular/router';
 import { SubscriptionLike } from 'rxjs';
 import { IErrorMessage } from 'src/app/core/models/respons-error.model';
 import { PMDataService } from '../../services/PMData/pmdata.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-board-title',
@@ -17,7 +19,9 @@ export class BoardTitleComponent {
     isError: false,
   };
 
-  constructor(private pmDataService: PMDataService) {
+  constructor(
+    private pmDataService: PMDataService,
+    private router: Router) {
     this._errorMessage$ = this.pmDataService.errorMessage$.subscribe(
       (value: IErrorMessage) => this.errorMessage = value
     )
@@ -25,6 +29,7 @@ export class BoardTitleComponent {
 
   createBoard(title: string) {
     this.pmDataService.createBoard(title);
+
   }
 
   closeError() {

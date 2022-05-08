@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IBoardCreation, IBoardData } from 'src/app/core/models/request.model';
+import { IBoardTitle, IBoardData } from 'src/app/core/models/request.model';
 import { RequestService } from 'src/app/core/services/request/request.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -24,7 +24,7 @@ export class PMDataService {
   }
 
   createBoard(title: string) {
-    const board: IBoardCreation = {
+    const board: IBoardTitle = {
       title: title,
     }
 
@@ -32,7 +32,7 @@ export class PMDataService {
       {
         next: (response: IBoardData) => {
           this._currentBordId = response.id;
-          this.router.navigateByUrl(`/board/${response.id}`);
+          this.router.navigateByUrl(`main/board/${response.id}`);
         },
         error: (error: HttpErrorResponse) => {
           console.error(`${error.statusText} error caught`);
@@ -51,6 +51,33 @@ export class PMDataService {
       }
     );
 
+  }
+
+  getBoard(id: string): IBoardData {
+    const boardInfo: IBoardData = {
+      id: id,
+      title: ''
+    }
+    this.requestService.getBoard(id).subscribe(
+      {
+        next: (response: IBoardData) => boardInfo.title = response.title,
+        error: (error: HttpErrorResponse) => console.error(error.message),
+      }
+    );
+    return boardInfo;
+  }
+
+  upDateBoard(id: string, title: string): IBoardData | null {
+    const body: IBoardTitle = {
+      title: title,
+    }
+    let boardInfo: IBoardData | null = null;
+    this.requestService.updateBoard(id, body).subscribe({
+      next: (response: IBoardData) => boardInfo = response,
+      error: (error: HttpErrorResponse) => console.error(error.message)
+    });
+
+    return boardInfo;
   }
 
   changeErrorMessage(errorMessage: IErrorMessage) {

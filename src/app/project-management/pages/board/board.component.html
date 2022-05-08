@@ -1,1 +1,17 @@
-<app-board-title></app-board-title>
+<div class="board" *ngIf="boardInfo">
+  <section class="board__main-panel">
+    <form class="board__main-panel__title">
+      <input class="board__main-panel__title__input" type="text"
+        #boardTitle
+        value="{{boardInfo.title}}"
+        (input)="changeTitleInput(boardTitle.value)"
+        maxlength="12">
+        <button class="hidden-button"
+        *ngIf="isTitleChange"
+        (click)="changeTitleOnClick(boardTitle.value)"
+        >Change</button>
+    </form>
+
+  </section>
+
+</div>

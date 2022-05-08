@@ -4,6 +4,7 @@ import { ProjectManagementComponent } from './project-management.component';
 import { RouterModule, Routes } from '@angular/router';
 import { BoardComponent } from './pages/board/board.component';
 import { BoardTitleComponent } from './components/board-title/board-title.component';
+import { CreateBoardComponent } from './pages/create-board/create-board.component';
 
 const routes: Routes = [{ path: '', component: ProjectManagementComponent }];
 
@@ -11,14 +12,16 @@ const routes: Routes = [{ path: '', component: ProjectManagementComponent }];
   declarations: [
     ProjectManagementComponent,
     BoardComponent,
-    BoardTitleComponent
+    BoardTitleComponent,
+    CreateBoardComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     RouterModule.forChild([
       { path: '', component: ProjectManagementComponent },
-      { path: 'board', component: BoardComponent}
+      { path: 'board', component: CreateBoardComponent },
+      { path: 'board/:id', component: BoardComponent},
     ])
   ],
   exports: [RouterModule],

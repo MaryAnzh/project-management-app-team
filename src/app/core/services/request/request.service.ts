@@ -7,7 +7,7 @@ import {
   User,
   IUseRegistrationData,
   IBoardData,
-  IBoardCreation,
+  IBoardTitle,
   IColumnsData,
   IColumnsRequestData
 } from '../../models/request.model';
@@ -60,7 +60,7 @@ export class RequestService {
     return this.http.get<IBoardData[]>(`/boards`, httpOptions);
   }
 
-  createBoard(body: IBoardCreation): Observable<IBoardData> {
+  createBoard(body: IBoardTitle): Observable<IBoardData> {
     return this.http.post<IBoardData>(`/boards`, body, httpOptions);
   }
 
@@ -72,7 +72,7 @@ export class RequestService {
     return this.http.delete<IBoardData>(`/boards/${id}`, httpOptions2);
   }
 
-  updateBoard(id: string, body: IBoardCreation): Observable<IBoardData> {
+  updateBoard(id: string, body: IBoardTitle): Observable<IBoardData> {
     return this.http.put<IBoardData>(`/boards/${id}`, body, httpOptions);
   }
 
