@@ -51,10 +51,15 @@ export class AuthService {
       (error: HttpErrorResponse) => {
         console.error(`Ощибка ${error.status} поймана`);
         const errorMessage: IErrorMessage = {
-          errorMessage: error.error.message,
+          errorMessage: '',
           isError: true,
         }
 
+        if (error.statusText === 'Unknown Error') {
+          errorMessage.errorMessage = 'Check the connection at the network'
+        } else {
+          errorMessage.errorMessage = error.error.message
+        }
         this._errorMessage$$.next(errorMessage);
       }
     )
@@ -76,8 +81,14 @@ export class AuthService {
       (error: HttpErrorResponse) => {
         console.error(`Ощибка ${error.status} поймана`);
         const errorMessage: IErrorMessage = {
-          errorMessage: error.error.message,
+          errorMessage: '',
           isError: true,
+        }
+
+        if (error.statusText === 'Unknown Error') {
+          errorMessage.errorMessage = 'Check the connection at the network'
+        } else {
+          errorMessage.errorMessage = error.error.message
         }
         this._errorMessage$$.next(errorMessage);
       });
