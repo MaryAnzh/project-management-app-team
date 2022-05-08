@@ -40,4 +40,12 @@ export class BoardComponent {
 
 
   }
+
+  deleteBoardOnClikc() {
+    if (this.boardId) {
+      this.pmDataService.deleteBoard(this.boardId);
+      console.log('this.boardId');
+      console.log(this.boardId);
+    }
+  }
 }

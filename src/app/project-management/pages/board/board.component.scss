@@ -23,6 +23,12 @@
       background: $mainColor;
       justify-content: space-between;
 
+      button {
+        color: #ffffff;
+        border: 1px dashed #ffffff;
+        height: 40px;
+      }
+
       &__title {
         width: 250px;
         display: flex;
@@ -31,8 +37,6 @@
 
         .hidden-button {
           height: 40px;
-          color: #ffffff;
-          border: 1px dashed #ffffff;
         }
 
         &__input {

@@ -80,6 +80,14 @@ export class PMDataService {
     return boardInfo;
   }
 
+  deleteBoard(id: string) {
+    this.requestService.deleteBoard(id).subscribe({
+      next: (response: any) => console.log(response),
+      error: (error: HttpErrorResponse) => console.error(error.message),
+    });
+    this.router.navigateByUrl('main');
+  }
+
   changeErrorMessage(errorMessage: IErrorMessage) {
     this._errorMessage$$.next(errorMessage);
   }
