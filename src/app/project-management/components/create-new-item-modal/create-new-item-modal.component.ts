@@ -4,7 +4,6 @@ import { Observable, SubscriptionLike } from 'rxjs';
 import { IErrorMessage } from 'src/app/core/models/respons-error.model';
 import { PMDataService } from '../../services/PMData/pmdata.service';
 import { Router } from '@angular/router';
-import { InvokeFunctionExpr } from '@angular/compiler';
 
 @Component({
   selector: 'app-create-new-item-modal',
@@ -20,7 +19,7 @@ export class CreateNewItemModalComponent {
     isError: false,
   };
 
-  @Input() public modalName: string = ''
+  @Input() public modalName: string = '';
 
   constructor(
     private pmDataService: PMDataService,

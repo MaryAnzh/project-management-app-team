@@ -27,6 +27,10 @@
       color: #FFFFFF;
     }
 
+    h2::first-letter {
+      text-transform: uppercase;
+    }
+
     input {
       border: none;
       color: #FFFFFF;

@@ -17,7 +17,11 @@
     </form>
     <div class="board__main-panel__control">
       <button
-      (click)="newBoardOnClick()">New column</button>
+      data-type="task"
+      (click)="newColumnOnClick($event)">New task</button>
+      <button
+      data-type="column"
+      (click)="newColumnOnClick($event)">New column</button>
       <button
         (click)="deleteBoardOnClikc()">DELETE</button>
     </div>

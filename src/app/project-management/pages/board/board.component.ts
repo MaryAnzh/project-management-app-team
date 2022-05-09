@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { PMDataService } from '../../services/PMData/pmdata.service';
 import { IBoardData } from 'src/app/core/models/request.model';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-board',
@@ -58,9 +58,15 @@ export class BoardComponent {
     }
   }
 
-  newBoardOnClick() {
-    this.modalName = 'Column';
-    const isModalOpen = true;
-    this.pmDataService.changeModalOoen(isModalOpen);
+  newColumnOnClick(e: Event) {
+    const elem = <HTMLElement>e.target;
+    const elemType = elem.dataset['type'];
+
+    if (elemType) {
+      this.modalName = elemType;
+      const isModalOpen = true;
+      this.pmDataService.changeModalOoen(isModalOpen);
+    }
+
   }
 }
