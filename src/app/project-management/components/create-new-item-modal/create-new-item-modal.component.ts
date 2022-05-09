@@ -29,8 +29,7 @@ export class CreateNewItemModalComponent {
     )
   }
 
-  createBoard(title: string) {
-    this.pmDataService.createBoard(title);
+  createItem(title: string) {
 
   }
 
