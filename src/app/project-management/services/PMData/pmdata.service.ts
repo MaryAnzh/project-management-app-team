@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IBoardTitle, IBoardData } from 'src/app/core/models/request.model';
+import { IBoardTitle, IBoardData, IBoardUpdata } from 'src/app/core/models/request.model';
 import { RequestService } from 'src/app/core/services/request/request.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -68,7 +68,7 @@ export class PMDataService {
   }
 
   upDateBoard(id: string, title: string): IBoardData | null {
-    const body: IBoardTitle = {
+    const body: IBoardUpdata = {
       title: title,
     }
     let boardInfo: IBoardData | null = null;

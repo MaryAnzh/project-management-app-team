@@ -23,20 +23,42 @@ export interface User {
   login: string
 }
 
+export interface IBoardTitle { title: string}
+
 export interface IBoardData {
   id: string,
   title: string,
+  columns?: IColumnsData[] | [],
 }
 
-export interface IBoardTitle { title: string }
+export interface IBoardUpdata {
+  title: string,
+  columns?: IColumnsData[] | [],
+}
 
 export interface IColumnsData {
   id: string,
   title: string,
   order: number,
+  tasks?: ITaskData[] | [],
 }
 
 export interface IColumnsRequestData {
   title: string,
   order: number,
+}
+
+export interface ITaskData {
+  id: string,
+  title: string,
+  order: number,
+  done: boolean,
+  description: string,
+  userId: string,
+  files?: IFilesData[]
+}
+
+export interface IFilesData {
+  filename: string,
+  fileSize: number,
 }
