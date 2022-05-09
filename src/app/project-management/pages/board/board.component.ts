@@ -29,6 +29,12 @@ export class BoardComponent {
     this.isTitleChange = true;
   }
 
+  makeButtonHidden() {
+    setTimeout(() => this.isTitleChange = false, 500);
+
+    console.log('блур сработал')
+  }
+
   changeTitleOnClick(value: string) {
     this.isTitleChange = false;
     if (this.boardId) {

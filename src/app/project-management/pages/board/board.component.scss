@@ -55,6 +55,16 @@
         }
 
       }
+
+      &__control {
+        width: 320px;
+        display: flex;
+        justify-content: flex-end;
+
+        button {
+          margin-left: 10px;
+        }
+      }
     }
   }
 

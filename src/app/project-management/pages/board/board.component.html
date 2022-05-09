@@ -5,15 +5,18 @@
         #boardTitle
         value="{{boardInfo.title}}"
         (focus)="makeButtonVisible()"
+        (blur)="makeButtonHidden()"
         maxlength="22">
-        <button class="hidden-button"
+      <button class="hidden-button"
         *ngIf="isTitleChange"
-        (click)="changeTitleOnClick(boardTitle.value)"
-        >Change</button>
+        (click)="changeTitleOnClick(boardTitle.value)">Change</button>
     </form>
-    <button
-    (click)="deleteBoardOnClikc()"
-    >DELETE</button>
+    <div class="board__main-panel__control">
+      <button>New column</button>
+      <button
+        (click)="deleteBoardOnClikc()">DELETE</button>
+    </div>
+
 
   </section>
 
