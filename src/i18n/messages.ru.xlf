@@ -1,13 +1,173 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+  <file source-language="en-US" target-language="ru" datatype="plaintext" original="ng2.template">
     <body>
-      <trans-unit id="1322985269190942377" datatype="html">
-        <source>registration-page works!</source>
-        <target>Страница регистрации!</target>
+      <trans-unit id="auth-form.login" datatype="html">
+        <source>Login</source>
+        <target>Вход</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/auth/registration-page/registration-page.component.html</context>
-          <context context-type="linenumber">1</context>
+          <context context-type="sourcefile">src/app/auth/pages/login-page/login-page.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="auth-form.email" datatype="html">
+        <source>Email</source>
+        <target>Эл.адрес</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/pages/login-page/login-page.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="auth-form.email-placeholder" datatype="html">
+        <source>Enter Email</source>
+        <target>Введите эл.адрес</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/pages/login-page/login-page.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="auth-form.email-errors-required" datatype="html">
+        <source> Please enter a login email </source>
+        <target>Пожалуйста, введите адрес элетронной почты</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/pages/login-page/login-page.component.html</context>
+          <context context-type="linenumber">28,30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="auth-form.email-errors-email" datatype="html">
+        <source> The login email is invalid </source>
+        <target>Адрес электронной почты недействителен</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/pages/login-page/login-page.component.html</context>
+          <context context-type="linenumber">32,34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="auth-form.password" datatype="html">
+        <source>Password</source>
+        <target>Пароль</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/pages/login-page/login-page.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="auth-form.password-placeholder" datatype="html">
+        <source>Enter Password</source>
+        <target>Введите пароль</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/pages/login-page/login-page.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="auth-form.password-errors-required" datatype="html">
+        <source> Please enter a password </source>
+        <target>Пожалуйста, введите пароль</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/pages/login-page/login-page.component.html</context>
+          <context context-type="linenumber">54,56</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="auth-form.link-registration" datatype="html">
+        <source> Registration</source>
+        <target>Регистрация</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/pages/login-page/login-page.component.html</context>
+          <context context-type="linenumber">64,65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="auth-form.button-login" datatype="html">
+        <source>Login</source>
+        <target>Войти</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/pages/login-page/login-page.component.html</context>
+          <context context-type="linenumber">69</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="auth-form.registration" datatype="html">
+        <source>Registration</source>
+        <target>Регистрация</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/pages/registration-page/registration-page.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="auth-form.user-name" datatype="html">
+        <source>User Name</source>
+        <target>Имя пользователя</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/pages/registration-page/registration-page.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="auth-form.user-name-placeholder" datatype="html">
+        <source>Enter User Name</source>
+        <target>Введите имя пользователя</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/pages/registration-page/registration-page.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="auth-form.user-name-errors-required" datatype="html">
+        <source> Please enter a user-name </source>
+        <target>Пожалуйста, введите имя пользователя</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/pages/registration-page/registration-page.component.html</context>
+          <context context-type="linenumber">27,29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="auth-form.user-name-errors-minlength" datatype="html">
+        <source> length must be at least <x id="INTERPOLATION" equiv-text="{{userName?.errors?.minlength.requiredLength}}"/> </source>
+        <target>длина должна быть неменее <x id="INTERPOLATION" equiv-text="{{userName?.errors?.minlength.requiredLength}}"/> символов</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/pages/registration-page/registration-page.component.html</context>
+          <context context-type="linenumber">31,33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="auth-form.password-errors-mix" datatype="html">
+        <source> The password must contain: <x id="START_SMALL_TEXT" ctype="x-small" equiv-text="&lt;small *ngIf=&quot;password?.errors?.minlength&quot;&gt;"/><x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/> - at least <x id="INTERPOLATION" equiv-text="{{password?.errors?. [&apos;minlength&apos;].requiredLength}}"/>. <x id="CLOSE_SMALL_TEXT" ctype="x-small" equiv-text="&lt;/small&gt;"/><x id="START_SMALL_TEXT_1" equiv-text="&lt;small *ngIf=&quot;password?.errors?.digitValidator&quot;&gt;"/><x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/> - at least one number <x id="CLOSE_SMALL_TEXT" ctype="x-small" equiv-text="&lt;/small&gt;"/><x id="START_SMALL_TEXT_2" equiv-text="&lt;small *ngIf=&quot;password?.errors?. lowercaseValidator&quot;&gt;"/><x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/> - at least one uppercase letter <x id="CLOSE_SMALL_TEXT" ctype="x-small" equiv-text="&lt;/small&gt;"/><x id="START_SMALL_TEXT_3" equiv-text="&lt;small *ngIf=&quot;password?.errors?. uppercaseValidator&quot;&gt;"/><x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/> - at least one capital letter <x id="CLOSE_SMALL_TEXT" ctype="x-small" equiv-text="&lt;/small&gt;"/><x id="START_SMALL_TEXT_4" equiv-text="&lt;small *ngIf=&quot;password?.errors?.symbolsValidator&quot;&gt;"/><x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/> - at least one special character <x id="CLOSE_SMALL_TEXT" ctype="x-small" equiv-text="&lt;/small&gt;"/></source>
+        <target>Пароль должен включать:<x id="START_SMALL_TEXT" ctype="x-small" equiv-text="&lt;small *ngIf=&quot;password?.errors?.minlength&quot;&gt;"/><x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/> - не менее <x id="INTERPOLATION" equiv-text="{{password?.errors?. [&apos;minlength&apos;].requiredLength}}"/> символов. <x id="CLOSE_SMALL_TEXT" ctype="x-small" equiv-text="&lt;/small&gt;"/><x id="START_SMALL_TEXT_1" equiv-text="&lt;small *ngIf=&quot;password?.errors?.digitValidator&quot;&gt;"/><x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/> - хотя бы одну цифру <x id="CLOSE_SMALL_TEXT" ctype="x-small" equiv-text="&lt;/small&gt;"/><x id="START_SMALL_TEXT_2" equiv-text="&lt;small *ngIf=&quot;password?.errors?. lowercaseValidator&quot;&gt;"/><x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/> - хотя бы одну заглавную букву <x id="CLOSE_SMALL_TEXT" ctype="x-small" equiv-text="&lt;/small&gt;"/><x id="START_SMALL_TEXT_3" equiv-text="&lt;small *ngIf=&quot;password?.errors?. uppercaseValidator&quot;&gt;"/><x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/> - хотя бы одну прописную букву <x id="CLOSE_SMALL_TEXT" ctype="x-small" equiv-text="&lt;/small&gt;"/><x id="START_SMALL_TEXT_4" equiv-text="&lt;small *ngIf=&quot;password?.errors?.symbolsValidator&quot;&gt;"/><x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/> - хотя бы один специальный символ <x id="CLOSE_SMALL_TEXT" ctype="x-small" equiv-text="&lt;/small&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/pages/registration-page/registration-page.component.html</context>
+          <context context-type="linenumber">86,102</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="auth-form.confirm-password" datatype="html">
+        <source>Сonfirm password</source>
+        <target>Подтвердите пароль</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/pages/registration-page/registration-page.component.html</context>
+          <context context-type="linenumber">108</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="auth-form.confirm-password-placeholder" datatype="html">
+        <source>Сonfirm password</source>        <target>Подтвердите пароль</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/pages/registration-page/registration-page.component.html</context>
+          <context context-type="linenumber">114</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="auth-form.confirm-password-errors-notSame" datatype="html">
+        <source> Please confirm a password </source>
+        <target>Пожалуйста, подтвердите пароль</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/pages/registration-page/registration-page.component.html</context>
+          <context context-type="linenumber">124,126</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="auth-form.link-login" datatype="html">
+        <source> Login </source>
+        <target> Войти </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/pages/registration-page/registration-page.component.html</context>
+          <context context-type="linenumber">135,137</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="auth-form.button-registration" datatype="html">
+        <source>Registration</source>
+        <target>Регистрация</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/pages/registration-page/registration-page.component.html</context>
+          <context context-type="linenumber">141</context>
         </context-group>
       </trans-unit>
     </body>
