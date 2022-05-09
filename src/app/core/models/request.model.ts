@@ -31,7 +31,7 @@ export interface IBoardData {
   columns?: IColumnsData[] | [],
 }
 
-export interface IBoardUpdata {
+export interface IBoardUpdate {
   title: string,
   columns?: IColumnsData[] | [],
 }

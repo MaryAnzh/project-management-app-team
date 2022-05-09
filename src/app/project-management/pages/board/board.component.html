@@ -1,3 +1,7 @@
+<app-create-new-item-modal
+*ngIf="ismodalOpen$ | async"
+[modalName]="modalName"
+></app-create-new-item-modal>
 <div class="board" *ngIf="boardInfo">
   <section class="board__main-panel">
     <form class="board__main-panel__title">
@@ -12,7 +16,8 @@
         (click)="changeTitleOnClick(boardTitle.value)">Change</button>
     </form>
     <div class="board__main-panel__control">
-      <button>New column</button>
+      <button
+      (click)="newBoardOnClick()">New column</button>
       <button
         (click)="deleteBoardOnClikc()">DELETE</button>
     </div>

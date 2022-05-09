@@ -1,0 +1,23 @@
+<div class="modal-wrap">
+  <ng-container *ngIf="!errorMessage.isError">
+    <h2>{{modalName}} Title</h2>
+    <input type="text" autofocus #bordTitleInput>
+    <div class="modal-wrap__button-wrap">
+      <button
+        (click)="createBoard(bordTitleInput.value)">Create</button>
+      <button
+      (click)="closeModal()">
+      cancel</button>
+    </div>
+
+  </ng-container>
+  <ng-container *ngIf="errorMessage.isError">
+    <h2>Error</h2>
+    <p>{{errorMessage.errorMessage}}</p>
+    <div class="modal-wrap__button-wrap">
+      <button
+        (click)="closeError()">close</button>
+    </div>
+  </ng-container>
+
+</div>
