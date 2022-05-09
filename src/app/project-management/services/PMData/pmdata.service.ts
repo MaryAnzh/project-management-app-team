@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IBoardTitle, IBoardData } from 'src/app/core/models/request.model';
+import { IBoardTitle, IBoardData, IBoardUpdate } from 'src/app/core/models/request.model';
 import { RequestService } from 'src/app/core/services/request/request.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -16,6 +16,8 @@ export class PMDataService {
 
   public errorMessage$ = this._errorMessage$$.asObservable();
 
+  private _isModalOoen$$ = new Subject<boolean>();
+  public isModalOoen$ = this._isModalOoen$$.asObservable();
 
   constructor(
     private requestService: RequestService,
@@ -68,7 +70,7 @@ export class PMDataService {
   }
 
   upDateBoard(id: string, title: string): IBoardData | null {
-    const body: IBoardTitle = {
+    const body: IBoardUpdate = {
       title: title,
     }
     let boardInfo: IBoardData | null = null;
@@ -90,5 +92,9 @@ export class PMDataService {
 
   changeErrorMessage(errorMessage: IErrorMessage) {
     this._errorMessage$$.next(errorMessage);
+  }
+
+  changeModalOoen(onOff: boolean) {
+    this._isModalOoen$$.next(onOff);
   }
 }

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { PMDataService } from '../../services/PMData/pmdata.service';
 import { IBoardData } from 'src/app/core/models/request.model';
 import { ActivatedRoute } from '@angular/router';
-import { HostListener } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-board',
@@ -15,6 +15,9 @@ export class BoardComponent {
   public isTitleChange: boolean = false;
   public boardId: string | null = null;
 
+  public ismodalOpen$: Observable<boolean>;
+  @Input() public modalName: string = '';
+
   constructor(private pmDataService: PMDataService,
     private route: ActivatedRoute
   ) {
@@ -23,10 +26,18 @@ export class BoardComponent {
     if (id) {
       this.boardInfo = this.pmDataService.getBoard(id);
     }
+
+    this.ismodalOpen$ = this.pmDataService.isModalOoen$;
   }
 
   makeButtonVisible() {
     this.isTitleChange = true;
+  }
+
+  makeButtonHidden() {
+    setTimeout(() => this.isTitleChange = false, 500);
+
+    console.log('блур сработал')
   }
 
   changeTitleOnClick(value: string) {
@@ -45,5 +56,17 @@ export class BoardComponent {
     if (this.boardId) {
       this.pmDataService.deleteBoard(this.boardId);
     }
+  }
+
+  newColumnOnClick(e: Event) {
+    const elem = <HTMLElement>e.target;
+    const elemType = elem.dataset['type'];
+
+    if (elemType) {
+      this.modalName = elemType;
+      const isModalOpen = true;
+      this.pmDataService.changeModalOoen(isModalOpen);
+    }
+
   }
 }

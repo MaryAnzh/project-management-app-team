@@ -1,3 +1,7 @@
+<app-create-new-item-modal
+*ngIf="ismodalOpen$ | async"
+[modalName]="modalName"
+></app-create-new-item-modal>
 <div class="board" *ngIf="boardInfo">
   <section class="board__main-panel">
     <form class="board__main-panel__title">
@@ -5,15 +9,23 @@
         #boardTitle
         value="{{boardInfo.title}}"
         (focus)="makeButtonVisible()"
+        (blur)="makeButtonHidden()"
         maxlength="22">
-        <button class="hidden-button"
+      <button class="hidden-button"
         *ngIf="isTitleChange"
-        (click)="changeTitleOnClick(boardTitle.value)"
-        >Change</button>
+        (click)="changeTitleOnClick(boardTitle.value)">Change</button>
     </form>
-    <button
-    (click)="deleteBoardOnClikc()"
-    >DELETE</button>
+    <div class="board__main-panel__control">
+      <button
+      data-type="task"
+      (click)="newColumnOnClick($event)">New task</button>
+      <button
+      data-type="column"
+      (click)="newColumnOnClick($event)">New column</button>
+      <button
+        (click)="deleteBoardOnClikc()">DELETE</button>
+    </div>
+
 
   </section>
 

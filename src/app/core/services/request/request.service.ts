@@ -7,6 +7,7 @@ import {
   User,
   IUseRegistrationData,
   IBoardData,
+  IBoardUpdate,
   IBoardTitle,
   IColumnsData,
   IColumnsRequestData
@@ -72,7 +73,7 @@ export class RequestService {
     return this.http.delete<IBoardData>(`/boards/${id}`, httpOptions2);
   }
 
-  updateBoard(id: string, body: IBoardTitle): Observable<IBoardData> {
+  updateBoard(id: string, body: IBoardUpdate): Observable<IBoardData> {
     return this.http.put<IBoardData>(`/boards/${id}`, body, httpOptions);
   }
 
