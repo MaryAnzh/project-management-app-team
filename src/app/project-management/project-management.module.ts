@@ -6,6 +6,7 @@ import { BoardComponent } from './pages/board/board.component';
 import { BoardTitleComponent } from './components/board-title/board-title.component';
 import { CreateBoardComponent } from './pages/create-board/create-board.component';
 import { CreateNewItemModalComponent } from './components/create-new-item-modal/create-new-item-modal.component';
+import { ColumnComponent } from './components/column/column.component';
 
 const routes: Routes = [{ path: '', component: ProjectManagementComponent }];
 
@@ -15,7 +16,8 @@ const routes: Routes = [{ path: '', component: ProjectManagementComponent }];
     BoardComponent,
     BoardTitleComponent,
     CreateBoardComponent,
-    CreateNewItemModalComponent
+    CreateNewItemModalComponent,
+    ColumnComponent
   ],
   imports: [
     CommonModule,

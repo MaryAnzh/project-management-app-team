@@ -1,7 +1,6 @@
 <app-create-new-item-modal
-*ngIf="ismodalOpen$ | async"
-[modalName]="modalName"
-></app-create-new-item-modal>
+  *ngIf="ismodalOpen$ | async"
+  [modalName]="modalName"></app-create-new-item-modal>
 <div class="board" *ngIf="boardInfo">
   <section class="board__main-panel">
     <form class="board__main-panel__title">
@@ -17,16 +16,18 @@
     </form>
     <div class="board__main-panel__control">
       <button
-      data-type="task"
-      (click)="newColumnOnClick($event)">New task</button>
+        data-type="task"
+        (click)="newColumnOnClick($event)">New task</button>
       <button
-      data-type="column"
-      (click)="newColumnOnClick($event)">New column</button>
+        data-type="column"
+        (click)="newColumnOnClick($event)">New column</button>
       <button
         (click)="deleteBoardOnClikc()">DELETE</button>
     </div>
+  </section>
 
-
+  <section class="board__column-wrap">
+    <app-column></app-column>
   </section>
 
 </div>
