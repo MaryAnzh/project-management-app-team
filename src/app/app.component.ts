@@ -1,6 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { Observable, SubscriptionLike } from 'rxjs';
 import { AuthService } from './auth/services/auth/auth.service';
+import { CoreDataService } from './core/services/coreData/core-data.service';
 
 @Component({
   selector: 'app-root',
@@ -15,14 +16,18 @@ export class AppComponent {
   public isAuth: boolean = false;
   public isAuth$: SubscriptionLike;
 
+  public cancelisConfirmationModalOpen$: Observable<boolean>;
+
   public title: string = 'project-management-app';
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService,
+    private coreDataService: CoreDataService) {
     this.isAuth$ = this.authService.isLoggedIn$.subscribe(
       (value: boolean) => {
         this.isAuth = value
       }
     )
+    this.cancelisConfirmationModalOpen$ = this.coreDataService.isConfirmationModalOpen$;
   }
 
   @HostListener("window:scroll", []) onWindowScroll() {

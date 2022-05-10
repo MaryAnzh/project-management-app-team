@@ -54,7 +54,9 @@ export class BoardComponent {
 
   deleteBoardOnClikc() {
     if (this.boardId) {
-      this.pmDataService.deleteBoard(this.boardId);
+      this.pmDataService.openConfirmationModal(this.boardId);
+
+      //this.pmDataService.deleteBoard(this.boardId);
     }
   }
 

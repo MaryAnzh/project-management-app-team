@@ -4,6 +4,7 @@ import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.com
 import { HeaderComponent } from './components/header/header.component';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './components/footer/footer/footer.component';
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 
 
 
@@ -11,7 +12,8 @@ import { FooterComponent } from './components/footer/footer/footer.component';
   declarations: [
     NotFoundPageComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ConfirmationModalComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +21,8 @@ import { FooterComponent } from './components/footer/footer/footer.component';
   ],
   exports: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ConfirmationModalComponent
   ],
 })
 export class CoreModule { }
