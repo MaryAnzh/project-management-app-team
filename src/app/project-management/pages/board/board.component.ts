@@ -30,46 +30,55 @@ export class BoardComponent {
     this.ismodalOpen$ = this.pmDataService.isModalOoen$;
   }
 
+
+
   makeButtonVisible() {
     this.isTitleChange = true;
   }
 
   makeButtonHidden() {
-    setTimeout(() => this.isTitleChange = false, 500);
+    setTimeout(() => this.isTitleChange = false, 300);
   }
 
   changeTitleOnClick(value: string) {
-    console.log('this.boardInfo');
-    console.log(this.boardInfo);
+
     this.isTitleChange = false;
     if (this.boardId && this.boardInfo) {
 
       const upDate: IBoardData | null = this.pmDataService.upDateBoard(this.boardId, value, this.boardInfo.description);
       if (upDate) {
-        this.boardInfo.title = upDate.title
+        this.boardInfo.title = upDate.title;
       }
     }
-
-
   }
 
-  deleteBoardOnClikc() {
-    if (this.boardId) {
-      this.pmDataService.openConfirmationModal(this.boardId);
-
-      //this.pmDataService.deleteBoard(this.boardId);
-    }
+  cancelChangeTitleOnClick(e: HTMLInputElement) {
+    this.isTitleChange = false;
+    this.inputValue();
   }
 
-  newColumnOnClick(e: Event) {
-    const elem = <HTMLElement>e.target;
-    const elemType = elem.dataset['type'];
-
-    if (elemType) {
-      this.modalName = elemType;
-      const isModalOpen = true;
-      this.pmDataService.changeModalOoen(isModalOpen);
-    }
-
+  inputValue() {
+    return this.boardInfo?.title;
   }
+
+
+deleteBoardOnClikc() {
+  if (this.boardId) {
+    this.pmDataService.openConfirmationModal(this.boardId);
+
+    //this.pmDataService.deleteBoard(this.boardId);
+  }
+}
+
+newColumnOnClick(e: Event) {
+  const elem = <HTMLElement>e.target;
+  const elemType = elem.dataset['type'];
+
+  if (elemType) {
+    this.modalName = elemType;
+    const isModalOpen = true;
+    this.pmDataService.changeModalOoen(isModalOpen);
+  }
+
+}
 }
