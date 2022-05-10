@@ -30,8 +30,6 @@ export class BoardComponent {
     this.ismodalOpen$ = this.pmDataService.isModalOoen$;
   }
 
-
-
   makeButtonVisible() {
     this.isTitleChange = true;
   }
@@ -41,9 +39,11 @@ export class BoardComponent {
   }
 
   changeTitleOnClick(value: string) {
-
     this.isTitleChange = false;
-    if (this.boardId && this.boardInfo) {
+
+    if (this.boardId
+      && this.boardInfo
+      && this.boardInfo.title !== value) {
 
       const upDate: IBoardData | null = this.pmDataService.upDateBoard(this.boardId, value, this.boardInfo.description);
       if (upDate) {
@@ -62,23 +62,23 @@ export class BoardComponent {
   }
 
 
-deleteBoardOnClikc() {
-  if (this.boardId) {
-    this.pmDataService.openConfirmationModal(this.boardId);
+  deleteBoardOnClikc() {
+    if (this.boardId) {
+      this.pmDataService.openConfirmationModal(this.boardId);
 
-    //this.pmDataService.deleteBoard(this.boardId);
-  }
-}
-
-newColumnOnClick(e: Event) {
-  const elem = <HTMLElement>e.target;
-  const elemType = elem.dataset['type'];
-
-  if (elemType) {
-    this.modalName = elemType;
-    const isModalOpen = true;
-    this.pmDataService.changeModalOoen(isModalOpen);
+      //this.pmDataService.deleteBoard(this.boardId);
+    }
   }
 
-}
+  newColumnOnClick(e: Event) {
+    const elem = <HTMLElement>e.target;
+    const elemType = elem.dataset['type'];
+
+    if (elemType) {
+      this.modalName = elemType;
+      const isModalOpen = true;
+      this.pmDataService.changeModalOoen(isModalOpen);
+    }
+
+  }
 }
