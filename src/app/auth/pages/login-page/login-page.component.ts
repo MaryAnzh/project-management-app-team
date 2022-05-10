@@ -6,6 +6,7 @@ import { IUserLoginData, Token } from 'src/app/core/models/request.model';
 import { RequestService } from 'src/app/core/services/request/request.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { IErrorMessage } from '../../../core/models/respons-error.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login-page',
@@ -23,8 +24,12 @@ export class LoginPageComponent implements OnInit {
   loginForm!: FormGroup;
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    public translate: TranslateService
   ) {
+
+    translate.addLangs(['en', 'ru']);
+    translate.setDefaultLang('en');
 
     this.errorMessage$ = this.authService.errorMessage$.subscribe(
       (value: IErrorMessage) => {

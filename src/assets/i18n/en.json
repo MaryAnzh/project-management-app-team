@@ -26,5 +26,38 @@
         "MARGO": "Frontend developer. We are working on setting up a connection between man and space, creating a harmony of their interaction."
       }
     }
+  },
+  "AUTH": {
+    "LOGIN_TITLE": "Login",
+    "REGISTRATION_TITLE": "Registration",
+    "INPUTS": {
+      "EMAIL": "Email",
+      "EMAIL_PLACEHOLDER": "Enter Email",
+      "PASSWORD": "Password",
+      "PASSWORD_PLACEHOLDER": "Enter Password",
+      "USER_NAME": "User Name",
+      "USER_NAME_PLACEHOLDER": "Enter User Name",
+      "CONFIRM_PASSWORD": "Сonfirm password",
+      "CONFIRM_PASSWORD_PLACEHOLDER": "Сonfirm password"
+    },
+    "VALIDATE": {
+      "EMAIL_REQUIRED":"Please enter a login email",
+      "EMAIL_VALID_EMAIL":"The login email is invalid",
+      "PASSWORD_REQUIRED":"Please enter a password",
+      "USER_NAME_REQUIRED":"Please enter a user-name",
+      "USER_NAME_MINLENGTH":"length must be at least",
+      "AT_LEAST": "at least",
+      "SYMBOLS": "symbols",
+      "CONTAIN": "The password must contain:",
+      "DIGT_VALIDATE": "at least one number",
+      "LOWER_CASE_VALIDATE": "at least one capital letter",
+      "UPPER_CASE_VALIDATE": "at least one uppercase letter",
+      "SYMBOL_VALIDATE": "at least one special character",
+      "CONFIRM_PASSWORD_REQUIRED": "Please confirm a password"
+    },
+    "BUTTONS": {
+      "LOGIN": "Login",
+      "REGISTRATION": "Registration"
+    }
   }
 }
