@@ -5,13 +5,14 @@
 ></app-pop-up-auth-error>
 
 <form class="auth-form" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-  <h2 class="auth-form__title">Registration</h2>
+  <h2 i18n="@@auth-form.registration" class="auth-form__title">Registration</h2>
 
   <div class="auth-form__input-container">
 
     <div class="auth-form__input-container__field">
-      <label for="user-name">User Name</label>
+      <label i18n="@@auth-form.user-name" for="user-name">User Name</label>
       <input
+        i18n-placeholder="@@auth-form.user-name-placeholder"
         #inputUser
         type="text"
         class="user-name"
@@ -23,19 +24,20 @@
     <div class="auth-form__input-container__error">
       <ng-container
         *ngIf="userName?.invalid && userName?.touched">
-        <small *ngIf="userName?.errors?.required">
+        <small i18n="@@auth-form.user-name-errors-required" *ngIf="userName?.errors?.required">
           Please enter a user-name
         </small>
 
-        <small *ngIf="userName?.errors?.minlength">
+        <small i18n="@@auth-form.user-name-errors-minlength" *ngIf="userName?.errors?.minlength">
           length must be at least {{userName?.errors?.minlength.requiredLength}}
         </small>
       </ng-container>
     </div>
 
     <div class="auth-form__input-container__field">
-      <label for="email">Email</label>
+      <label i18n="@@auth-form.email" for="email">Email</label>
       <input
+        i18n-placeholder="@@auth-form.email-placeholder"
         #inputEmail
         type="text"
         class="email"
@@ -48,19 +50,20 @@
     <div class="auth-form__input-container__error">
       <ng-container
         *ngIf="email?.invalid && email?.touched">
-        <small *ngIf="email?.errors?.required">
+        <small i18n="@@auth-form.email-errors-required" *ngIf="email?.errors?.required">
           Please enter a login email
         </small>
 
-        <small *ngIf="email?.errors?.email">
+        <small i18n="@@auth-form.email-errors-email" *ngIf="email?.errors?.email">
           The login email is invalid
         </small>
       </ng-container>
     </div>
 
     <div class="auth-form__input-container__field">
-      <label for="password">Password</label>
+      <label i18n="@@auth-form.password" for="password">Password</label>
       <input
+        i18n-placeholder="@@auth-form.password-placeholder"
         #inputPassword
         type="password"
         class="password"
@@ -73,10 +76,10 @@
     <div class="auth-form__input-container__error password-error">
       <ng-container
         *ngIf="password?.invalid && password?.touched">
-        <small *ngIf="password?.errors?.required">
+        <small i18n="@@auth-form.password-errors-required" *ngIf="password?.errors?.required">
           Please enter a password
         </small>
-        <small *ngIf="password?.errors?.minlength
+        <small i18n="@@auth-form.password-errors-mix" *ngIf="password?.errors?.minlength
           || password?.errors?.digitValidator
           || password?.errors?.lowercaseValidator
           || password?.errors?.uppercaseValidator
@@ -102,8 +105,9 @@
     </div>
 
     <div class="auth-form__input-container__field">
-      <label for="confirm-password">Сonfirm password</label>
+      <label i18n="@@auth-form.confirm-password" for="confirm-password">Сonfirm password</label>
       <input
+        i18n-placeholder="@@auth-form.confirm-password-placeholder"
         #inputСonfirmPasswordd
         type="password"
         class="confirm-password"
@@ -116,9 +120,9 @@
     <div class="auth-form__input-container__error">
       <ng-container
         *ngIf="confirmPassword?.invalid && confirmPassword?.touched">
-        <small *ngIf="confirmPassword?.errors?.notSame ||
+        <small i18n="@@auth-form.confirm-password-errors-notSame" *ngIf="confirmPassword?.errors?.notSame ||
           confirmPassword?.errors?.required">
-          Please repeat a password
+          Please confirm a password
         </small>
       </ng-container>
     </div>
@@ -127,10 +131,12 @@
 
   <div class="auth-form__button-container">
     <a
+      i18n="@@auth-form.link-login"
       routerLink="/auth/login">
       Login
     </a>
     <button
+      i18n="@@auth-form.button-registration"
       type="submit"
       [ngClass]="{visible: registrationForm.valid}">Registration</button>
   </div>

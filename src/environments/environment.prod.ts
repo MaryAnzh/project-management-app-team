@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  configUrl: 'https://stormy-tor-32770.herokuapp.com'
+  configUrl: 'https://ancient-spire-58203.herokuapp.com'
 };

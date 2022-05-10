@@ -6,12 +6,13 @@
 <form class="auth-form login-form"
 [formGroup]="loginForm"
 (ngSubmit)="onSubmit()">
-  <h2 class="auth-form__title">Login</h2>
+  <h2 i18n="@@auth-form.login" class="auth-form__title">Login</h2>
 
   <div class="auth-form__input-container">
     <div class="auth-form__input-container__field">
-      <label for="email">Email</label>
+      <label i18n="@@auth-form.email" for="email">Email</label>
       <input
+        i18n-placeholder="@@auth-form.email-placeholder"
         #inputEmail
         type="text"
         class="email"
@@ -24,19 +25,20 @@
     <div class="auth-form__input-container__error">
       <ng-container
         *ngIf="email?.invalid && email?.touched">
-        <small *ngIf="email?.errors?.required">
+        <small i18n="@@auth-form.email-errors-required" *ngIf="email?.errors?.required">
           Please enter a login email
         </small>
 
-        <small *ngIf="email?.errors?.email">
+        <small i18n="@@auth-form.email-errors-email" *ngIf="email?.errors?.email">
           The login email is invalid
         </small>
       </ng-container>
     </div>
 
     <div class="auth-form__input-container__field">
-      <label for="password">Password</label>
+      <label i18n="@@auth-form.password" for="password">Password</label>
       <input
+        i18n-placeholder="@@auth-form.password-placeholder"
         #inputPassword
         type="password"
         class="password"
@@ -49,7 +51,7 @@
     <div class="auth-form__input-container__error">
       <ng-container
         *ngIf="password?.invalid && password?.touched">
-        <small *ngIf="password?.errors?.required">
+        <small i18n="@@auth-form.password-errors-required" *ngIf="password?.errors?.required">
           Please enter a password
         </small>
       </ng-container>
@@ -58,9 +60,11 @@
 
   <div class="auth-form__button-container">
     <a
+      i18n="@@auth-form.link-registration"
       routerLink="/auth/registration">
       Registration</a>
     <button
+    i18n="@@auth-form.button-login"
     [ngClass]="{visible: loginForm.valid}"
     type="submit">Login</button>
   </div>

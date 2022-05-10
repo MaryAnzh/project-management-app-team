@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SubscriptionLike } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth/auth.service';
 import { IResAuthLogin } from '../../models/request.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -19,7 +20,7 @@ export class HeaderComponent {
 
   public userName: string = '';
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, public translate: TranslateService) {
     this._isAuth$ = this.authService.isLoggedIn$.subscribe(
       (value: boolean) => this.isAuth = value
     )
@@ -27,9 +28,16 @@ export class HeaderComponent {
     this._userName$ = this.authService.user$.subscribe(
       (value: IResAuthLogin | null) => this.userName = value ? value.name : ''
     )
+
+    translate.addLangs(['en', 'ru']);
+    translate.setDefaultLang('en');
   }
 
   logOutOnClick(): void {
     this.authService.logout();
+  }
+
+  translateLanguageTo(lang: string): void {
+    this.translate.use(lang);
   }
  }

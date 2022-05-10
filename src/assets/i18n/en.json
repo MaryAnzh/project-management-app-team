@@ -1,0 +1,30 @@
+{
+  "HEADER": {
+    "YOUR_WAY": "Your Way",
+    "TO_SUCCESS": "to Success",
+    "LOGIN": "Login",
+    "LOGOUT": "Logout",
+    "REGISTRATION": "Registration",
+    "NAV":{
+      "WELCOME": "Welcome",
+      "BOARDS": "My Boards",
+      "CREATE_BOARD":"Create new board",
+      "EDIT_PROFILE": "Edit profile"
+    }
+  },
+  "MAIN": {
+    "TITLE": "Project management app - Your Way to Success!!!",
+    "SUBTITLE": "Our advantages",
+    "TEXT_1": "Effective project management with visualization and task flow",
+    "TEXT_2": "Transparent workflow with real-time tracking of changes",
+    "TEXT_3": "Ease of implementation, optimization of working time and costs",
+    "TEAM": {
+      "TITLE": "OUR TEAM",
+      "ABOUT_US": {
+        "MARY": "Project Manager. Full stack developer.\t We are a team of students at The Rolling Scopes School developing the Project Management App. Time is the most precious thing in our life. Let's organize it right!",
+        "DIMA": "Fullstack developer. We are committed to effective project management so that your goals are achieved faster and at the lowest cost.",
+        "MARGO": "Frontend developer. We are working on setting up a connection between man and space, creating a harmony of their interaction."
+      }
+    }
+  }
+}
