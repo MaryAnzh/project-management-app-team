@@ -21,8 +21,11 @@ export class AppComponent {
 
   public title: string = 'project-management-app';
 
-  constructor(private authService: AuthService, public translate: TranslateService) {
+  constructor(
+    private authService: AuthService,
+    public translate: TranslateService,
     private coreDataService: CoreDataService) {
+
     this.isAuth$ = this.authService.isLoggedIn$.subscribe(
       (value: boolean) => {
         this.isAuth = value
