@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PMDataService } from '../../services/PMData/pmdata.service';
+import { crossSvg } from 'src/app/shared/svg/icon';
 
 @Component({
   selector: 'app-column',
@@ -8,6 +9,8 @@ import { PMDataService } from '../../services/PMData/pmdata.service';
 })
 
 export class ColumnComponent {
+  public crossSvg: string = crossSvg;
+
   constructor(private pmDataService: PMDataService) {
 
   }
