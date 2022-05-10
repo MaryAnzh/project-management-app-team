@@ -67,17 +67,25 @@ export class PMDataService {
 
     this.requestService.getBoard(id).subscribe(
       {
-        next: (response: IBoardData) => boardInfo.title = response.title,
+        next: (response: IBoardData) => {
+          boardInfo.title = response.title;
+          boardInfo.description = response.description;
+          if (response.columns) {
+            boardInfo.columns = response.columns
+          }
+        },
         error: (error: HttpErrorResponse) => console.error(error.message),
       }
     );
     return boardInfo;
   }
 
-  upDateBoard(id: string, title: string): IBoardData | null {
+  upDateBoard(id: string, title: string, description: string): IBoardData | null {
     const body: IBoardUpdate = {
       title: title,
+      description: description,
     }
+
     let boardInfo: IBoardData | null = null;
     this.requestService.updateBoard(id, body).subscribe({
       next: (response: IBoardData) => boardInfo = response,

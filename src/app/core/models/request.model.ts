@@ -37,6 +37,7 @@ export interface IBoardData {
 
 export interface IBoardUpdate {
   title: string,
+  description: string,
   columns?: IColumnsData[] | [],
 }
 

@@ -36,15 +36,16 @@ export class BoardComponent {
 
   makeButtonHidden() {
     setTimeout(() => this.isTitleChange = false, 500);
-
-    console.log('блур сработал')
   }
 
   changeTitleOnClick(value: string) {
+    console.log('this.boardInfo');
+    console.log(this.boardInfo);
     this.isTitleChange = false;
-    if (this.boardId) {
-      const upDate: IBoardData | null = this.pmDataService.upDateBoard(this.boardId, value);
-      if (upDate && this.boardInfo) {
+    if (this.boardId && this.boardInfo) {
+
+      const upDate: IBoardData | null = this.pmDataService.upDateBoard(this.boardId, value, this.boardInfo.description);
+      if (upDate) {
         this.boardInfo.title = upDate.title
       }
     }
