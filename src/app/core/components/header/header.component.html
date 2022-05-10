@@ -50,13 +50,15 @@
       </div>
 
       <div class="header__wrap__section-auth-leng-lnfo__languages">
-        <div (click)="translateLanguageTo('en')" class="header__wrap__section-auth-leng-lnfo__languages__contaner
-          active">
+        <div (click)="translateLanguageTo('en')"
+        [ngClass]="{'header__wrap__section-auth-leng-lnfo__languages__contaner' : true,
+          'active': isActiveLanguageEn, 'active-not': !isActiveLanguageEn}">
           <p>En</p>
         </div>
 
-        <div (click)="translateLanguageTo('ru')" class="header__wrap__section-auth-leng-lnfo__languages__contaner
-          active-not">
+        <div (click)="translateLanguageTo('ru')"
+        [ngClass]="{'header__wrap__section-auth-leng-lnfo__languages__contaner' : true,
+          'active': isActiveLanguageRu, 'active-not': !isActiveLanguageRu}">
           <p>Ru</p>
         </div>
       </div>
