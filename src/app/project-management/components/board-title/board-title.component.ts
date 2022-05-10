@@ -27,8 +27,8 @@ export class BoardTitleComponent {
     )
   }
 
-  createBoard(title: string) {
-    this.pmDataService.createBoard(title);
+  createBoard(title: string, description: string) {
+    this.pmDataService.createBoard(title, description);
 
   }
 
