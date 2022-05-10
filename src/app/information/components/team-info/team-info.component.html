@@ -1,9 +1,9 @@
-<h2>Our team</h2>
+<h2>{{'MAIN.TEAM.TITLE' | translate}}</h2>
 
 <section class="teem-info">
   <div class="teem-info__wrap">
     <div class="teem-info__wrap__about">
-      <div class="teem-info__wrap__about__member"
+      <!-- <div class="teem-info__wrap__about__member"
            *ngFor="let member of [['Mary', '../../../../../assets/main/mari.jpg', 'Руководитель проекта. Fullstack-разработчик.\tМы команда студентов The Rolling Scopes School, разрабатывающие приложение Project Management App. Время - самое бесценное в нашей жизни. Организуем его правильно!'],
       ['Dima', '../../../../../assets/main/dim.jpg', 'Fullstack-разработчик. Мы стремимся к эффективному управлению проектами, чтобы ваши цели достигались быстрее и с наименьшими затратами.'],
       ['Margo', '../../../../../assets/main/rit.jpg', 'Frontend-разработчик. Мы работаем над настройкой связи между человеком и пространством, создавая гармонию их взаимодействия.']]">
@@ -13,8 +13,34 @@
          <div class="teem-info__wrap__about__member__text">
            {{member[0]}}<br>{{member[2]}}
         </div>
+      </div> -->
+
+      <div class="teem-info__wrap__about__member">
+        <div class="teem-info__wrap__about__member__foto">
+          <img src="../../../../../assets/main/mari.jpg" alt="foto-member">
+        </div>
+         <div class="teem-info__wrap__about__member__text">
+          Mary<br>{{'MAIN.TEAM.ABOUT_US.MARY' | translate}}
+        </div>
       </div>
 
+      <div class="teem-info__wrap__about__member">
+        <div class="teem-info__wrap__about__member__foto">
+          <img src="../../../../../assets/main/dim.jpg" alt="foto-member">
+        </div>
+         <div class="teem-info__wrap__about__member__text">
+          Dima<br>{{'MAIN.TEAM.ABOUT_US.DIMA' | translate}}
+        </div>
+      </div>
+
+      <div class="teem-info__wrap__about__member">
+        <div class="teem-info__wrap__about__member__foto">
+          <img src="../../../../../assets/main/rit.jpg" alt="foto-member">
+        </div>
+         <div class="teem-info__wrap__about__member__text">
+          MARGO<br>{{'MAIN.TEAM.ABOUT_US.MARGO' | translate}}
+        </div>
+      </div>
 
     </div>
 

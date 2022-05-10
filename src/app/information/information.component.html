@@ -5,19 +5,33 @@
       <div class="main__app-info__sticker__title">
         <img src="../../assets/icon/magnet.svg" alt="magnet">
         <h2>
-          Project management app - Your Way to Success!!!
+          {{'MAIN.TITLE' | translate}}
         </h2>
       </div>
 
       <section class="main__app-info__sticker__text">
         <h3>
-          Our advantages
+          {{'MAIN.SUBTITLE' | translate}}
         </h3>
-        <ul
+        <!-- <ul
           *ngFor="let item of ['Эффективное управление проектом с помощью визуализации и потока задач', 'Прозрачный рабочий процесс с возможностью отслеживания изменений в реальном времени', 'Легкость внедрения, оптимизация рабочего времени и затрат']">
           <li>
             <img src="../../assets/icon/chack.svg" alt="chack icon">
             <p>{{item}}</p>
+          </li>
+        </ul> -->
+        <ul>
+          <li>
+            <img src="../../assets/icon/chack.svg" alt="chack icon">
+            <p>{{'MAIN.TEXT_1' | translate}}</p>
+          </li>
+          <li>
+            <img src="../../assets/icon/chack.svg" alt="chack icon">
+            <p>{{'MAIN.TEXT_2' | translate}}</p>
+          </li>
+          <li>
+            <img src="../../assets/icon/chack.svg" alt="chack icon">
+            <p>{{'MAIN.TEXT_3' | translate}}</p>
           </li>
         </ul>
       </section>

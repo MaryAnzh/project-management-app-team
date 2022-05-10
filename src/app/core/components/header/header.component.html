@@ -7,8 +7,8 @@
           alt="logo"
           [routerLink]="['/welcome']">
         <p class="header__wrap__section-logo__logo__text">
-          Your Way <br>
-          to Success
+          {{'HEADER.YOUR_WAY' | translate}} <br>
+          {{'HEADER.TO_SUCCESS' | translate}}
         </p>
       </div>
 
@@ -23,12 +23,12 @@
           <div
             class="header__wrap__section-auth-leng-lnfo__auth__login"
             [routerLink]="['/auth/login']">
-            <a>Login</a>
+            <a>{{'HEADER.LOGIN' | translate}}</a>
           </div>
           <div
             class="header__wrap__section-auth-leng-lnfo__auth__registration"
             routerLink="/auth/registration">
-            <a>Registration</a>
+            <a>{{'HEADER.REGISTRATION' | translate}}</a>
           </div>
         </ng-container>
 
@@ -43,19 +43,19 @@
             class="header__wrap__section-auth-leng-lnfo__auth__logout"
             [routerLink]="['/info']"
             (click)="logOutOnClick()">
-            <a>LogOut</a>
+            <a>{{'HEADER.LOGOUT' | translate}}</a>
           </div>
 
         </ng-container>
       </div>
 
       <div class="header__wrap__section-auth-leng-lnfo__languages">
-        <div class="header__wrap__section-auth-leng-lnfo__languages__contaner
+        <div (click)="translateLanguageTo('en')" class="header__wrap__section-auth-leng-lnfo__languages__contaner
           active">
           <p>En</p>
         </div>
 
-        <div class="header__wrap__section-auth-leng-lnfo__languages__contaner
+        <div (click)="translateLanguageTo('ru')" class="header__wrap__section-auth-leng-lnfo__languages__contaner
           active-not">
           <p>Ru</p>
         </div>
@@ -70,14 +70,14 @@
         <ul class="header__wrap__section-nav__nav-wrap__list">
           <li
           [routerLink]="['/welcome']"
-          >Welcome</li>
+          >{{'HEADER.NAV.WELCOME' | translate}}</li>
           <li
           [routerLink]="['/main']"
-            >My boards</li>
+            >{{'HEADER.NAV.BOARDS' | translate}}</li>
           <li
           [routerLink]="['/main/board']"
-          >Create new board</li>
-          <li>Edit profile</li>
+          >{{'HEADER.NAV.CREATE_BOARD' | translate}}</li>
+          <li>{{'HEADER.NAV.EDIT_PROFILE' | translate}}</li>
         </ul>
       </nav>
     </section>
