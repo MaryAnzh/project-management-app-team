@@ -20,6 +20,9 @@ export class HeaderComponent {
 
   public userName: string = '';
 
+  public isActiveLanguageRu: boolean = false;
+  public isActiveLanguageEn: boolean = true;
+
   constructor(private authService: AuthService, public translate: TranslateService) {
     this._isAuth$ = this.authService.isLoggedIn$.subscribe(
       (value: boolean) => this.isAuth = value
@@ -39,5 +42,19 @@ export class HeaderComponent {
 
   translateLanguageTo(lang: string): void {
     this.translate.use(lang);
+    switch (lang) {
+      case 'ru':
+        this.isActiveLanguageRu = true;
+        this.isActiveLanguageEn = false;
+        break;
+
+      case 'en':
+        this.isActiveLanguageRu = false;
+        this.isActiveLanguageEn = true;
+        break;
+
+      default:
+        break;
+    }
   }
  }
