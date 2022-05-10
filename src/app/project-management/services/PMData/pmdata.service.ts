@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IBoardTitle, IBoardData, IBoardUpdate } from 'src/app/core/models/request.model';
+import { IBoardDescription, IBoardData, IBoardUpdate } from 'src/app/core/models/request.model';
 import { RequestService } from 'src/app/core/services/request/request.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -27,9 +27,10 @@ export class PMDataService {
   ) {
   }
 
-  createBoard(title: string) {
-    const board: IBoardTitle = {
+  createBoard(title: string, description: string) {
+    const board: IBoardDescription = {
       title: title,
+      description: description,
     }
 
     this.requestService.createBoard(board).subscribe(
@@ -60,8 +61,10 @@ export class PMDataService {
   getBoard(id: string): IBoardData {
     const boardInfo: IBoardData = {
       id: id,
-      title: ''
+      title: '',
+      description: '',
     }
+
     this.requestService.getBoard(id).subscribe(
       {
         next: (response: IBoardData) => boardInfo.title = response.title,

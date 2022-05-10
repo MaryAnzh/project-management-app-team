@@ -8,7 +8,7 @@ import {
   IUseRegistrationData,
   IBoardData,
   IBoardUpdate,
-  IBoardTitle,
+  IBoardDescription,
   IColumnsData,
   IColumnsRequestData
 } from '../../models/request.model';
@@ -61,7 +61,7 @@ export class RequestService {
     return this.http.get<IBoardData[]>(`/boards`, httpOptions);
   }
 
-  createBoard(body: IBoardTitle): Observable<IBoardData> {
+  createBoard(body: IBoardDescription): Observable<IBoardData> {
     return this.http.post<IBoardData>(`/boards`, body, httpOptions);
   }
 

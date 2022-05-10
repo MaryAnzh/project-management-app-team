@@ -23,11 +23,15 @@ export interface User {
   login: string
 }
 
-export interface IBoardTitle { title: string}
+export interface IBoardDescription {
+  title: string,
+  description: string
+}
 
 export interface IBoardData {
   id: string,
   title: string,
+  "description": string,
   columns?: IColumnsData[] | [],
 }
 
