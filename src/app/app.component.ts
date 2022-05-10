@@ -1,6 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { Observable, SubscriptionLike } from 'rxjs';
 import { AuthService } from './auth/services/auth/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,7 @@ export class AppComponent {
 
   public title: string = 'project-management-app';
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, public translate: TranslateService) {
     this.isAuth$ = this.authService.isLoggedIn$.subscribe(
       (value: boolean) => {
         this.isAuth = value

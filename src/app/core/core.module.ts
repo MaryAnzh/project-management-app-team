@@ -4,7 +4,7 @@ import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.com
 import { HeaderComponent } from './components/header/header.component';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './components/footer/footer/footer.component';
-
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -15,7 +15,8 @@ import { FooterComponent } from './components/footer/footer/footer.component';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    TranslateModule
   ],
   exports: [
     HeaderComponent,
