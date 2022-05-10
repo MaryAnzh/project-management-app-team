@@ -4,8 +4,12 @@ import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.com
 import { HeaderComponent } from './components/header/header.component';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './components/footer/footer/footer.component';
-import { TranslateModule } from '@ngx-translate/core';
+<<<<<<< HEAD
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
+
+=======
+import { TranslateModule } from '@ngx-translate/core';
+>>>>>>> develop
 
 
 @NgModule({

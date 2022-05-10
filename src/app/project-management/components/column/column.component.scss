@@ -1,0 +1,75 @@
+@import '../../../../vareable';
+
+:host {
+  width: 310px;
+  min-height: 50px;
+  height: calc(100% - 60px);
+  background: #ffffff;
+  border: 1px dashed $mainColorDark;
+
+  .column {
+    display: flex;
+    flex-direction: column;
+
+    &__title {
+      height: 40px;
+      display: flex;
+      align-items: center;
+      padding-right: 5px;
+      justify-content: space-between;
+      background: #8C924C;
+      overflow: hidden;
+
+      button {
+        width: 26px;
+        height: 26px;
+        border: 1px dashed #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #8C924C;
+
+        img {
+          width: 90%;
+        }
+
+        &:hover {
+          background: #6a7030;
+        }
+      }
+
+      &__form {
+        width: 270px;
+        height: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        input {
+          width: 230px;
+          height: 30px;
+          background: #8C924C;
+          color: #ffffff;
+          outline: none;
+          border: none;
+          border-bottom: 1px solid rgba($color: #ffffff, $alpha: 0);
+          padding-left: 5px;
+          font-size: 20px;
+
+          &:focus {
+            border-bottom: 1px solid rgba($color: #ffffff, $alpha: 1);
+          }
+        }
+
+        &__check {
+          img {
+            width: 80%;
+          }
+        }
+
+      }
+
+
+    }
+  }
+}

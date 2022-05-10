@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { IErrorMessage } from 'src/app/core/models/respons-error.model';
+import { CoreDataService } from 'src/app/core/services/coreData/core-data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,8 @@ export class PMDataService {
 
   constructor(
     private requestService: RequestService,
-    private router: Router
+    private router: Router,
+    private coreDataService: CoreDataService
   ) {
   }
 
@@ -97,4 +99,11 @@ export class PMDataService {
   changeModalOoen(onOff: boolean) {
     this._isModalOoen$$.next(onOff);
   }
+
+  openConfirmationModal(param: string) {
+    this.coreDataService.openConfirmationModal(this.deleteBoard, param);
+    console.log(`Отработал openConfirmationModal, передал ${param} и ${this.deleteBoard
+}`);
+  }
+
 }
