@@ -23,6 +23,8 @@ export class HeaderComponent {
   public isActiveLanguageRu: boolean = false;
   public isActiveLanguageEn: boolean = true;
 
+  public id: string = '123';
+
   constructor(private authService: AuthService, public translate: TranslateService) {
     this._isAuth$ = this.authService.isLoggedIn$.subscribe(
       (value: boolean) => this.isAuth = value

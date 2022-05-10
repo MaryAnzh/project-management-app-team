@@ -106,7 +106,14 @@ export class PMDataService {
   openConfirmationModal(param: string) {
     this.coreDataService.openConfirmationModal(this.deleteBoard, param);
     console.log(`Отработал openConfirmationModal, передал ${param} и ${this.deleteBoard
-}`);
+      }`);
+  }
+
+  updateUser() {
+    this.requestService.getUsers().subscribe({
+      next: (response: any) => console.log(response),
+      error: (error: HttpErrorResponse) => console.error(error.message),
+    });
   }
 
 }

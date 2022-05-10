@@ -7,6 +7,10 @@ import { BoardTitleComponent } from './components/board-title/board-title.compon
 import { CreateBoardComponent } from './pages/create-board/create-board.component';
 import { CreateNewItemModalComponent } from './components/create-new-item-modal/create-new-item-modal.component';
 import { ColumnComponent } from './components/column/column.component';
+import { EditProfileComponent } from './pages/edit-profile/edit-profile.component';
+import { ProfileFormComponent } from './components/profile-form/profile-form.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [{ path: '', component: ProjectManagementComponent }];
 
@@ -17,15 +21,20 @@ const routes: Routes = [{ path: '', component: ProjectManagementComponent }];
     BoardTitleComponent,
     CreateBoardComponent,
     CreateNewItemModalComponent,
-    ColumnComponent
+    ColumnComponent,
+    EditProfileComponent,
+    ProfileFormComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
+    SharedModule,
+    TranslateModule,
     RouterModule.forChild([
       { path: '', component: ProjectManagementComponent },
       { path: 'board', component: CreateBoardComponent },
       { path: 'board/:id', component: BoardComponent},
+      { path: 'users/:id', component: EditProfileComponent},
     ])
   ],
   exports: [RouterModule],

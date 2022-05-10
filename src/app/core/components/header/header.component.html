@@ -79,7 +79,9 @@
           <li
           [routerLink]="['/main/board']"
           >{{'HEADER.NAV.CREATE_BOARD' | translate}}</li>
-          <li>{{'HEADER.NAV.EDIT_PROFILE' | translate}}</li>
+          <li
+          [routerLink]="['/main/users', id]"
+          >{{'HEADER.NAV.EDIT_PROFILE' | translate}}</li>
         </ul>
       </nav>
     </section>
