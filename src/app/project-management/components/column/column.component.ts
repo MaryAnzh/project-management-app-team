@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { PMDataService } from '../../services/PMData/pmdata.service';
 import { crossSvg } from 'src/app/shared/svg/icon';
+import { IColumnsData } from 'src/app/core/models/request.model';
 
 @Component({
   selector: 'app-column',
@@ -9,7 +10,8 @@ import { crossSvg } from 'src/app/shared/svg/icon';
 })
 
 export class ColumnComponent {
-  public crossSvg: string = crossSvg;
+
+  @Input() public column: IColumnsData | undefined;
 
   constructor(private pmDataService: PMDataService) {
 

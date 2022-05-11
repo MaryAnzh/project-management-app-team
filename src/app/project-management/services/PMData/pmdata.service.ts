@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
-import { IBoardDescription, IBoardData, IBoardUpdate } from 'src/app/core/models/request.model';
+import {
+  IBoardDescription,
+  IBoardData,
+  IBoardUpdate,
+  IColumnsRequestData,
+  IColumnsData
+} from 'src/app/core/models/request.model';
 import { RequestService } from 'src/app/core/services/request/request.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -12,7 +18,10 @@ import { CoreDataService } from 'src/app/core/services/coreData/core-data.servic
 })
 
 export class PMDataService {
-  private _currentBordId: string = '';
+
+  private _currentBord$$ = new Subject<IBoardData | null>();
+  public currentBord$ = this._currentBord$$.asObservable();
+
   private _errorMessage$$ = new Subject<IErrorMessage>();
 
   public errorMessage$ = this._errorMessage$$.asObservable();
@@ -36,7 +45,7 @@ export class PMDataService {
     this.requestService.createBoard(board).subscribe(
       {
         next: (response: IBoardData) => {
-          this._currentBordId = response.id;
+          this._currentBord$$.next(response);
           this.router.navigateByUrl(`main/board/${response.id}`);
         },
         error: (error: HttpErrorResponse) => {
@@ -58,41 +67,28 @@ export class PMDataService {
 
   }
 
-  getBoard(id: string): IBoardData {
-    const boardInfo: IBoardData = {
-      id: id,
-      title: '',
-      description: '',
-    }
+  getBoard(id: string): void {
 
     this.requestService.getBoard(id).subscribe(
       {
         next: (response: IBoardData) => {
-          boardInfo.title = response.title;
-          boardInfo.description = response.description;
-          if (response.columns) {
-            boardInfo.columns = response.columns
-          }
+          this._currentBord$$.next(response);
         },
         error: (error: HttpErrorResponse) => console.error(error.message),
       }
     );
-    return boardInfo;
   }
 
-  upDateBoard(id: string, title: string, description: string): IBoardData | null {
+  upDateBoard(id: string, title: string, description: string): void {
     const body: IBoardUpdate = {
       title: title,
       description: description,
     }
 
-    let boardInfo: IBoardData | null = null;
     this.requestService.updateBoard(id, body).subscribe({
-      next: (response: IBoardData) => boardInfo = response,
+      next: (response: IBoardData) => this._currentBord$$.next(response),
       error: (error: HttpErrorResponse) => console.error(error.message)
     });
-
-    return boardInfo;
   }
 
   deleteBoard(id: string) {
@@ -100,15 +96,34 @@ export class PMDataService {
       next: (response: any) => console.log(response),
       error: (error: HttpErrorResponse) => console.error(error.message),
     });
+    this._currentBord$$.next(null);
     this.router.navigateByUrl('main');
+  }
+
+  createColumn(boardId: string, title: string, order: number): void {
+    const columnData: IColumnsRequestData = {
+      title: title,
+      order: order,
+    }
+
+    this.requestService.createColumn(boardId, columnData).subscribe({
+      next: (response) => this._currentBord$$.subscribe(
+        (vqlue) => vqlue ? vqlue.columns = response : null
+      ),
+      error: (error: HTMLAllCollection) => console.error(error)
+    });
   }
 
   changeErrorMessage(errorMessage: IErrorMessage) {
     this._errorMessage$$.next(errorMessage);
   }
 
-  changeModalOoen(onOff: boolean) {
-    this._isModalOoen$$.next(onOff);
+  openCreationColumnTaskModal() {
+    this._isModalOoen$$.next(true);
+  }
+
+  closeCreationColumnTaskModal() {
+    this._isModalOoen$$.next(false);
   }
 
   openConfirmationModal(param: string) {

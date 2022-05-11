@@ -3,7 +3,7 @@ import { RouterLinkWithHref } from '@angular/router';
 import { Observable, SubscriptionLike } from 'rxjs';
 import { IErrorMessage } from 'src/app/core/models/respons-error.model';
 import { PMDataService } from '../../services/PMData/pmdata.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-create-new-item-modal',
@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 
 export class CreateNewItemModalComponent {
   private _errorMessage$: SubscriptionLike;
+  public boardId: string = '';
 
   public errorMessage: IErrorMessage = {
     errorMessage: '',
@@ -23,14 +24,24 @@ export class CreateNewItemModalComponent {
 
   constructor(
     private pmDataService: PMDataService,
-    private router: Router) {
+    private route: ActivatedRoute) {
     this._errorMessage$ = this.pmDataService.errorMessage$.subscribe(
       (value: IErrorMessage) => this.errorMessage = value
-    )
+    );
+    const id = this.route.snapshot.paramMap.get('id');
+    this.boardId = id ? id : '';
   }
 
-  createItem(title: string) {
+  createItem(name: string, title: string) {
+    switch (name) {
+      case 'colum':
+        this.pmDataService.createColumn(this.boardId, title, 1);
 
+        break;
+
+      default:
+        break;
+    }
   }
 
   closeError() {
@@ -40,8 +51,7 @@ export class CreateNewItemModalComponent {
   }
 
   closeModal() {
-    const isModalOpen = false;
-    this.pmDataService.changeModalOoen(isModalOpen);
+    this.pmDataService.closeCreationColumnTaskModal();
   }
 
 }

@@ -81,7 +81,7 @@ export class RequestService {
     return this.http.get<IColumnsData[]>(`/boards/${boardId}/columns`, httpOptions);
   }
 
-  createColumns(boardId: string, body: IColumnsRequestData): Observable<IColumnsData[]> {
+  createColumn(boardId: string, body: IColumnsRequestData): Observable<IColumnsData[]> {
     return this.http.post<IColumnsData[]>(`/boards/${boardId}/columns`, body, httpOptions);
   }
 

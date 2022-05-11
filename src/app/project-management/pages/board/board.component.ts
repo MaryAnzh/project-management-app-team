@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PMDataService } from '../../services/PMData/pmdata.service';
-import { IBoardData } from 'src/app/core/models/request.model';
+import { IBoardData, IColumnsData } from 'src/app/core/models/request.model';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, SubscriptionLike } from 'rxjs';
 
 @Component({
   selector: 'app-board',
@@ -11,7 +11,9 @@ import { Observable } from 'rxjs';
 })
 
 export class BoardComponent {
+  public boardInfo$: SubscriptionLike;
   public boardInfo: IBoardData | null = null;
+
   public isTitleChange: boolean = false;
   public boardId: string | null = null;
 
@@ -21,10 +23,14 @@ export class BoardComponent {
   constructor(private pmDataService: PMDataService,
     private route: ActivatedRoute
   ) {
+
+    this.boardInfo$ = this.pmDataService.currentBord$.subscribe(
+      (value) => this.boardInfo = value
+    )
     const id = this.route.snapshot.paramMap.get('id');
     this.boardId = id;
     if (id) {
-      this.boardInfo = this.pmDataService.getBoard(id);
+      this.pmDataService.getBoard(id);
     }
 
     this.ismodalOpen$ = this.pmDataService.isModalOoen$;
@@ -45,10 +51,7 @@ export class BoardComponent {
       && this.boardInfo
       && this.boardInfo.title !== value) {
 
-      const upDate: IBoardData | null = this.pmDataService.upDateBoard(this.boardId, value, this.boardInfo.description);
-      if (upDate) {
-        this.boardInfo.title = upDate.title;
-      }
+      this.pmDataService.upDateBoard(this.boardId, value, this.boardInfo.description);
     }
   }
 
@@ -60,7 +63,6 @@ export class BoardComponent {
   inputValue() {
     return this.boardInfo?.title;
   }
-
 
   deleteBoardOnClikc() {
     if (this.boardId) {
@@ -76,8 +78,7 @@ export class BoardComponent {
 
     if (elemType) {
       this.modalName = elemType;
-      const isModalOpen = true;
-      this.pmDataService.changeModalOoen(isModalOpen);
+      this.pmDataService.openCreationColumnTaskModal();
     }
 
   }

@@ -42,7 +42,7 @@ export interface IBoardUpdate {
 }
 
 export interface IColumnsData {
-  id: string,
+  id?: string,
   title: string,
   order: number,
   tasks?: ITaskData[] | [],
