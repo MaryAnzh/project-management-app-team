@@ -15,7 +15,8 @@ export class BoardsService {
   public allBoards$ = this._allBoards$$.asObservable();
 
   constructor(
-    private requestService: RequestService
+    private requestService: RequestService,
+    private router: Router
   ) {}
 
   getAllBoards():void {
@@ -25,6 +26,17 @@ export class BoardsService {
       },
       error: (error: HttpErrorResponse) => console.error(error.message),
     })
+  }
+
+  goToBoard(id: string): void {
+    this.requestService.getBoard(id).subscribe(
+      {
+        next: (response: IBoardData) => {
+          this.router.navigateByUrl(`main/board/${response.id}`);
+        },
+        error: (error: HttpErrorResponse) => console.error(error.message),
+      }
+    )
   }
 
   deleteBoardItem(id: string): void {
