@@ -26,7 +26,7 @@ export class BoardComponent {
     private route: ActivatedRoute
   ) {
 
-    this.boardInfo$ = this.pmDataService.currentBord$.subscribe(
+    this.boardInfo$ = this.pmDataService.currentBoard$.subscribe(
       (value) => {
         this.boardInfo = value;
         this.columns = value?.columns;

@@ -12,6 +12,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Subject, map, Observable } from 'rxjs';
 import { IErrorMessage } from 'src/app/core/models/respons-error.model';
 import { CoreDataService } from 'src/app/core/services/coreData/core-data.service';
+import { upDateOrder } from 'src/app/shared/utils/upDateOrder';
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +20,9 @@ import { CoreDataService } from 'src/app/core/services/coreData/core-data.servic
 
 export class PMDataService {
 
-  private _currentBord$$ = new Subject<IBoardData | null>();
-  public currentBord$: Observable<IBoardData | null> = this._currentBord$$.asObservable();
-  public currentBord: IBoardData | null = null;
+  private _currentBoard$$ = new Subject<IBoardData | null>();
+  public currentBoard$: Observable<IBoardData | null> = this._currentBoard$$.asObservable();
+  public currentBoard: IBoardData | null = null;
 
   private _errorMessage$$ = new Subject<IErrorMessage>();
 
@@ -35,11 +36,9 @@ export class PMDataService {
     private router: Router,
     private coreDataService: CoreDataService
   ) {
-    this.currentBord$.subscribe(
+    this.currentBoard$.subscribe(
       (value) => {
-        this.currentBord = value;
-        console.log('value Обновлено');
-        console.log(value);
+        this.currentBoard = value;
       }
     )
   }
@@ -53,7 +52,7 @@ export class PMDataService {
     this.requestService.createBoard(board).subscribe(
       {
         next: (response: IBoardData) => {
-          this._currentBord$$.next(response);
+          this._currentBoard$$.next(response);
           this.router.navigateByUrl(`main/board/${response.id}`);
         },
         error: (error: HttpErrorResponse) => {
@@ -80,7 +79,7 @@ export class PMDataService {
     this.requestService.getBoard(id).subscribe(
       {
         next: (response: IBoardData) => {
-          this._currentBord$$.next(response);
+          this._currentBoard$$.next(response);
         },
         error: (error: HttpErrorResponse) => console.error(error.message),
       }
@@ -94,7 +93,7 @@ export class PMDataService {
     }
 
     this.requestService.updateBoard(id, body).subscribe({
-      next: (response: IBoardData) => this._currentBord$$.next(response),
+      next: (response: IBoardData) => this._currentBoard$$.next(response),
       error: (error: HttpErrorResponse) => console.error(error.message)
     });
   }
@@ -104,14 +103,14 @@ export class PMDataService {
       next: (response: any) => console.log(response),
       error: (error: HttpErrorResponse) => console.error(error.message),
     });
-    this._currentBord$$.next(null);
+    this._currentBoard$$.next(null);
     this.router.navigateByUrl('main');
   }
 
   createColumn(boardId: string, title: string, orde: number): void {
-    if (this.currentBord) {
-      const order = this.currentBord.columns?.length ? this.currentBord?.columns?.length : 0;
-      const id = this.currentBord.id;
+    if (this.currentBoard) {
+      const order = this.currentBoard.columns?.length ? this.currentBoard?.columns?.length : 0;
+      const id = this.currentBoard.id;
       const columnData: IColumnsRequestData = {
         title: title,
         order: (order + 2),
@@ -119,8 +118,8 @@ export class PMDataService {
 
       this.requestService.createColumn(id, columnData).subscribe({
         next: (response) => {
-          if (this.currentBord) {
-            this.currentBord.columns = response;
+          if (this.currentBoard) {
+            this.currentBoard.columns = response;
             this.getBoard(id);
           }
         },
@@ -131,16 +130,36 @@ export class PMDataService {
 
   }
 
-  deleteColumn(columnId: string) {
-    if (this.currentBord) {
-      const id = this.currentBord.id;
-      this.requestService.deleteColumn(this.currentBord.id, columnId).subscribe({
-        next: (response) => { () => this.getBoard(id) },
-        error: (error) => console.error(error.message),
-      });
-
+  updateColumns(columnId: string, title: string, order: number) {
+    const body: IColumnsRequestData = {
+      title: title,
+      order: order
+    }
+    if (this.currentBoard) {
+      this.requestService.updateColumn(this.currentBoard.id, columnId, body);
     }
   }
+
+  deleteColumn(columnId: string) {
+    const id = this.currentBoard ? this.currentBoard.id : '';
+    this.requestService.deleteColumn(id, columnId).subscribe({
+      next: (response) => {
+        this.getBoard(id);
+
+        if (this.currentBoard) {
+          if (this.currentBoard) {
+            const columnw: IColumnsData[] = this.currentBoard.columns === undefined ? [] : this.currentBoard.columns
+            if (this.sortColumnsByOrder(columnw)) {
+              this.getBoard(id);
+            }
+          }
+
+        }
+      },
+      error: (error) => console.error(error.message),
+    });
+  }
+
 
   changeErrorMessage(errorMessage: IErrorMessage) {
     this._errorMessage$$.next(errorMessage);
@@ -158,9 +177,31 @@ export class PMDataService {
     this.coreDataService.openConfirmationModal(this.deleteBoard, param);
   }
 
+  sortColumnsByOrder(columns: IColumnsData[]): boolean {
+    let isColumnsChange = false;
+    const id = this.currentBoard ? this.currentBoard.id : '';
+    if (columns) {
+      columns.sort((a, b) => a.order - b.order);
+      for (let i = 0; i < columns.length; i += 1) {
+        if (columns[i].order !== (i + 1)) {
+          const column = columns[i];
+          column.order = i;
+          this.updateColumns(id, column.title, column.order);
+          isColumnsChange = true;
+        }
+      }
+    }
+    if (this.currentBoard) {
+      this.currentBoard.columns = columns ?? [];
+      this._currentBoard$$.next(this.currentBoard ?? null);
+    }
+
+    return isColumnsChange;
+  }
+
   OnDestroy() {
-    if (this._currentBord$$) {
-      this._currentBord$$.unsubscribe()
+    if (this._currentBoard$$) {
+      this._currentBoard$$.unsubscribe()
     }
     if (this._errorMessage$$) {
       this._errorMessage$$.unsubscribe();

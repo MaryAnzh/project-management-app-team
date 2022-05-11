@@ -32,20 +32,20 @@ export interface IBoardData {
   id: string,
   title: string,
   "description": string,
-  columns?: IColumnsData[] | [],
+  columns?: IColumnsData[],
 }
 
 export interface IBoardUpdate {
   title: string,
   description: string,
-  columns?: IColumnsData[] | [],
+  columns?: IColumnsData[],
 }
 
 export interface IColumnsData {
   id: string,
   title: string,
   order: number,
-  tasks?: ITaskData[] | [],
+  tasks?: ITaskData[],
 }
 
 export interface IColumnsRequestData {
