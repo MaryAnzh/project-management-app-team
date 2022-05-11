@@ -3,6 +3,7 @@ import { PMDataService } from '../../services/PMData/pmdata.service';
 import { IBoardData } from 'src/app/core/models/request.model';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-board',
@@ -18,8 +19,10 @@ export class BoardComponent {
   public ismodalOpen$: Observable<boolean>;
   @Input() public modalName: string = '';
 
-  constructor(private pmDataService: PMDataService,
-    private route: ActivatedRoute
+  constructor(
+    private pmDataService: PMDataService,
+    private route: ActivatedRoute,
+    public translate: TranslateService
   ) {
     const id = this.route.snapshot.paramMap.get('id');
     this.boardId = id;
@@ -28,6 +31,9 @@ export class BoardComponent {
     }
 
     this.ismodalOpen$ = this.pmDataService.isModalOoen$;
+
+    translate.addLangs(['en', 'ru']);
+    translate.setDefaultLang('en');
   }
 
   makeButtonVisible() {

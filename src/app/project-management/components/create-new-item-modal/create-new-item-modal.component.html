@@ -4,19 +4,19 @@
     <input type="text" autofocus #bordTitleInput>
     <div class="modal-wrap__button-wrap">
       <button
-        (click)="createItem(bordTitleInput.value)">Create</button>
+        (click)="createItem(bordTitleInput.value)">{{'BOARDS.BUTTONS.CREATE' | translate}}</button>
       <button
       (click)="closeModal()">
-      cancel</button>
+      {{'BOARDS.BUTTONS.CANCEL' | translate}}</button>
     </div>
 
   </ng-container>
   <ng-container *ngIf="errorMessage.isError">
-    <h2>Error</h2>
+    <h2>{{'BOARDS.ERROR' | translate}}</h2>
     <p>{{errorMessage.errorMessage}}</p>
     <div class="modal-wrap__button-wrap">
       <button
-        (click)="closeError()">close</button>
+        (click)="closeError()">{{'BOARDS.BUTTONS.CLOSE' | translate}}</button>
     </div>
   </ng-container>
 

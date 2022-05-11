@@ -12,17 +12,17 @@
         maxlength="22">
       <button class="hidden-button"
         *ngIf="isTitleChange"
-        (click)="changeTitleOnClick(boardTitle.value)">Change</button>
+        (click)="changeTitleOnClick(boardTitle.value)">{{'BOARDS.BUTTONS.CHANGE' | translate}}</button>
     </form>
     <div class="board__main-panel__control">
       <button
         data-type="task"
-        (click)="newColumnOnClick($event)">New task</button>
+        (click)="newColumnOnClick($event)">>{{'BOARDS.BUTTONS.NEW_TASK' | translate}}</button>
       <button
         data-type="column"
-        (click)="newColumnOnClick($event)">New column</button>
+        (click)="newColumnOnClick($event)">{{'BOARDS.BUTTONS.NEW_COLUMN' | translate}}</button>
       <button
-        (click)="deleteBoardOnClikc()">DELETE</button>
+        (click)="deleteBoardOnClikc()">{{'BOARDS.BUTTONS.DELETE' | translate}}</button>
     </div>
   </section>
 

@@ -7,6 +7,7 @@ import { BoardTitleComponent } from './components/board-title/board-title.compon
 import { CreateBoardComponent } from './pages/create-board/create-board.component';
 import { CreateNewItemModalComponent } from './components/create-new-item-modal/create-new-item-modal.component';
 import { ColumnComponent } from './components/column/column.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 const routes: Routes = [{ path: '', component: ProjectManagementComponent }];
 
@@ -22,6 +23,7 @@ const routes: Routes = [{ path: '', component: ProjectManagementComponent }];
   imports: [
     CommonModule,
     RouterModule,
+    TranslateModule,
     RouterModule.forChild([
       { path: '', component: ProjectManagementComponent },
       { path: 'board', component: CreateBoardComponent },
