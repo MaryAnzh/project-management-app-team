@@ -16,6 +16,7 @@ export class BoardComponent {
   public boardInfo: IBoardData | null = null;
 
   public columns$: Observable<IColumnsData[] | undefined>;
+  public columns: IColumnsData[] | undefined = undefined;
 
   public isTitleChange: boolean = false;
   public boardId: string | null = null;
@@ -31,7 +32,14 @@ export class BoardComponent {
       (value) => this.boardInfo = value
     )
 
-    this.columns$ = this.pmDataService.currentBord$.pipe(map((Value: IBoardData | null) => Value?.columns))
+    this.columns$ = this.pmDataService.currentColumns;
+    this.columns$.subscribe(
+      value => {
+        this.columns = value;
+        console.log('Колонки');
+        console.log(value);
+      }
+    )
 
     const id = this.route.snapshot.paramMap.get('id');
     this.boardId = id;

@@ -9,7 +9,7 @@ import {
 import { RequestService } from 'src/app/core/services/request/request.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Subject } from 'rxjs';
+import { Subject, map } from 'rxjs';
 import { IErrorMessage } from 'src/app/core/models/respons-error.model';
 import { CoreDataService } from 'src/app/core/services/coreData/core-data.service';
 
@@ -21,7 +21,8 @@ export class PMDataService {
 
   private _currentBord$$ = new Subject<IBoardData | null>();
   public currentBord$ = this._currentBord$$.asObservable();
-  public currentBord: IBoardData | null = null;
+  public currentColumns = this._currentBord$$.asObservable().pipe(map((value: IBoardData | null) => value?.columns));
+  public currentBord: IBoardData | null = null
 
   private _errorMessage$$ = new Subject<IErrorMessage>();
 
@@ -36,7 +37,11 @@ export class PMDataService {
     private coreDataService: CoreDataService
   ) {
     this.currentBord$.subscribe(
-      (value) => this.currentBord = value
+      (value) => {
+        this.currentBord = value;
+        console.log('value Обновлено');
+        console.log(value);
+      }
     )
   }
 
@@ -117,7 +122,7 @@ export class PMDataService {
           this._currentBord$$.next(this.currentBord);
         }
       },
-      error: (error) => console.error(error.message),
+      error: (error) => console.error(error),
       });
   }
 

@@ -39,9 +39,9 @@
   </section>
 
   <section class="board__column-wrap"
-  *ngFor="let column of columns$ | async">
+  *ngFor="let column of columns">
     <app-column
-    *ngIf="boardInfo.columns"
+    *ngIf="columns"
     [column]="column"
     >
     </app-column>

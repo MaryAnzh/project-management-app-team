@@ -17,6 +17,12 @@ export class ColumnComponent {
 
   }
 
+  OnInit() {
+    console.log('Колонки');
+    console.log(this.column);
+
+  }
+
   deleteColumnOnCkick() {
     if (this.column) {
       this.pmDataService.deleteColumn(this.column.id);
