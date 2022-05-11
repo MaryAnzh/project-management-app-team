@@ -34,14 +34,14 @@ export class CreateNewItemModalComponent {
 
   createItem(name: string, title: string) {
     switch (name) {
-      case 'colum':
+      case 'column':
         this.pmDataService.createColumn(this.boardId, title, 1);
-
         break;
 
       default:
         break;
     }
+    this.closeModal();
   }
 
   closeError() {

@@ -39,13 +39,11 @@
   </section>
 
   <section class="board__column-wrap"
-  *ngFor="let column of boardInfo.columns">
+  *ngFor="let column of columns$ | async">
     <app-column
     *ngIf="boardInfo.columns"
     [column]="column"
     >
-
-
     </app-column>
   </section>
 

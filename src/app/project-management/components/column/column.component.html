@@ -1,7 +1,8 @@
-<div class="column">
+<div class="column"
+*ngIf="column">
   <section class="column__title">
     <form class="column__title__form">
-      <input type="text" value="Name" />
+      <input type="text" value="{{column.title}}" />
       <button class="column__title__form__check">
         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"

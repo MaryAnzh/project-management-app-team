@@ -2,7 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { PMDataService } from '../../services/PMData/pmdata.service';
 import { IBoardData, IColumnsData } from 'src/app/core/models/request.model';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, SubscriptionLike } from 'rxjs';
+import { Observable, SubscriptionLike, map, pipe } from 'rxjs';
+import { I18nMetaVisitor } from '@angular/compiler/src/render3/view/i18n/meta';
 
 @Component({
   selector: 'app-board',
@@ -13,6 +14,8 @@ import { Observable, SubscriptionLike } from 'rxjs';
 export class BoardComponent {
   public boardInfo$: SubscriptionLike;
   public boardInfo: IBoardData | null = null;
+
+  public columns$: Observable<IColumnsData[] | undefined>;
 
   public isTitleChange: boolean = false;
   public boardId: string | null = null;
@@ -27,6 +30,9 @@ export class BoardComponent {
     this.boardInfo$ = this.pmDataService.currentBord$.subscribe(
       (value) => this.boardInfo = value
     )
+
+    this.columns$ = this.pmDataService.currentBord$.pipe(map((Value: IBoardData | null) => Value?.columns))
+
     const id = this.route.snapshot.paramMap.get('id');
     this.boardId = id;
     if (id) {
@@ -81,5 +87,11 @@ export class BoardComponent {
       this.pmDataService.openCreationColumnTaskModal();
     }
 
+  }
+
+  OnDestroy() {
+    if (this.boardInfo$) {
+      this.boardInfo$.unsubscribe()
+    }
   }
 }

@@ -18,7 +18,9 @@ export class ColumnComponent {
   }
 
   deleteColumnOnCkick() {
-    //this.pmDataService.openConfirmationModal();
+    if (this.column) {
+      this.pmDataService.deleteColumn(this.column.id);
+    }
   }
 
 }

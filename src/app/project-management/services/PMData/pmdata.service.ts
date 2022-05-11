@@ -21,6 +21,7 @@ export class PMDataService {
 
   private _currentBord$$ = new Subject<IBoardData | null>();
   public currentBord$ = this._currentBord$$.asObservable();
+  public currentBord: IBoardData | null = null;
 
   private _errorMessage$$ = new Subject<IErrorMessage>();
 
@@ -34,6 +35,9 @@ export class PMDataService {
     private router: Router,
     private coreDataService: CoreDataService
   ) {
+    this.currentBord$.subscribe(
+      (value) => this.currentBord = value
+    )
   }
 
   createBoard(title: string, description: string) {
@@ -107,11 +111,25 @@ export class PMDataService {
     }
 
     this.requestService.createColumn(boardId, columnData).subscribe({
-      next: (response) => this._currentBord$$.subscribe(
-        (vqlue) => vqlue ? vqlue.columns = response : null
-      ),
-      error: (error: HTMLAllCollection) => console.error(error)
-    });
+      next: (response) => {
+        if (this.currentBord) {
+          this.currentBord.columns = response;
+          this._currentBord$$.next(this.currentBord);
+        }
+      },
+      error: (error) => console.error(error.message),
+      });
+  }
+
+  deleteColumn(columnId: string) {
+    if (this.currentBord) {
+      const id = this.currentBord.id;
+      this.requestService.deleteColumn(this.currentBord.id, columnId).subscribe({
+        next: (response) => { () => this.getBoard(id) },
+        error: (error) => console.error(error.message),
+      });
+
+    }
   }
 
   changeErrorMessage(errorMessage: IErrorMessage) {
@@ -128,8 +146,15 @@ export class PMDataService {
 
   openConfirmationModal(param: string) {
     this.coreDataService.openConfirmationModal(this.deleteBoard, param);
-    console.log(`Отработал openConfirmationModal, передал ${param} и ${this.deleteBoard
-}`);
+  }
+
+  OnDestroy() {
+    if (this._currentBord$$) {
+      this._currentBord$$.unsubscribe()
+    }
+    if (this._errorMessage$$) {
+      this._errorMessage$$.unsubscribe();
+    }
   }
 
 }
