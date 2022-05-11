@@ -9,7 +9,7 @@ import {
 import { RequestService } from 'src/app/core/services/request/request.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Subject, map } from 'rxjs';
+import { Subject, map, Observable } from 'rxjs';
 import { IErrorMessage } from 'src/app/core/models/respons-error.model';
 import { CoreDataService } from 'src/app/core/services/coreData/core-data.service';
 
@@ -20,9 +20,8 @@ import { CoreDataService } from 'src/app/core/services/coreData/core-data.servic
 export class PMDataService {
 
   private _currentBord$$ = new Subject<IBoardData | null>();
-  public currentBord$ = this._currentBord$$.asObservable();
-  public currentColumns = this._currentBord$$.asObservable().pipe(map((value: IBoardData | null) => value?.columns));
-  public currentBord: IBoardData | null = null
+  public currentBord$: Observable<IBoardData | null> = this._currentBord$$.asObservable();
+  public currentBord: IBoardData | null = null;
 
   private _errorMessage$$ = new Subject<IErrorMessage>();
 
@@ -109,21 +108,27 @@ export class PMDataService {
     this.router.navigateByUrl('main');
   }
 
-  createColumn(boardId: string, title: string, order: number): void {
-    const columnData: IColumnsRequestData = {
-      title: title,
-      order: order,
+  createColumn(boardId: string, title: string, orde: number): void {
+    if (this.currentBord) {
+      const order = this.currentBord.columns?.length ? this.currentBord?.columns?.length : 0;
+      const id = this.currentBord.id;
+      const columnData: IColumnsRequestData = {
+        title: title,
+        order: (order + 2),
+      }
+
+      this.requestService.createColumn(id, columnData).subscribe({
+        next: (response) => {
+          if (this.currentBord) {
+            this.currentBord.columns = response;
+            this.getBoard(id);
+          }
+        },
+        error: (error) => console.error(error),
+      });
+
     }
 
-    this.requestService.createColumn(boardId, columnData).subscribe({
-      next: (response) => {
-        if (this.currentBord) {
-          this.currentBord.columns = response;
-          this._currentBord$$.next(this.currentBord);
-        }
-      },
-      error: (error) => console.error(error),
-      });
   }
 
   deleteColumn(columnId: string) {
