@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PMDataService } from '../../services/PMData/pmdata.service';
-import { IBoardData } from 'src/app/core/models/request.model';
+import { IBoardData, IColumnsData } from 'src/app/core/models/request.model';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, SubscriptionLike, map, pipe } from 'rxjs';
+import { I18nMetaVisitor } from '@angular/compiler/src/render3/view/i18n/meta';
 
 @Component({
   selector: 'app-board',
@@ -11,7 +12,10 @@ import { Observable } from 'rxjs';
 })
 
 export class BoardComponent {
+  public boardInfo$: SubscriptionLike;
   public boardInfo: IBoardData | null = null;
+  public columns: IColumnsData[] | undefined = undefined;
+
   public isTitleChange: boolean = false;
   public boardId: string | null = null;
 
@@ -21,10 +25,18 @@ export class BoardComponent {
   constructor(private pmDataService: PMDataService,
     private route: ActivatedRoute
   ) {
+
+    this.boardInfo$ = this.pmDataService.currentBoard$.subscribe(
+      (value) => {
+        this.boardInfo = value;
+        this.columns = value?.columns;
+      }
+    )
+
     const id = this.route.snapshot.paramMap.get('id');
     this.boardId = id;
     if (id) {
-      this.boardInfo = this.pmDataService.getBoard(id);
+      this.pmDataService.getBoard(id);
     }
 
     this.ismodalOpen$ = this.pmDataService.isModalOoen$;
@@ -35,21 +47,27 @@ export class BoardComponent {
   }
 
   makeButtonHidden() {
-    setTimeout(() => this.isTitleChange = false, 500);
-
-    console.log('блур сработал')
+    setTimeout(() => this.isTitleChange = false, 300);
   }
 
   changeTitleOnClick(value: string) {
     this.isTitleChange = false;
-    if (this.boardId) {
-      const upDate: IBoardData | null = this.pmDataService.upDateBoard(this.boardId, value);
-      if (upDate && this.boardInfo) {
-        this.boardInfo.title = upDate.title
-      }
+
+    if (this.boardId
+      && this.boardInfo
+      && this.boardInfo.title !== value) {
+
+      this.pmDataService.upDateBoard(this.boardId, value, this.boardInfo.description);
     }
+  }
 
+  cancelChangeTitleOnClick(e: HTMLInputElement) {
+    this.isTitleChange = false;
+    this.inputValue();
+  }
 
+  inputValue() {
+    return this.boardInfo?.title;
   }
 
   deleteBoardOnClikc() {
@@ -66,9 +84,14 @@ export class BoardComponent {
 
     if (elemType) {
       this.modalName = elemType;
-      const isModalOpen = true;
-      this.pmDataService.changeModalOoen(isModalOpen);
+      this.pmDataService.openCreationColumnTaskModal();
     }
 
+  }
+
+  OnDestroy() {
+    if (this.boardInfo$) {
+      this.boardInfo$.unsubscribe()
+    }
   }
 }
