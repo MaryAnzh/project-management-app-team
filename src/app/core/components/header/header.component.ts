@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SubscriptionLike } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth/auth.service';
-import { IResAuthLogin } from '../../models/request.model';
+import {IBoardData, IResAuthLogin} from '../../models/request.model';
 import { TranslateService } from '@ngx-translate/core';
+import {BoardsService} from "../../../project-management/services/boardService/boards.service";
 
 @Component({
   selector: 'app-header',
@@ -21,11 +22,17 @@ export class HeaderComponent {
   public userName: string = '';
 
   public isActiveLanguageRu: boolean = false;
+
   public isActiveLanguageEn: boolean = true;
 
-  public id: string = '123';
+  public boardInfo$: SubscriptionLike;
 
-  constructor(private authService: AuthService, public translate: TranslateService) {
+  public boardInfo: IBoardData[] | null = null;
+
+  constructor(
+    private authService: AuthService,
+    public translate: TranslateService,
+    private boardsService: BoardsService) {
     this._isAuth$ = this.authService.isLoggedIn$.subscribe(
       (value: boolean) => this.isAuth = value
     )
@@ -33,6 +40,9 @@ export class HeaderComponent {
     this._userName$ = this.authService.user$.subscribe(
       (value: IResAuthLogin | null) => this.userName = value ? value.name : ''
     )
+
+    this.boardInfo$ = this.boardsService.allBoards$.subscribe(
+      (data) => this.boardInfo = data)
 
     translate.addLangs(['en', 'ru']);
     translate.setDefaultLang('en');
@@ -58,5 +68,9 @@ export class HeaderComponent {
       default:
         break;
     }
+  }
+
+  getAllBoards():void {
+    this.boardsService.getAllBoards();
   }
  }

@@ -1,15 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {BoardsService} from "./services/boardService/boards.service";
+import {SubscriptionLike} from "rxjs";
+import {IBoardData} from "../core/models/request.model";
 
 @Component({
   selector: 'app-project-management',
   templateUrl: './project-management.component.html',
   styleUrls: ['./project-management.component.scss']
 })
-export class ProjectManagementComponent implements OnInit {
+export class ProjectManagementComponent  {
 
-  constructor() { }
+  public boardInfo$: SubscriptionLike;
 
-  ngOnInit(): void {
+  public boardInfo: IBoardData[] | null = null;
+
+  @Input() public board: IBoardData | undefined;
+
+  constructor(
+    private boardsService: BoardsService
+  ) {
+    this.boardInfo$ = this.boardsService.allBoards$.subscribe(
+      (data) => this.boardInfo = data)
   }
+
+
 
 }

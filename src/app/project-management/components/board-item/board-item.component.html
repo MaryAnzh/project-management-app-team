@@ -1,0 +1,12 @@
+<div class="board-item" *ngIf="board">
+  <div class="board-item__btn">
+    <img (click)="deleteBoardItem(board.id)" src="../../../../assets/icon/cross.png" alt="delete-board">
+  </div>
+  <a [routerLink]="['/board', board.id]" >
+    <section class="board-item__wrapper">
+      <div class="board-item__wrapper__title">{{board.title}}</div>
+      <div class="board-item__wrapper__description">{{board.description}}</div>
+    </section>
+  </a>
+</div>
+

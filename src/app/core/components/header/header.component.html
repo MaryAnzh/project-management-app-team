@@ -74,13 +74,13 @@
           [routerLink]="['/welcome']"
           >{{'HEADER.NAV.WELCOME' | translate}}</li>
           <li
-          [routerLink]="['/main']"
+          [routerLink]="['/main']" (click)="getAllBoards()"
             >{{'HEADER.NAV.BOARDS' | translate}}</li>
           <li
           [routerLink]="['/main/board']"
           >{{'HEADER.NAV.CREATE_BOARD' | translate}}</li>
           <li
-          [routerLink]="['/main/users', id]"
+          [routerLink]="['/main/edit-profile']"
           >{{'HEADER.NAV.EDIT_PROFILE' | translate}}</li>
         </ul>
       </nav>

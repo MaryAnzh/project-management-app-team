@@ -11,6 +11,7 @@ import { EditProfileComponent } from './pages/edit-profile/edit-profile.componen
 import { ProfileFormComponent } from './components/profile-form/profile-form.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '../shared/shared.module';
+import { BoardItemComponent } from './components/board-item/board-item.component';
 
 const routes: Routes = [{ path: '', component: ProjectManagementComponent }];
 
@@ -23,7 +24,8 @@ const routes: Routes = [{ path: '', component: ProjectManagementComponent }];
     CreateNewItemModalComponent,
     ColumnComponent,
     EditProfileComponent,
-    ProfileFormComponent
+    ProfileFormComponent,
+    BoardItemComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +36,7 @@ const routes: Routes = [{ path: '', component: ProjectManagementComponent }];
       { path: '', component: ProjectManagementComponent },
       { path: 'board', component: CreateBoardComponent },
       { path: 'board/:id', component: BoardComponent},
-      { path: 'users/:id', component: EditProfileComponent},
+      { path: 'edit-profile', component: EditProfileComponent},
     ])
   ],
   exports: [RouterModule],
