@@ -14,7 +14,6 @@ export class BoardComponent {
   public boardInfo$: SubscriptionLike;
   public boardInfo: IBoardData = {id: '', title: '', description: '', columns: []};
   public columns: IColumnsData[] | undefined = undefined;
-  public isColumns: boolean;
 
   public isTitleChange: boolean = false;
   public boardId: string | null = null;
@@ -33,10 +32,6 @@ export class BoardComponent {
         //this.pmDataService.sortColumnsByOrder(this.columns);
       }
     )
-
-    this.isColumns = (this.columns && this.columns.length > 0) ? true : false;
-    console.log('this.isColumns');
-    console.log(this.isColumns);
 
     const id = this.route.snapshot.paramMap.get('id');
     this.boardId = id;
