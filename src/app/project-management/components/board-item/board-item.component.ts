@@ -17,8 +17,11 @@ export class BoardItemComponent {
     private boardsService: BoardsService
   ) { }
 
+  goToBoard(id:string): void {
+    this.boardsService.goToBoard(id);
+  }
+
   deleteBoardItem(id:string): void {
     this.boardsService.deleteBoardItem(id);
-    this.boardsService.getAllBoards()
   }
 }

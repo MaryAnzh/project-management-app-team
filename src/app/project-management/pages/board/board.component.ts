@@ -13,7 +13,7 @@ import { I18nMetaVisitor } from '@angular/compiler/src/render3/view/i18n/meta';
 
 export class BoardComponent {
   public boardInfo$: SubscriptionLike;
-  public boardInfo: IBoardData | null = null;
+  public boardInfo: IBoardData = {id: '', title: '', description: '', columns: []};
   public columns: IColumnsData[] | undefined = undefined;
 
   public isTitleChange: boolean = false;
@@ -28,8 +28,9 @@ export class BoardComponent {
 
     this.boardInfo$ = this.pmDataService.currentBoard$.subscribe(
       (value) => {
-        this.boardInfo = value;
-        this.columns = value?.columns;
+        this.boardInfo = value ? value : {id: '', title: '', description: ''};
+        this.columns = this.boardInfo.columns ? this.boardInfo.columns : [];
+        //this.pmDataService.sortColumnsByOrder(this.columns);
       }
     )
 
