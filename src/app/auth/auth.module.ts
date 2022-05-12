@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { SharedModule } from '../shared/shared.module';
@@ -20,6 +21,7 @@ import { AuthService } from './services/auth/auth.service';
   imports: [
     CommonModule,
     SharedModule,
+    TranslateModule,
     RouterModule.forChild([
       { path: '', component: AuthComponent },
       {

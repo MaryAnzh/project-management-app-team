@@ -26,5 +26,38 @@
         "MARGO": "Frontend-разработчик. Мы работаем над настройкой связи между человеком и пространством, создавая гармонию их взаимодействия."
       }
     }
+  },
+  "AUTH": {
+    "LOGIN_TITLE": "Вход",
+    "REGISTRATION_TITLE": "Регистрация",
+    "INPUTS": {
+      "EMAIL": "Эл.адрес",
+      "EMAIL_PLACEHOLDER": "Введите эл.адрес",
+      "PASSWORD": "Пароль",
+      "PASSWORD_PLACEHOLDER": "Введите пароль",
+      "USER_NAME": "Имя пользователя",
+      "USER_NAME_PLACEHOLDER": "Введите имя пользователя",
+      "CONFIRM_PASSWORD": "Подтвердите пароль",
+      "CONFIRM_PASSWORD_PLACEHOLDER": "Подтвердите пароль"
+    },
+    "VALIDATE": {
+      "EMAIL_REQUIRED":"Пожалуйста, введите адрес элетронной почты",
+      "EMAIL_VALID_EMAIL":"Адрес электронной почты недействителен",
+      "PASSWORD_REQUIRED":"Пожалуйста, введите пароль",
+      "USER_NAME_REQUIRED":"Пожалуйста, введите имя пользователя",
+      "USER_NAME_MINLENGTH":"длина должна быть не менее",
+      "AT_LEAST": "не менее",
+      "SYMBOLS": "символов",
+      "CONTAIN": "Пароль должен включать:",
+      "DIGT_VALIDATE": "хотя бы одну цифру",
+      "LOWER_CASE_VALIDATE": "хотя бы одну прописную букву",
+      "UPPER_CASE_VALIDATE": "хотя бы одну заглавную букву",
+      "SYMBOL_VALIDATE": "хотя бы один специальный символ",
+      "CONFIRM_PASSWORD_REQUIRED": "Пожалуйста, подтвердите пароль"
+    },
+    "BUTTONS": {
+      "LOGIN": "Войти",
+      "REGISTRATION": "Регистрация"
+    }
   }
 }

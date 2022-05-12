@@ -6,17 +6,17 @@
 <form class="auth-form login-form"
 [formGroup]="loginForm"
 (ngSubmit)="onSubmit()">
-  <h2 i18n="@@auth-form.login" class="auth-form__title">Login</h2>
+  <h2 i18n="@@auth-form.login" class="auth-form__title">{{'AUTH.LOGIN_TITLE' | translate}}</h2>
 
   <div class="auth-form__input-container">
     <div class="auth-form__input-container__field">
-      <label i18n="@@auth-form.email" for="email">Email</label>
+      <label i18n="@@auth-form.email" for="email">{{'AUTH.INPUTS.EMAIL' | translate}}</label>
       <input
         i18n-placeholder="@@auth-form.email-placeholder"
         #inputEmail
         type="text"
         class="email"
-        placeholder="Enter Email"
+        placeholder="{{'AUTH.INPUTS.EMAIL_PLACEHOLDER' | translate}}"
         name="email"
         formControlName="email"
         required>
@@ -26,23 +26,23 @@
       <ng-container
         *ngIf="email?.invalid && email?.touched">
         <small i18n="@@auth-form.email-errors-required" *ngIf="email?.errors?.required">
-          Please enter a login email
+          {{'AUTH.VALIDATE.EMAIL_REQUIRED' | translate}}
         </small>
 
         <small i18n="@@auth-form.email-errors-email" *ngIf="email?.errors?.email">
-          The login email is invalid
+          {{'AUTH.VALIDATE.EMAIL_VALID_EMAIL' | translate}}
         </small>
       </ng-container>
     </div>
 
     <div class="auth-form__input-container__field">
-      <label i18n="@@auth-form.password" for="password">Password</label>
+      <label i18n="@@auth-form.password" for="password">{{'AUTH.INPUTS.PASSWORD' | translate}}</label>
       <input
         i18n-placeholder="@@auth-form.password-placeholder"
         #inputPassword
         type="password"
         class="password"
-        placeholder="Enter Password"
+        placeholder="{{'AUTH.INPUTS.PASSWORD_PLACEHOLDER' | translate}}"
         name="password"
         formControlName="password"
         required>
@@ -52,7 +52,7 @@
       <ng-container
         *ngIf="password?.invalid && password?.touched">
         <small i18n="@@auth-form.password-errors-required" *ngIf="password?.errors?.required">
-          Please enter a password
+          {{'AUTH.VALIDATE.PASSWORD_REQUIRED' | translate}}
         </small>
       </ng-container>
     </div>
@@ -62,10 +62,10 @@
     <a
       i18n="@@auth-form.link-registration"
       routerLink="/auth/registration">
-      Registration</a>
+      {{'AUTH.BUTTONS.REGISTRATION' | translate}}</a>
     <button
     i18n="@@auth-form.button-login"
     [ngClass]="{visible: loginForm.valid}"
-    type="submit">Login</button>
+    type="submit">{{'AUTH.BUTTONS.LOGIN' | translate}}</button>
   </div>
 </form>

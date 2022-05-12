@@ -5,6 +5,7 @@ import { IUseRegistrationData } from 'src/app/core/models/request.model';
 import { loginFormValidators } from '../../../shared/utils/login-form-validators';
 import { AuthService } from '../../services/auth/auth.service';
 import { IErrorMessage } from '../../../core/models/respons-error.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-registration-page',
@@ -20,8 +21,12 @@ export class RegistrationPageComponent implements OnInit {
   registrationForm!: FormGroup;
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    public translate: TranslateService
   ) {
+
+    translate.addLangs(['en', 'ru']);
+    translate.setDefaultLang('en');
 
     this.errorMessage$ = this.authService.errorMessage$.subscribe(
       (value: IErrorMessage) => {
