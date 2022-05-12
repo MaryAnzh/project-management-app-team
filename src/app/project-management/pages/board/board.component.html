@@ -28,6 +28,7 @@
     </form>
     <div class="board__main-panel__control">
       <button
+      [ngClass]="{'vusible': (columns && columns.length > 0), 'hidden': !(columns && columns.length > 0)}"
         data-type="task"
         (click)="newColumnOnClick($event)">New task</button>
       <button
