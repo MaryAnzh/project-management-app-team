@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, catchError, map, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, catchError, map, mergeMap, Observable, Subject } from 'rxjs';
 import { IResAuthLogin, IUseRegistrationData, Token, User } from 'src/app/core/models/request.model';
 import { StorageService } from '../storage/storage.service';
 import { IUserLoginData } from 'src/app/core/models/request.model';
@@ -110,5 +110,37 @@ export class AuthService {
       this.logout();
       console.log(`tokenAge = ${tokenAge} часов, Токен истек`);
     }
+  }
+
+  deleteUser() {
+    return this.requestService.getUsers().pipe(
+      map((user) => {
+        const authLogin = this.storage.getData<IResAuthLogin>('user');
+        return user.find((el) => el.login === authLogin?.name)
+      }
+    ),
+      mergeMap((item) => this.requestService.deletetUser(item!.id))
+    ).subscribe((resp) => {
+      this.logout();
+    })
+  }
+
+  updateUser(userData: IUseRegistrationData) {
+    return this.requestService.getUsers().pipe(
+      map((user) => {
+        const authLogin = this.storage.getData<IResAuthLogin>('user');
+        return user.find((el) => el.login === authLogin?.name)
+      }
+    ),
+      mergeMap((item) => {
+        return this.requestService.updateUser(item!.id, userData)
+      })
+    ).subscribe((resp: User) => {
+      const storageData = <IResAuthLogin>this.storage.getData('user');
+      storageData.name = resp.login;
+      this.storage.setData('user', storageData);
+      this._user$$.next(storageData);
+      this.router.navigateByUrl('/main');
+    })
   }
 }

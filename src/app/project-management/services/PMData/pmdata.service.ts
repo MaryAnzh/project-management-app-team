@@ -4,12 +4,14 @@ import {
   IBoardData,
   IBoardUpdate,
   IColumnsRequestData,
-  IColumnsData
+  IColumnsData,
+  User,
+  IResAuthLogin
 } from 'src/app/core/models/request.model';
 import { RequestService } from 'src/app/core/services/request/request.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Subject, map, Observable } from 'rxjs';
+import { Subject, map, Observable, mergeMap } from 'rxjs';
 import { IErrorMessage } from 'src/app/core/models/respons-error.model';
 import { CoreDataService } from 'src/app/core/services/coreData/core-data.service';
 
@@ -36,7 +38,7 @@ export class PMDataService {
   constructor(
     private requestService: RequestService,
     private router: Router,
-    private coreDataService: CoreDataService
+    private coreDataService: CoreDataService,
   ) {
     this.currentBoard$.subscribe(
       (value) => {
@@ -174,6 +176,8 @@ export class PMDataService {
 
   openConfirmationModal(param: string) {
     this.coreDataService.openConfirmationModal(this.deleteBoard, param);
+    console.log(`Отработал openConfirmationModal, передал ${param} и ${this.deleteBoard
+      }`);
   }
 
   sortColumnsByOrder(columns: IColumnsData[]): boolean {
