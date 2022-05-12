@@ -120,6 +120,7 @@ export class PMDataService {
         next: (response) => {
           if (this.currentBoard) {
             this.currentBoard.columns = response;
+            this.sortColumnsByOrder(response);
             this.getBoard(id);
           }
         },
@@ -183,10 +184,10 @@ export class PMDataService {
     if (columns) {
       columns.sort((a, b) => a.order - b.order);
       for (let i = 0; i < columns.length; i += 1) {
-        if (columns[i].order !== (i + 1)) {
-          const column = columns[i];
-          column.order = i;
-          this.updateColumns(id, column.title, column.order);
+        if (columns[i].order != (i + 1)) {
+          console.log(columns[i].order + '  номер  ' + i);
+
+          this.updateColumns(id, columns[i].title, i);
           isColumnsChange = true;
         }
       }
