@@ -7,8 +7,6 @@ import { BoardTitleComponent } from './components/board-title/board-title.compon
 import { CreateBoardComponent } from './pages/create-board/create-board.component';
 import { CreateNewItemModalComponent } from './components/create-new-item-modal/create-new-item-modal.component';
 import { ColumnComponent } from './components/column/column.component';
-import { EditProfileComponent } from './pages/edit-profile/edit-profile.component';
-import { ProfileFormComponent } from './components/profile-form/profile-form.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '../shared/shared.module';
 import { BoardItemComponent } from './components/board-item/board-item.component';
@@ -23,8 +21,6 @@ const routes: Routes = [{ path: '', component: ProjectManagementComponent }];
     CreateBoardComponent,
     CreateNewItemModalComponent,
     ColumnComponent,
-    EditProfileComponent,
-    ProfileFormComponent,
     BoardItemComponent
   ],
   imports: [
@@ -36,7 +32,6 @@ const routes: Routes = [{ path: '', component: ProjectManagementComponent }];
       { path: '', component: ProjectManagementComponent },
       { path: 'board', component: CreateBoardComponent },
       { path: 'board/:id', component: BoardComponent},
-      { path: 'edit-profile', component: EditProfileComponent},
     ])
   ],
   exports: [RouterModule],

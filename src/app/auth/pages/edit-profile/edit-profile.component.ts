@@ -4,21 +4,19 @@ import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/auth/services/auth/auth.service';
 import { IUseRegistrationData } from 'src/app/core/models/request.model';
 import { loginFormValidators } from 'src/app/shared/utils/login-form-validators';
-import { PMDataService } from '../../services/PMData/pmdata.service';
 
 @Component({
-  selector: 'app-profile-form',
-  templateUrl: './profile-form.component.html',
-  styleUrls: ['./profile-form.component.scss']
+  selector: 'app-edit-profile',
+  templateUrl: './edit-profile.component.html',
+  styleUrls: ['./edit-profile.component.scss']
 })
-export class ProfileFormComponent implements OnInit {
+export class EditProfileComponent implements OnInit {
 
   profileEditingForm!: FormGroup;
 
   constructor(
     private authService: AuthService,
     public translate: TranslateService,
-    private pmdata: PMDataService
   ) {
     translate.addLangs(['en', 'ru']);
     translate.setDefaultLang('en');
@@ -79,11 +77,13 @@ export class ProfileFormComponent implements OnInit {
         login: this.profileEditingForm.value.email,
         password: this.profileEditingForm.value.password,
       };
+
+      this.authService.updateUser(userData);
     }
   }
 
   onDelete() {
-    this.pmdata.updateUser();
+    this.authService.deleteUser();
   }
 
 }
