@@ -12,7 +12,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Subject, map, Observable } from 'rxjs';
 import { IErrorMessage } from 'src/app/core/models/respons-error.model';
 import { CoreDataService } from 'src/app/core/services/coreData/core-data.service';
-import { upDateOrder } from 'src/app/shared/utils/upDateOrder';
 
 @Injectable({
   providedIn: 'root'
@@ -108,19 +107,19 @@ export class PMDataService {
   }
 
   createColumn(boardId: string, title: string, orde: number): void {
+    console.log('Колонки обработаны')
     if (this.currentBoard) {
       const order = this.currentBoard.columns?.length ? this.currentBoard?.columns?.length : 0;
       const id = this.currentBoard.id;
       const columnData: IColumnsRequestData = {
         title: title,
-        order: (order + 2),
+        order: (order + 1),
       }
 
       this.requestService.createColumn(id, columnData).subscribe({
         next: (response) => {
           if (this.currentBoard) {
             this.currentBoard.columns = response;
-            this.sortColumnsByOrder(response);
             this.getBoard(id);
           }
         },
@@ -146,16 +145,6 @@ export class PMDataService {
     this.requestService.deleteColumn(id, columnId).subscribe({
       next: (response) => {
         this.getBoard(id);
-
-        if (this.currentBoard) {
-          if (this.currentBoard) {
-            const columnw: IColumnsData[] = this.currentBoard.columns === undefined ? [] : this.currentBoard.columns
-            if (this.sortColumnsByOrder(columnw)) {
-              this.getBoard(id);
-            }
-          }
-
-        }
       },
       error: (error) => console.error(error.message),
     });
