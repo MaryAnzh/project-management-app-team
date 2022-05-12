@@ -21,7 +21,10 @@ export class PMDataService {
 
   private _currentBoard$$ = new Subject<IBoardData | null>();
   public currentBoard$: Observable<IBoardData | null> = this._currentBoard$$.asObservable();
-  public currentBoard: IBoardData | null = null;
+  public boardDataEmpty: IBoardData = {
+    id: '', title: '', description: '', columns: [],
+  }
+  public currentBoard: IBoardData = this.boardDataEmpty;
 
   private _errorMessage$$ = new Subject<IErrorMessage>();
 
@@ -37,7 +40,9 @@ export class PMDataService {
   ) {
     this.currentBoard$.subscribe(
       (value) => {
-        this.currentBoard = value;
+        this.currentBoard = value ? value : this.boardDataEmpty;
+        const columns = this.currentBoard.columns === undefined ? [] : this.currentBoard.columns;
+        this.sortColumnsByOrder(columns);
       }
     )
   }
@@ -135,9 +140,13 @@ export class PMDataService {
       title: title,
       order: order
     }
-    if (this.currentBoard) {
-      this.requestService.updateColumn(this.currentBoard.id, columnId, body);
-    }
+    const id = this.currentBoard ? this.currentBoard.id : '';
+
+    this.requestService.updateColumn(id, columnId, body).subscribe({
+      next: (respons) => console.log(respons),
+      error: (error) => console.error(error),
+    });
+
   }
 
   deleteColumn(columnId: string) {
@@ -169,23 +178,22 @@ export class PMDataService {
 
   sortColumnsByOrder(columns: IColumnsData[]): boolean {
     let isColumnsChange = false;
-    const id = this.currentBoard ? this.currentBoard.id : '';
-    if (columns) {
-      columns.sort((a, b) => a.order - b.order);
-      for (let i = 0; i < columns.length; i += 1) {
-        if (columns[i].order != (i + 1)) {
-          console.log(columns[i].order + '  номер  ' + i);
+    if (columns.length > 0) {
 
-          this.updateColumns(id, columns[i].title, i);
-          isColumnsChange = true;
+      columns.sort((a, b) => a.order - b.order);
+
+      const id = this.currentBoard ? this.currentBoard.id : '';
+      for (let i = 0; i < columns.length; i += 1) {
+        const column = columns[i];
+        if (column.order !== (i + 1)) {
+          const newOrder = i + 1;
+          if (this.currentBoard.columns) {
+            this.currentBoard.columns[i].order = newOrder;
+          }
+          this.updateColumns(column.id, column.title, newOrder);
         }
       }
     }
-    if (this.currentBoard) {
-      this.currentBoard.columns = columns ?? [];
-      this._currentBoard$$.next(this.currentBoard ?? null);
-    }
-
     return isColumnsChange;
   }
 
