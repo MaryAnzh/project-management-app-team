@@ -23,6 +23,5 @@ export class BoardItemComponent {
 
   deleteBoardItem(id:string): void {
     this.boardsService.deleteBoardItem(id);
-    this.boardsService.getAllBoards()
   }
 }
