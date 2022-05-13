@@ -6,12 +6,11 @@
       <input type="text"
       value="{{column.title}}"
        (click)="isTitleChange = true"
+       (blur)="blur()"
        formControlName="columnTitle"
        #columnTitle />
       <div
-      Class="column__title__form__button-wrap"
-
-      >
+      Class="column__title__form__button-wrap">
         <button class="column__title__form__button-wrap__conf"
         *ngIf="isTitleChange"
         (click)="changeColumnTitle(columnTitle.value)">
