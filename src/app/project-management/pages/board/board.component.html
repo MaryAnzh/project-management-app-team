@@ -30,12 +30,12 @@
       <button
       [ngClass]="{'vusible': (columns && columns.length > 0), 'hidden': !(columns && columns.length > 0)}"
         data-type="task"
-        (click)="newColumnOnClick($event)">New task</button>
+        (click)="newColumnOnClick($event)">{{'BOARDS.BUTTONS.NEW_TASK' | translate}}</button>
       <button
         data-type="column"
-        (click)="newColumnOnClick($event)">New column</button>
+        (click)="newColumnOnClick($event)">{{'BOARDS.BUTTONS.NEW_COLUMN' | translate}}</button>
       <button
-        (click)="deleteBoardOnClikc()">DELETE</button>
+        (click)="deleteBoardOnClikc()">{{'BOARDS.BUTTONS.DELETE' | translate}}</button>
     </div>
   </section>
 
