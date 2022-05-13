@@ -24,19 +24,33 @@
       button {
         width: 26px;
         height: 26px;
-        border: 1px solid #ffffff;
+        border: 1px solid $mainColor;
         border-radius: 50%;
         display: flex;
         justify-content: center;
         align-items: center;
         margin-left: 5px;
-
-        svg {
-          width: 90%;
-        }
+        background: #ffffff;
+        transition: .3s;
 
         &:hover {
-          background: $mainColorDark;
+          background: $mainColor;
+        }
+
+        &:hover svg {
+          stroke: #ffffff;
+        }
+
+        svg {
+          width: 20px;
+          height: 20px;
+          fill: none;
+          stroke: $mainColorDark;
+          stroke-width: 4;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+          stroke-miterlimit: 10;
+          transform: scale(80%);
         }
       }
 
@@ -51,7 +65,7 @@
         input {
           width: 210px;
           height: 30px;
-          background: $mainColor;
+          background: $gradientDark;
           border-radius: 5px;
           color: #ffffff;
           outline: none;
