@@ -143,7 +143,7 @@ export class PMDataService {
     const id = this.currentBoard ? this.currentBoard.id : '';
 
     this.requestService.updateColumn(id, columnId, body).subscribe({
-      next: (respons) => console.log(respons),
+      next: (respons) => this.getBoard(id),
       error: (error) => console.error(error),
     });
 

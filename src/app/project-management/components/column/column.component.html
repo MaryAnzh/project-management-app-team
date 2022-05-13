@@ -1,14 +1,20 @@
 <div class="column"
   *ngIf="column">
   <section class="column__title">
-    <form class="column__title__form">
+    <form class="column__title__form"
+    formGroup="columnTitleForm">
       <input type="text"
       value="{{column.title}}"
-      (focus)="isTitleChange = true"
-       (blur)="isTitleChange = false"/>
+       (click)="isTitleChange = true"
+       formControlName="columnTitle"
+       #columnTitle />
       <div
-      [ngClass]="{'column__title__form__button-wrap': true, visible: isTitleChange, 'hidden': !isTitleChange}">
-        <button class="column__title__form__button-wrap__conf">
+      Class="column__title__form__button-wrap"
+
+      >
+        <button class="column__title__form__button-wrap__conf"
+        *ngIf="isTitleChange"
+        (click)="changeColumnTitle(columnTitle.value)">
         <svg
           viewBox="0 0 27 26">
           <path
@@ -16,7 +22,9 @@
           </svg>
         </button>
         <button
-          class="column__title__form__button-wrap__close">
+          class="column__title__form__button-wrap__close"
+          *ngIf="isTitleChange"
+          (click)="columnTitle.value = column.title; isTitleChange = false">
           <svg
             viewBox="0 0 30 30">
             <line x1="24.55" y1="5.45" x2="5.45" y2="24.55" />
