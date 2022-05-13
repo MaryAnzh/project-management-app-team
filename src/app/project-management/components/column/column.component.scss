@@ -104,6 +104,7 @@
       height: calc(100vh - 200px - 100px - 80px - 80px - 50px);
       padding-left: 5px;
       background: linear-gradient(to top, #DEF5F5, #6C8CD5);
+      overflow: auto;
 
 
       &__title {
