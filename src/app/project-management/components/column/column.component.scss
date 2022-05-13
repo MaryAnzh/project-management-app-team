@@ -16,6 +16,8 @@
   height: calc(100vh - 200px - 100px - 80px - 80px);
   background: #ffffff;
   border: 1px dashed $mainColorDark;
+  margin-bottom: 10px;
+  overflow: hidden;
 
   .column {
     display: flex;
