@@ -11,7 +11,7 @@
         (focus)="makeButtonVisible()"
         (blur)="makeButtonHidden()"
 
-        maxlength="22">
+        maxlength="26">
       <div class="board__main-panel__title__button-wrap">
         <button class="hidden-button"
           *ngIf="isTitleChange"
@@ -20,7 +20,7 @@
         </button>
         <button class="hidden-button"
           *ngIf="isTitleChange"
-          (click)="boardTitle.value = boardInfo.title">
+          (click)="boardTitle.value = boardInfo.title; isTitleChange = false">
           <img src="../../../../assets/icon/cross.png" alt="change title">
         </button>
       </div>

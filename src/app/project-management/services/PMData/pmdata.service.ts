@@ -97,7 +97,7 @@ export class PMDataService {
     }
 
     this.requestService.updateBoard(id, body).subscribe({
-      next: (response: IBoardData) => this._currentBoard$$.next(response),
+      next: (response: IBoardData) => this.getBoard(id),
       error: (error: HttpErrorResponse) => console.error(error.message)
     });
   }
