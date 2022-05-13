@@ -19,10 +19,10 @@ export class ColumnComponent {
 
   public isTitleChange: boolean = false;
 
-   
+
   constructor(private pmDataService: PMDataService,
-  public translate: TranslateService) {
-      translate.addLangs(['en', 'ru']);
+    public translate: TranslateService) {
+    translate.addLangs(['en', 'ru']);
     translate.setDefaultLang('en');
 
   }
@@ -32,7 +32,11 @@ export class ColumnComponent {
       this.columnTitleForm = new FormGroup({
         columnTitle: new FormControl({ value: this.column.title, disabled: true })
       });
-}
+    }
+  }
+
+  blur() {
+    setTimeout(() => {this.isTitleChange = false}, 400);
   }
 
   get columnTitle(): AbstractControl {
