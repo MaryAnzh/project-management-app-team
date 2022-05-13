@@ -1,5 +1,9 @@
 @import '../../../../vareable';
 
+.task:last-child {
+  margin-bottom: 25px;
+}
+
 .task {
   width: 290px;
   border: 1px dashed $mainColor;
