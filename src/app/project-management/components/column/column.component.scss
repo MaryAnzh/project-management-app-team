@@ -1,4 +1,14 @@
 @import '../../../../vareable';
+::-webkit-scrollbar {
+  width: 10px;
+  background: linear-gradient(to top, #DEF5F5, #6C8CD5);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $mainColor;
+  border: 1px dashed #ffffff;
+  border-radius: 20px;
+}
 
 :host {
   width: 315px;
@@ -6,7 +16,6 @@
   height: calc(100vh - 200px - 100px - 80px - 80px);
   background: #ffffff;
   border: 1px dashed $mainColorDark;
-
 
   .column {
     display: flex;

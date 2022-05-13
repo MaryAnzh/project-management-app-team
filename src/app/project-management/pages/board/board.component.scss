@@ -1,5 +1,14 @@
 @import '../../../../vareable';
 
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: $mainColorLight;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $mainColorDark;
+  border-radius: 20px;
+}
 :host {
   max-width: 1080px;
   width: 100%;
