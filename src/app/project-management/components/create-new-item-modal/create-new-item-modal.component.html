@@ -1,22 +1,26 @@
 <div class="modal-wrap">
   <ng-container *ngIf="!errorMessage.isError">
-    <h2>{{modalName}} Title</h2>
+    <!-- <h2>{{modalName}} Title</h2> -->
+    <h2 *ngIf="modalName === 'task'; else columnTotle">{{'BOARDS.TASK_TITLE' | translate}}</h2>
+    <ng-template #columnTotle>
+      <h2>{{'BOARDS.COLUMN_TITLE' | translate}}</h2>
+    </ng-template>
     <input type="text" autofocus #bordTitleInput>
     <div class="modal-wrap__button-wrap">
       <button
-        (click)="createItem(modalName, bordTitleInput.value)">Create</button>
+        (click)="createItem(modalName, bordTitleInput.value)">{{'BOARDS.BUTTONS.CREATE' | translate}}</button>
       <button
       (click)="closeModal()">
-      cancel</button>
+      {{'BOARDS.BUTTONS.CANCEL' | translate}}</button>
     </div>
 
   </ng-container>
   <ng-container *ngIf="errorMessage.isError">
-    <h2>Error</h2>
+    <h2>{{'BOARDS.ERROR' | translate}}</h2>
     <p>{{errorMessage.errorMessage}}</p>
     <div class="modal-wrap__button-wrap">
       <button
-        (click)="closeError()">close</button>
+        (click)="closeError()">{{'BOARDS.BUTTONS.CLOSE' | translate}}</button>
     </div>
   </ng-container>
 

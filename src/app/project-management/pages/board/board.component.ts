@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { PMDataService } from '../../services/PMData/pmdata.service';
 import { IBoardData, IColumnsData } from 'src/app/core/models/request.model';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { Observable, SubscriptionLike, map, pipe } from 'rxjs';
 import { I18nMetaVisitor } from '@angular/compiler/src/render3/view/i18n/meta';
 
@@ -22,8 +23,10 @@ export class BoardComponent {
   public ismodalOpen$: Observable<boolean>;
   @Input() public modalName: string = '';
 
-  constructor(private pmDataService: PMDataService,
-    private route: ActivatedRoute
+  constructor(
+    private pmDataService: PMDataService,
+    private route: ActivatedRoute,
+    public translate: TranslateService
   ) {
 
     this.boardInfo$ = this.pmDataService.currentBoard$.subscribe(
@@ -41,6 +44,9 @@ export class BoardComponent {
     }
 
     this.ismodalOpen$ = this.pmDataService.isModalOoen$;
+
+    translate.addLangs(['en', 'ru']);
+    translate.setDefaultLang('en');
   }
 
   makeButtonVisible() {
