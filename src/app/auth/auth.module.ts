@@ -9,6 +9,7 @@ import { RegistrationPageComponent } from './pages/registration-page/registratio
 import { AuthComponent } from './auth.component';
 import { PopUpAuthErrorComponent } from './components/pop-up-auth-error/pop-up-auth-error.component';
 import { AuthService } from './services/auth/auth.service';
+import { EditProfileComponent } from './pages/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { AuthService } from './services/auth/auth.service';
     RegistrationPageComponent,
     AuthComponent,
     PopUpAuthErrorComponent,
-
+    EditProfileComponent
   ],
   imports: [
     CommonModule,
@@ -28,6 +29,7 @@ import { AuthService } from './services/auth/auth.service';
         path: '', component: AuthComponent, children: [
           { path: 'login', component: LoginPageComponent },
           { path: 'registration', component: RegistrationPageComponent },
+          { path: 'edit-profile', component: EditProfileComponent},
         ]
       },
     ]),

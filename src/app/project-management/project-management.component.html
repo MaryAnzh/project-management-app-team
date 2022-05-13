@@ -1,1 +1,7 @@
 <h1>{{'BOARDS.MY_BOARDS' | translate}}</h1>
+<section class="project-management__wrapper">
+  <app-board-item
+    *ngFor="let board of boardInfo"
+    [board]="board">
+  </app-board-item>
+</section>

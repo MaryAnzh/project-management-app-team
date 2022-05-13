@@ -64,6 +64,8 @@
     "MY_BOARDS": "My Boards",
     "BOARD_TITLE": "Board Title",
     "ERROR": "Error",
+    "TASK_TITLE": "Task Title",
+    "COLUMN_TITLE": "Column Title",
     "BUTTONS": {
       "CHANGE": "change",
       "NEW_TASK": "New task",

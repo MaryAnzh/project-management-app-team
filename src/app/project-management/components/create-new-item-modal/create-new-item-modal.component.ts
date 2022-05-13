@@ -5,6 +5,7 @@ import { IErrorMessage } from 'src/app/core/models/respons-error.model';
 import { PMDataService } from '../../services/PMData/pmdata.service';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-create-new-item-modal',
@@ -14,6 +15,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 export class CreateNewItemModalComponent {
   private _errorMessage$: SubscriptionLike;
+  public boardId: string = '';
 
   public errorMessage: IErrorMessage = {
     errorMessage: '',
@@ -25,18 +27,30 @@ export class CreateNewItemModalComponent {
   constructor(
     private pmDataService: PMDataService,
     private router: Router,
-    public translate: TranslateService
+    public translate: TranslateService,
+    private route: ActivatedRoute
     ) {
     this._errorMessage$ = this.pmDataService.errorMessage$.subscribe(
       (value: IErrorMessage) => this.errorMessage = value
-    )
+    );
+
+    const id = this.route.snapshot.paramMap.get('id');
+    this.boardId = id ? id : '';
 
     translate.addLangs(['en', 'ru']);
     translate.setDefaultLang('en');
   }
 
-  createItem(title: string) {
+  createItem(name: string, title: string) {
+    switch (name) {
+      case 'column':
+        this.pmDataService.createColumn(this.boardId, title, 1);
+        break;
 
+      default:
+        break;
+    }
+    this.closeModal();
   }
 
   closeError() {
@@ -46,8 +60,7 @@ export class CreateNewItemModalComponent {
   }
 
   closeModal() {
-    const isModalOpen = false;
-    this.pmDataService.changeModalOoen(isModalOpen);
+    this.pmDataService.closeCreationColumnTaskModal();
   }
 
 }

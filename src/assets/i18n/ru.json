@@ -64,6 +64,8 @@
     "MY_BOARDS": "Мои доски",
     "BOARD_TITLE": "Название доски",
     "ERROR": "Ошибка",
+    "TASK_TITLE": "Название задачи",
+    "COLUMN_TITLE": "Название столбца",
     "BUTTONS": {
       "CHANGE": "изменить",
       "NEW_TASK": "Новая задача",
