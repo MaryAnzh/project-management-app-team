@@ -4,6 +4,7 @@ import { SubscriptionLike } from 'rxjs';
 import { IErrorMessage } from 'src/app/core/models/respons-error.model';
 import { PMDataService } from '../../services/PMData/pmdata.service';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-board-title',
@@ -21,10 +22,15 @@ export class BoardTitleComponent {
 
   constructor(
     private pmDataService: PMDataService,
-    private router: Router) {
+    private router: Router,
+    public translate: TranslateService
+    ) {
     this._errorMessage$ = this.pmDataService.errorMessage$.subscribe(
       (value: IErrorMessage) => this.errorMessage = value
     )
+
+    translate.addLangs(['en', 'ru']);
+    translate.setDefaultLang('en');
   }
 
   createBoard(title: string, description: string) {

@@ -41,7 +41,9 @@ export class BoardsService {
 
   deleteBoardItem(id: string): void {
     this.requestService.deleteBoard(id).subscribe({
-      next: (response: any) => console.log(response),
+      next: (response: any) => {
+        this.getAllBoards();
+      },
       error: (error: HttpErrorResponse) => console.error(error.message),
     });
   }

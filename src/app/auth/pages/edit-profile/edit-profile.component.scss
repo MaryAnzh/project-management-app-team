@@ -1,0 +1,120 @@
+$mainColorDark: #2A4480;
+$mainColorLight: #DEF5F5;
+$mainColor: hsl(222, 63%, 55%);
+$additionalColor: #2eb1b1;
+$additionalColorLight: #8ddada;
+$contastColor: #A66F00;
+
+:host {
+  max-width: 1080px;
+  width: 100%;
+  height: 60vh;
+  margin: auto;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background: #DEF5F5;
+
+  .profile-edit-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 10px;
+    width: 500px;
+    border-radius: 5px;
+
+    &__title {
+      text-align: center;
+    }
+
+    &__input-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      &__field {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        label {
+          font-size: 14px;
+          line-height: 12px;
+          color: $mainColorDark;
+          padding-bottom: 5px;
+        }
+
+        input {
+          width: 100%;
+          height: 40px;
+          padding: 10px 15px;
+          margin: 5px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+
+          &.ng-touched.ng-invalid {
+            border: 2px solid $contastColor;
+
+          }
+
+          &.ng-touched.ng-valid {
+            border: 2px solid $additionalColor;
+          }
+        }
+      }
+
+        &__error {
+          width: 100%;
+          height: 25PX;
+          padding: 5px;
+          color: $contastColor;
+          font-size: 12px;
+
+        }
+
+        .password-error {
+          height: 90px;
+        }
+      }
+
+      &__button-container {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 20px;
+
+        button {
+          width: 115px;
+          height: 40px;
+          opacity: 0.5;
+          pointer-events: none;
+        }
+
+        .visible {
+          opacity: 1 !important;
+          pointer-events: all !important;
+        }
+
+        a {
+          color: $mainColor;
+          font-size: 16px;
+
+          &:hover {
+            text-decoration: underline;
+          }
+
+          &:active {
+            color: $additionalColorLight;
+          }
+        }
+      }
+    }
+  }
+
+  .visible {
+    opacity: 1;
+    pointer-events: all;
+  }

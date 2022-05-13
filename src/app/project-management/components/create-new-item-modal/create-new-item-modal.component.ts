@@ -3,6 +3,8 @@ import { RouterLinkWithHref } from '@angular/router';
 import { Observable, SubscriptionLike } from 'rxjs';
 import { IErrorMessage } from 'src/app/core/models/respons-error.model';
 import { PMDataService } from '../../services/PMData/pmdata.service';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -24,12 +26,19 @@ export class CreateNewItemModalComponent {
 
   constructor(
     private pmDataService: PMDataService,
-    private route: ActivatedRoute) {
+    private router: Router,
+    public translate: TranslateService,
+    private route: ActivatedRoute
+    ) {
     this._errorMessage$ = this.pmDataService.errorMessage$.subscribe(
       (value: IErrorMessage) => this.errorMessage = value
     );
+
     const id = this.route.snapshot.paramMap.get('id');
     this.boardId = id ? id : '';
+
+    translate.addLangs(['en', 'ru']);
+    translate.setDefaultLang('en');
   }
 
   createItem(name: string, title: string) {

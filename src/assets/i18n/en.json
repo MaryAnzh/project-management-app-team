@@ -59,5 +59,25 @@
       "LOGIN": "Login",
       "REGISTRATION": "Registration"
     }
+  },
+  "BOARDS": {
+    "MY_BOARDS": "My Boards",
+    "BOARD_TITLE": "Board Title",
+    "ERROR": "Error",
+    "TASK_TITLE": "Task Title",
+    "COLUMN_TITLE": "Column Title",
+    "BUTTONS": {
+      "CHANGE": "change",
+      "NEW_TASK": "New task",
+      "NEW_COLUMN": "New column",
+      "DELETE": "DELETE",
+      "TO_MAIN": "to main",
+      "CLOSE": "close",
+      "CREATE": "Create",
+      "CANCEL": "Cancel"
+    },
+    "ERRORS": {
+      "ERROR_TITLE": "title should not be empty,description should not be empty"
+    }
   }
 }

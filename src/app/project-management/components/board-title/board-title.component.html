@@ -1,24 +1,24 @@
 <div class="board-title-wrap">
   <ng-container *ngIf="!errorMessage.isError">
-    <h2>Board Title</h2>
+    <h2>{{'BOARDS.BOARD_TITLE' | translate}}</h2>
     <input type="text" autofocus
     #bordTitleInput>
     <input type="text"
     #borDdescriptionInput />
     <div class="board-title-wrap__button-wrap">
       <button
-        (click)="createBoard(bordTitleInput.value, borDdescriptionInput.value)">Create</button>
+        (click)="createBoard(bordTitleInput.value, borDdescriptionInput.value)">{{'BOARDS.BUTTONS.CREATE' | translate}}</button>
       <button
-        [routerLink]="['/main']">to main</button>
+        [routerLink]="['/main']">{{'BOARDS.BUTTONS.TO_MAIN' | translate}}</button>
     </div>
 
   </ng-container>
   <ng-container *ngIf="errorMessage.isError">
-    <h2>Error</h2>
+    <h2>{{'BOARDS.ERROR' | translate}}</h2>
     <p>{{errorMessage.errorMessage}}</p>
     <div class="board-title-wrap__button-wrap">
       <button
-        (click)="closeError()">close</button>
+        (click)="closeError()">{{'BOARDS.BUTTONS.CLOSE' | translate}}</button>
     </div>
   </ng-container>
 
