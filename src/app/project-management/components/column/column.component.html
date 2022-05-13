@@ -2,8 +2,13 @@
   *ngIf="column">
   <section class="column__title">
     <form class="column__title__form">
-      <input type="text" value="{{column.title}}" />
-      <button class="column__title__form__check">
+      <input type="text"
+      value="{{column.title}}"
+      (focus)="isTitleChange = true"
+       (blur)="isTitleChange = false"/>
+      <div
+      [ngClass]="{'column__title__form__button-wrap': true, visible: isTitleChange, 'hidden': !isTitleChange}">
+        <button class="column__title__form__button-wrap__conf">
         <svg
           viewBox="0 0 27 26">
           <path
@@ -11,13 +16,15 @@
           </svg>
         </button>
         <button
-          class="column__title__form__check">
+          class="column__title__form__button-wrap__close">
           <svg
             viewBox="0 0 30 30">
             <line x1="24.55" y1="5.45" x2="5.45" y2="24.55" />
             <line x1="5.45" y1="5.45" x2="24.55" y2="24.55" />
             </svg>
           </button>
+      </div>
+
         </form>
 
           <button class="column__title__delete"
@@ -35,6 +42,8 @@
                 <p>Tasks</p>
                 <p>0</p>
               </div>
+              <app-task></app-task>
+              <app-task></app-task>
               <app-task></app-task>
             </section>
           </div>

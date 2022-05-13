@@ -63,7 +63,7 @@
 
 
         input {
-          width: 210px;
+          width: 270px;
           height: 30px;
           background: $gradientDark;
           border-radius: 5px;
@@ -81,16 +81,19 @@
           }
         }
 
-        &__check {
-          width: 30px;
+        &__button-wrap {
+          width: 65px;
           height: 30px;
+          padding-right: 5px;
           display: flex;
           align-items: center;
-          justify-content: center;
+          border-radius: 5px;
+          background: #ffffff;
+          transform: translate(-55px, 0px);
 
-          img {
-            width: 15px;
-            height: 15px;
+          button {
+            width: 20px;
+            height: 20px;
           }
         }
 

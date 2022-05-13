@@ -13,6 +13,8 @@ export class ColumnComponent {
 
   @Input() public column: IColumnsData | undefined;
 
+  public isTitleChange: boolean = false;
+
   constructor(private pmDataService: PMDataService) {
 
   }
