@@ -2,12 +2,12 @@
   *ngIf="column">
   <section class="column__title">
     <form class="column__title__form"
-    [formGroup]="columnTitleForm">
+    >
       <input type="text"
       value="{{column.title}}"
        (click)="isTitleChange = true"
        (blur)="blur()"
-       formControlName="columnTitle"
+
        #columnTitle />
       <div
       Class="column__title__form__button-wrap">

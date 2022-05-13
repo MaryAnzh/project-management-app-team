@@ -13,9 +13,6 @@ import { FormControl, FormGroup, AbstractControl } from '@angular/forms';
 })
 
 export class ColumnComponent {
-  columnTitleForm: FormGroup = new FormGroup({
-    columnTitle: new FormControl('columnTitle')
-  });
 
   @Input() public column: IColumnsData | undefined;
 
@@ -26,14 +23,11 @@ export class ColumnComponent {
     public translate: TranslateService) {
     translate.addLangs(['en', 'ru']);
     translate.setDefaultLang('en');
+
   }
 
   blur() {
-    setTimeout(() => {this.isTitleChange = false}, 400);
-  }
-
-  get columnTitle(): AbstractControl {
-    return <AbstractControl>this.columnTitleForm.get('columnTitle');
+    setTimeout(() => { this.isTitleChange = false }, 400);
   }
 
   changeColumnTitle(value: string) {
