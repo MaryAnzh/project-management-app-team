@@ -13,7 +13,9 @@ import { FormControl, FormGroup, AbstractControl } from '@angular/forms';
 })
 
 export class ColumnComponent {
-  columnTitleForm!: FormGroup;
+  columnTitleForm: FormGroup = new FormGroup({
+    columnTitle: new FormControl('columnTitle')
+  });
 
   @Input() public column: IColumnsData | undefined;
 
@@ -24,15 +26,6 @@ export class ColumnComponent {
     public translate: TranslateService) {
     translate.addLangs(['en', 'ru']);
     translate.setDefaultLang('en');
-
-  }
-
-  OnInit() {
-    if (this.column) {
-      this.columnTitleForm = new FormGroup({
-        columnTitle: new FormControl({ value: this.column.title, disabled: true })
-      });
-    }
   }
 
   blur() {
