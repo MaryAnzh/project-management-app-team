@@ -99,7 +99,7 @@ export class PMDataService {
     }
 
     this.requestService.updateBoard(id, body).subscribe({
-      next: (response: IBoardData) => this._currentBoard$$.next(response),
+      next: (response: IBoardData) => this.getBoard(id),
       error: (error: HttpErrorResponse) => console.error(error.message)
     });
   }
@@ -145,7 +145,7 @@ export class PMDataService {
     const id = this.currentBoard ? this.currentBoard.id : '';
 
     this.requestService.updateColumn(id, columnId, body).subscribe({
-      next: (respons) => console.log(respons),
+      next: (respons) => this.getBoard(id),
       error: (error) => console.error(error),
     });
 

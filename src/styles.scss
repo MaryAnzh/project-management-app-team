@@ -67,3 +67,13 @@ button {
   }
 
 }
+
+.vusible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}

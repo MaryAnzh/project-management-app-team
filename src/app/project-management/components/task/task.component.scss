@@ -1,0 +1,68 @@
+@import '../../../../vareable';
+
+.task {
+  width: 290px;
+  border: 1px dashed $mainColor;
+  border-radius: 10px;
+  background: #ffffff;
+  padding: 10px;
+  margin: 5px 0;
+
+  &__top {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    &__close {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      border: 2px solid $mainColorDark;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: .3s;
+
+      &:hover {
+        background: $mainColor;
+      }
+
+      &:active {
+        transform: scale(120%);
+      }
+
+      &:hover svg {
+        stroke: #ffffff;
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+        fill: none;
+        stroke: $mainColorDark;
+        stroke-width: 4;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-miterlimit: 10;
+        transform: scale(80%);
+      }
+    }
+  }
+
+  &__title {
+    width: 100%;
+    padding: 5px 0;
+  }
+
+  &__description {
+    width: 100%;
+    padding: 5px 0;
+  }
+
+  &__user-name {
+    width: 100%;
+    p {
+      text-align: right;
+    }
+  }
+}

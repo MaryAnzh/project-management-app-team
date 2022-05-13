@@ -4,7 +4,6 @@ import { IBoardData, IColumnsData } from 'src/app/core/models/request.model';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, SubscriptionLike, map, pipe } from 'rxjs';
-import { I18nMetaVisitor } from '@angular/compiler/src/render3/view/i18n/meta';
 
 @Component({
   selector: 'app-board',
