@@ -92,8 +92,18 @@ export class BoardComponent {
     const elemType = elem.dataset['type'];
 
     if (elemType) {
-      this.modalName = elemType;
-      this.pmDataService.openCreationColumnTaskModal();
+      switch (elemType) {
+        case 'column':
+          this.modalName = elemType;
+          this.pmDataService.openCreationColumnTaskModal();
+          break;
+        case 'task':
+          this.pmDataService.showModalWindowNewTask();
+          break;
+
+        default:
+          break;
+      }
     }
 
   }

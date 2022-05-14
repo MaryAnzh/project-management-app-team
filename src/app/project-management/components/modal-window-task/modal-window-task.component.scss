@@ -1,0 +1,19 @@
+@import '../../../../vareable';
+
+:host {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba($color: #000000, $alpha: 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .new-task {
+    width: 320px;
+    height: 400px;
+    background: $mainColor;
+  }
+
+}

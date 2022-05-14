@@ -245,7 +245,7 @@ export class PMDataService {
       this._errorMessage$$.unsubscribe();
     }
     if (this._isModalWindowNewTaskOpen$$) {
-      this.this._isModalWindowNewTaskOpen$$.unsubscribe();
+      this._isModalWindowNewTaskOpen$$.unsubscribe();
     }
   }
 
