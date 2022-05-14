@@ -5,8 +5,6 @@ import {
   IBoardUpdate,
   IColumnsRequestData,
   IColumnsData,
-  User,
-  IResAuthLogin
 } from 'src/app/core/models/request.model';
 import { RequestService } from 'src/app/core/services/request/request.service';
 import { Router } from '@angular/router';
@@ -14,7 +12,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Subject, map, Observable, mergeMap } from 'rxjs';
 import { IErrorMessage } from 'src/app/core/models/respons-error.model';
 import { CoreDataService } from 'src/app/core/services/coreData/core-data.service';
-import { async } from '@angular/core/testing';
 
 @Injectable({
   providedIn: 'root'
@@ -30,11 +27,13 @@ export class PMDataService {
   public currentBoard: IBoardData = this.boardDataEmpty;
 
   private _errorMessage$$ = new Subject<IErrorMessage>();
-
   public errorMessage$ = this._errorMessage$$.asObservable();
 
   private _isModalOoen$$ = new Subject<boolean>();
   public isModalOoen$ = this._isModalOoen$$.asObservable();
+
+  private _isModalWindowNewTaskOpen$$ = new Subject<boolean>();
+  public isModalWindowNewTaskOpen$ = this._isModalWindowNewTaskOpen$$.asObservable();
 
   constructor(
     private requestService: RequestService,
@@ -230,12 +229,23 @@ export class PMDataService {
     return isColumnsChange;
   }
 
+  showModalWindowNewTask() {
+    this._isModalWindowNewTaskOpen$$.next(true);
+  }
+
+  closeModalWindowNewTask() {
+    this._isModalWindowNewTaskOpen$$.next(false);
+  }
+
   OnDestroy() {
     if (this._currentBoard$$) {
       this._currentBoard$$.unsubscribe()
     }
     if (this._errorMessage$$) {
       this._errorMessage$$.unsubscribe();
+    }
+    if (this._isModalWindowNewTaskOpen$$) {
+      this.this._isModalWindowNewTaskOpen$$.unsubscribe();
     }
   }
 

@@ -22,6 +22,10 @@ export class BoardComponent {
   public ismodalOpen$: Observable<boolean>;
   @Input() public modalName: string = '';
 
+  public isModalWindowNewTaskOpen$: Observable<boolean>;
+
+
+
   constructor(
     private pmDataService: PMDataService,
     private route: ActivatedRoute,
@@ -42,6 +46,7 @@ export class BoardComponent {
     }
 
     this.ismodalOpen$ = this.pmDataService.isModalOoen$;
+    this.isModalWindowNewTaskOpen$ = this.pmDataService.isModalWindowNewTaskOpen$;
 
     translate.addLangs(['en', 'ru']);
     translate.setDefaultLang('en');
