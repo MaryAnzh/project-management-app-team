@@ -1,4 +1,11 @@
-<h1>{{'BOARDS.MY_BOARDS' | translate}}</h1>
+<div class="project-management__header">
+  <div class="project-management__header__title">
+    <h1>{{'BOARDS.MY_BOARDS' | translate}}</h1>
+  </div>
+
+  <app-search></app-search>
+</div>
+
 <section class="project-management__wrapper">
   <app-board-item
     *ngFor="let board of boardInfo"
