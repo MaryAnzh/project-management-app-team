@@ -176,11 +176,15 @@ export class PMDataService {
     this._isModalOoen$$.next(false);
   }
 
-  showConfirmationModal(name: string) {
+  showConfirmationModal(name: string, idString?: string) {
+    const id = idString ? idString : '';
     const res = this.coreDataService.openConfirmationModal().then(() => {
       switch (name) {
         case 'board':
           this.deleteBoard(this.currentBoard.id);
+          break;
+        case 'column':
+          this.deleteColumn(id);
           break;
 
         default:
