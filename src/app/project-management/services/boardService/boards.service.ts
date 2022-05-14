@@ -4,6 +4,7 @@ import {BehaviorSubject, Subject} from "rxjs";
 import {RequestService} from "../../../core/services/request/request.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {CoreDataService} from "../../../core/services/coreData/core-data.service";
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ export class BoardsService implements OnInit {
 
   constructor(
     private requestService: RequestService,
+    private coreDataService: CoreDataService,
     private router: Router
   ) {this.getAllBoards()}
 
@@ -47,7 +49,15 @@ export class BoardsService implements OnInit {
         this.getAllBoards();
       },
       error: (error: HttpErrorResponse) => console.error(error.message),
+
     });
+  }
+
+  showConfirmationModalBoardItem(id:string):void {
+    const res = this.coreDataService.openConfirmationModal().then(() => {
+       this.deleteBoardItem(id);
+    })
+      .catch(() => {})
   }
 
   onDistroy():void {

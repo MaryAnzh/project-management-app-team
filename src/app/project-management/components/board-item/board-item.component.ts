@@ -21,7 +21,7 @@ export class BoardItemComponent {
     this.boardsService.goToBoard(id);
   }
 
-  deleteBoardItem(id:string): void {
-    this.boardsService.deleteBoardItem(id);
+  deleteOnClick(id:string):void {
+    this.boardsService.showConfirmationModalBoardItem(id)
   }
 }
