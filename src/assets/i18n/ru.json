@@ -30,6 +30,7 @@
   "AUTH": {
     "LOGIN_TITLE": "Вход",
     "REGISTRATION_TITLE": "Регистрация",
+    "EDIT_PROFILE": "Редактировать профиль",
     "INPUTS": {
       "EMAIL": "Эл.адрес",
       "EMAIL_PLACEHOLDER": "Введите эл.адрес",
@@ -38,7 +39,11 @@
       "USER_NAME": "Имя пользователя",
       "USER_NAME_PLACEHOLDER": "Введите имя пользователя",
       "CONFIRM_PASSWORD": "Подтвердите пароль",
-      "CONFIRM_PASSWORD_PLACEHOLDER": "Подтвердите пароль"
+      "CONFIRM_PASSWORD_PLACEHOLDER": "Подтвердите пароль",
+      "NEW_EMAIL": "Новый эл.адрес",
+      "NEW_PASSWORD": "Новый пароль",
+      "NEW_USER_NAME": "Новое имя пользователя",
+      "CONFIRM_NEW_PASSWORD": "Подтвердите новый пароль"
     },
     "VALIDATE": {
       "EMAIL_REQUIRED":"Пожалуйста, введите адрес элетронной почты",
@@ -57,7 +62,9 @@
     },
     "BUTTONS": {
       "LOGIN": "Войти",
-      "REGISTRATION": "Регистрация"
+      "REGISTRATION": "Регистрация",
+      "DELETE_PROFILE": "Удалить профиль",
+      "UPDATE_PROFILE": "Обновить профиль"
     }
   },
   "BOARDS": {

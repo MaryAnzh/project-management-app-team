@@ -1,17 +1,17 @@
 <form class="profile-edit-form" [formGroup]="profileEditingForm" (ngSubmit)="onSubmit()">
-  <h1 i18n="@@auth-form.registration" class="profile-edit-form__title">Edit Profile</h1>
+  <h1 i18n="@@auth-form.registration" class="profile-edit-form__title">{{'AUTH.EDIT_PROFILE' | translate}}</h1>
 
   <div class="profile-edit-form__input-container">
 
     <div>
       <div class="profile-edit-form__input-container__field">
-        <label i18n="@@auth-form.user-name" for="user-name">New {{'AUTH.INPUTS.USER_NAME' | translate}}</label>
+        <label i18n="@@auth-form.user-name" for="user-name">{{'AUTH.INPUTS.NEW_USER_NAME' | translate}}</label>
         <input
           i18n-placeholder="@@auth-form.user-name-placeholder"
           #inputUser
           type="text"
           class="user-name"
-          placeholder="New {{'AUTH.INPUTS.USER_NAME_PLACEHOLDER' | translate}}"
+          placeholder="{{'AUTH.INPUTS.USER_NAME_PLACEHOLDER' | translate}}"
           name="user-name"
           formControlName="userName"
           required>
@@ -30,13 +30,13 @@
       </div>
 
       <div class="profile-edit-form__input-container__field">
-        <label i18n="@@auth-form.email" for="email">New {{'AUTH.INPUTS.EMAIL' | translate}}</label>
+        <label i18n="@@auth-form.email" for="email">{{'AUTH.INPUTS.NEW_EMAIL' | translate}}</label>
         <input
           i18n-placeholder="@@auth-form.email-placeholder"
           #inputEmail
           type="text"
           class="email"
-          placeholder="New {{'AUTH.INPUTS.EMAIL_PLACEHOLDER' | translate}}"
+          placeholder="{{'AUTH.INPUTS.EMAIL_PLACEHOLDER' | translate}}"
           name="email"
           formControlName="email"
           required>
@@ -58,13 +58,13 @@
 
     <div>
       <div class="profile-edit-form__input-container__field">
-        <label i18n="@@auth-form.password" for="password">New {{'AUTH.INPUTS.PASSWORD' | translate}}</label>
+        <label i18n="@@auth-form.password" for="password">{{'AUTH.INPUTS.NEW_PASSWORD' | translate}}</label>
         <input
           i18n-placeholder="@@auth-form.password-placeholder"
           #inputPassword
           type="password"
           class="password"
-          placeholder="New {{'AUTH.INPUTS.PASSWORD_PLACEHOLDER' | translate}}"
+          placeholder="{{'AUTH.INPUTS.PASSWORD_PLACEHOLDER' | translate}}"
           name="password"
           formControlName="password"
           required>
@@ -102,13 +102,13 @@
       </div>
 
       <div class="profile-edit-form__input-container__field">
-        <label i18n="@@auth-form.confirm-password" for="confirm-password">New {{'AUTH.INPUTS.CONFIRM_PASSWORD' | translate}}</label>
+        <label i18n="@@auth-form.confirm-password" for="confirm-password">{{'AUTH.INPUTS.CONFIRM_NEW_PASSWORD' | translate}}</label>
         <input
           i18n-placeholder="@@auth-form.confirm-password-placeholder"
           #inputСonfirmPasswordd
           type="password"
           class="confirm-password"
-          placeholder="New {{'AUTH.INPUTS.CONFIRM_PASSWORD_PLACEHOLDER' | translate}}"
+          placeholder="{{'AUTH.INPUTS.CONFIRM_PASSWORD_PLACEHOLDER' | translate}}"
           name="confirm-password"
           formControlName="confirmPassword"
           required>
@@ -128,11 +128,11 @@
   </div>
 
   <div class="profile-edit-form__button-container">
-    <button (click)="onDelete()" [ngClass]="{visible: true}">Delete profile</button>
+    <button (click)="onDelete()" [ngClass]="{visible: true}">{{'AUTH.BUTTONS.DELETE_PROFILE' | translate}}</button>
     <button
       i18n="@@auth-form.button-registration"
       type="submit"
-      [ngClass]="{visible: profileEditingForm.valid}">Update profile</button>
+      [ngClass]="{visible: profileEditingForm.valid}">{{'AUTH.BUTTONS.UPDATE_PROFILE' | translate}}</button>
   </div>
 
 </form>

@@ -30,6 +30,7 @@
   "AUTH": {
     "LOGIN_TITLE": "Login",
     "REGISTRATION_TITLE": "Registration",
+    "EDIT_PROFILE": "Edit Profile",
     "INPUTS": {
       "EMAIL": "Email",
       "EMAIL_PLACEHOLDER": "Enter Email",
@@ -38,7 +39,11 @@
       "USER_NAME": "User Name",
       "USER_NAME_PLACEHOLDER": "Enter User Name",
       "CONFIRM_PASSWORD": "Сonfirm password",
-      "CONFIRM_PASSWORD_PLACEHOLDER": "Сonfirm password"
+      "CONFIRM_PASSWORD_PLACEHOLDER": "Сonfirm password",
+      "NEW_EMAIL": "New Email",
+      "NEW_PASSWORD": "New Password",
+      "NEW_USER_NAME": "New User Name",
+      "CONFIRM_NEW_PASSWORD": "Сonfirm New Password"
     },
     "VALIDATE": {
       "EMAIL_REQUIRED":"Please enter a login email",
@@ -57,7 +62,10 @@
     },
     "BUTTONS": {
       "LOGIN": "Login",
-      "REGISTRATION": "Registration"
+      "REGISTRATION": "Registration",
+      "DELETE_PROFILE": "Delete Profile",
+      "UPDATE_PROFILE": "Uptdate Profile"
+
     }
   },
   "BOARDS": {
