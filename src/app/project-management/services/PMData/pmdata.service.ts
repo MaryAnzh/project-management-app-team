@@ -162,6 +162,15 @@ export class PMDataService {
     });
   }
 
+  deleteTask(columnId: string, taskId: string) {
+    const id = this.currentBoard ? this.currentBoard.id : '';
+    this.requestService.deleteTask(id, columnId, taskId).subscribe({
+      next: (response) => {
+        this.getBoard(id);
+      },
+      error: (error) => console.error(error.message),
+    });
+  }
 
   changeErrorMessage(errorMessage: IErrorMessage) {
     this._errorMessage$$.next(errorMessage);
@@ -176,15 +185,19 @@ export class PMDataService {
     this._isModalOoen$$.next(false);
   }
 
-  showConfirmationModal(name: string, idString?: string) {
-    const id = idString ? idString : '';
+  showConfirmationModal(name: string, columnID?: string, taskID?: string) {
+    const column = columnID ? columnID : '';
+    const task = taskID ? taskID : '';
     const res = this.coreDataService.openConfirmationModal().then(() => {
       switch (name) {
         case 'board':
           this.deleteBoard(this.currentBoard.id);
           break;
         case 'column':
-          this.deleteColumn(id);
+          this.deleteColumn(column);
+          break;
+        case 'task':
+          this.deleteTask(column, task);
           break;
 
         default:
@@ -193,7 +206,7 @@ export class PMDataService {
     })
       .catch(() => {
 
-    })
+      })
   }
 
   sortColumnsByOrder(columns: IColumnsData[]): boolean {
