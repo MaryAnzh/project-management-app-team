@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
 import {IBoardData} from "../../../core/models/request.model";
-import {Subject} from "rxjs";
+import {BehaviorSubject, Subject} from "rxjs";
 import {RequestService} from "../../../core/services/request/request.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
@@ -8,16 +8,17 @@ import {Router} from "@angular/router";
 @Injectable({
   providedIn: 'root'
 })
-export class BoardsService {
+export class BoardsService implements OnInit {
 
-  private _allBoards$$ = new Subject<IBoardData[] | null>();
+  // private _allBoards$$ = new Subject<IBoardData[] | null>();
+  private _allBoards$$ = new BehaviorSubject<IBoardData[] | null>(null);
 
   public allBoards$ = this._allBoards$$.asObservable();
 
   constructor(
     private requestService: RequestService,
     private router: Router
-  ) {}
+  ) {this.getAllBoards()}
 
   getAllBoards():void {
     this.requestService.getBoards().subscribe({
@@ -27,6 +28,7 @@ export class BoardsService {
       error: (error: HttpErrorResponse) => console.error(error.message),
     })
   }
+
 
   goToBoard(id: string): void {
     this.requestService.getBoard(id).subscribe(
@@ -46,5 +48,15 @@ export class BoardsService {
       },
       error: (error: HttpErrorResponse) => console.error(error.message),
     });
+  }
+
+  onDistroy():void {
+    if (this._allBoards$$) {
+      this._allBoards$$.unsubscribe();
+    }
+  }
+
+  ngOnInit():void {
+    this.getAllBoards();
   }
 }
