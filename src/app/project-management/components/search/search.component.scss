@@ -1,0 +1,65 @@
+@import '../../../../vareable';
+
+:host {
+  width: 100%;
+
+  .search {
+    max-width: 640px;
+    width: 100%;
+    height: 100%;
+    margin-left: 10px;
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    @media (max-width: 1000px) {
+      flex-direction: column-reverse;
+    }
+
+    &__filter {
+      width: 320px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: end;
+
+      select {
+        height: 30px;
+      }
+    }
+
+    &__search-wrap {
+      width: 320px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      input {
+        width: 290px;
+        height: 30px;
+        padding-left: 10px;
+        color: $mainColorDark;
+        background: $mainColorLight;
+        border: none;
+        border-bottom: 1px solid $mainColor;
+        outline: none;
+
+      }
+
+      button {
+        width: 30px;
+        height: 30px;
+
+
+        svg {
+          transform: scale(70%);
+          fill: #ffffff;
+        }
+      }
+
+    }
+  }
+
+}

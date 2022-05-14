@@ -11,6 +11,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '../shared/shared.module';
 import { BoardItemComponent } from './components/board-item/board-item.component';
 import { TaskComponent } from './components/task/task.component';
+import { SearchComponent } from './components/search/search.component';
 
 const routes: Routes = [{ path: '', component: ProjectManagementComponent }];
 
@@ -24,6 +25,7 @@ const routes: Routes = [{ path: '', component: ProjectManagementComponent }];
     ColumnComponent,
     BoardItemComponent,
     TaskComponent,
+    SearchComponent,
   ],
   imports: [
     CommonModule,
