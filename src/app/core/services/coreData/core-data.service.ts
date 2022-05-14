@@ -8,6 +8,22 @@ import { Router } from '@angular/router';
 })
 
 export class CoreDataService {
+  confirmClick = new Function;
+
+  cancelClick = new Function;
+
+  public showAsync(data = null): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.confirmClick = () => {
+        this.closeConfirmationModal();
+        resolve(data);
+      };
+      this.cancelClick = () => {
+        this.closeConfirmationModal();
+        reject(data);
+      }
+    })
+  }
   private _isConfirmationModalOpen$$ = new Subject<boolean>();
   public isConfirmationModalOpen$ = this._isConfirmationModalOpen$$.asObservable();
 
@@ -15,19 +31,15 @@ export class CoreDataService {
   public isActionConfirm$ = this._isActionConfirm$$.asObservable();
   public isActionConfirm: boolean | null = null;
 
-  private fun: Function = new Function;
-  private param: string = '';
-
   constructor(private requestService: RequestService, private router: Router) {
     this.isActionConfirm$.subscribe(
       value => this.isActionConfirm = value
     )
   }
 
-  openConfirmationModal(fun: Function, param: string) {
+  async openConfirmationModal() {
     this._isConfirmationModalOpen$$.next(true);
-    this.fun = fun;
-    this.param = param;
+    return this.showAsync();
   }
 
   closeConfirmationModal() {
@@ -35,13 +47,9 @@ export class CoreDataService {
   }
 
   actionConfirm(action: boolean) {
-    console.log(`Отработал core, id = ${this.param} и ${this.fun}`);
-    console.log(`action = ${action}`);
-    if (action) {
-      this.fun(this.param);
-      console.log(`Удаление отработало`);
-    }
     this.closeConfirmationModal();
-
+    return action;
   }
+
+
 }

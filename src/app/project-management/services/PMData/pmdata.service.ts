@@ -14,6 +14,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Subject, map, Observable, mergeMap } from 'rxjs';
 import { IErrorMessage } from 'src/app/core/models/respons-error.model';
 import { CoreDataService } from 'src/app/core/services/coreData/core-data.service';
+import { async } from '@angular/core/testing';
 
 @Injectable({
   providedIn: 'root'
@@ -161,6 +162,15 @@ export class PMDataService {
     });
   }
 
+  deleteTask(columnId: string, taskId: string) {
+    const id = this.currentBoard ? this.currentBoard.id : '';
+    this.requestService.deleteTask(id, columnId, taskId).subscribe({
+      next: (response) => {
+        this.getBoard(id);
+      },
+      error: (error) => console.error(error.message),
+    });
+  }
 
   changeErrorMessage(errorMessage: IErrorMessage) {
     this._errorMessage$$.next(errorMessage);
@@ -168,16 +178,35 @@ export class PMDataService {
 
   openCreationColumnTaskModal() {
     this._isModalOoen$$.next(true);
+
   }
 
   closeCreationColumnTaskModal() {
     this._isModalOoen$$.next(false);
   }
 
-  openConfirmationModal(param: string) {
-    this.coreDataService.openConfirmationModal(this.deleteBoard, param);
-    console.log(`Отработал openConfirmationModal, передал ${param} и ${this.deleteBoard
-      }`);
+  showConfirmationModal(name: string, columnID?: string, taskID?: string) {
+    const column = columnID ? columnID : '';
+    const task = taskID ? taskID : '';
+    const res = this.coreDataService.openConfirmationModal().then(() => {
+      switch (name) {
+        case 'board':
+          this.deleteBoard(this.currentBoard.id);
+          break;
+        case 'column':
+          this.deleteColumn(column);
+          break;
+        case 'task':
+          this.deleteTask(column, task);
+          break;
+
+        default:
+          break;
+      }
+    })
+      .catch(() => {
+
+      })
   }
 
   sortColumnsByOrder(columns: IColumnsData[]): boolean {

@@ -40,7 +40,9 @@ export class ColumnComponent {
 
   deleteColumnOnCkick() {
     if (this.column) {
-      this.pmDataService.deleteColumn(this.column.id);
+      const name = 'column';
+        this.pmDataService.showConfirmationModal(name, this.column.id);
+
     }
   }
 
