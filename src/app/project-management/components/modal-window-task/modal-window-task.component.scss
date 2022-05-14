@@ -12,7 +12,6 @@
 
   .new-task {
     width: 320px;
-    height: 400px;
     padding: 20px;
     background: $mainColor;
     display: flex;
@@ -38,7 +37,7 @@
       input,
       textarea {
         height: 30px;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
         padding-left: 10px;
         background: hsl(222, 56%, 47%);
         border: none;
@@ -46,6 +45,7 @@
         border-bottom: 1px solid #ffffff;
         color: #ffffff;
         font-size: 18px;
+        cursor: pointer;
       }
 
       textarea {
@@ -55,7 +55,7 @@
       &__progress {
         display: flex;
         margin-top: 10px;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
         align-items: center;
 
         label {
@@ -71,6 +71,7 @@
           display: flex;
           align-items: center;
           justify-content: center;
+          cursor: pointer;
 
           div {
             width: 8px;
@@ -81,12 +82,19 @@
         }
       }
 
-
+      select {
+        height: 30px;
+        color: $mainColor;
+        font-size: 18px;
+        margin-top: 10px;
+        cursor: pointer;
+      }
     }
 
     &__button-wrap {
       display: flex;
       margin-top: 35px;
+      margin-bottom: 10px;
       width: 90%;
       justify-content: center;
 
