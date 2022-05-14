@@ -32,7 +32,6 @@ export class BoardComponent {
       (value) => {
         this.boardInfo = value ? value : {id: '', title: '', description: ''};
         this.columns = this.boardInfo.columns ? this.boardInfo.columns : [];
-        //this.pmDataService.sortColumnsByOrder(this.columns);
       }
     )
 
@@ -77,10 +76,9 @@ export class BoardComponent {
   }
 
   deleteBoardOnClikc() {
+    const name = 'board';
     if (this.boardId) {
-      this.pmDataService.openConfirmationModal(this.boardId);
-
-      //this.pmDataService.deleteBoard(this.boardId);
+      this.pmDataService.showConfirmationModal(name);
     }
   }
 

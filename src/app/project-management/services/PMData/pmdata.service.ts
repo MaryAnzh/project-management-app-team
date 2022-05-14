@@ -176,12 +176,19 @@ export class PMDataService {
     this._isModalOoen$$.next(false);
   }
 
-  openConfirmationModal(param: string) {
+  showConfirmationModal(name: string) {
     const res = this.coreDataService.openConfirmationModal().then(() => {
-      console.log('Yes');
+      switch (name) {
+        case 'board':
+          this.deleteBoard(this.currentBoard.id);
+          break;
+
+        default:
+          break;
+      }
     })
       .catch(() => {
-        console.log('No');
+
     })
   }
 
