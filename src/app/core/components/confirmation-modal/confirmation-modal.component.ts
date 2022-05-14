@@ -9,26 +9,15 @@ import { CoreDataService } from '../../services/coreData/core-data.service';
 
 export class ConfirmationModalComponent {
 
-  constructor(private coreDataService: CoreDataService) { }
+  confirmClick = new Function;
 
-  actionOnClick(e: Event) {
-    const elem = <HTMLElement>e.target;
-    const type = elem.dataset['type'];
-    let action = false;
-    if (type) {
-      switch (type) {
-        case 'confirm': action = true;
+  cancelClick = new Function;
 
-          break;
-
-        case 'cancel': action = false;;
-
-          break;
-
-        default:
-          break;
-      }
-    }
-    this.coreDataService.actionConfirm(action);
+  constructor(
+    private coreDataService: CoreDataService
+  ) {
+    this.confirmClick = this.coreDataService.confirmClick;
+    this.cancelClick = this.coreDataService.cancelClick;
   }
+
 }
