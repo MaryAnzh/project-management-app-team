@@ -13,7 +13,7 @@ import { Observable, SubscriptionLike, map, pipe } from 'rxjs';
 
 export class BoardComponent {
   public boardInfo$: SubscriptionLike;
-  public boardInfo: IBoardData = {id: '', title: '', description: '', columns: []};
+  @Input() public boardInfo: IBoardData = {id: '', title: '', description: '', columns: []};
   public columns: IColumnsData[] | undefined = undefined;
 
   public isTitleChange: boolean = false;
