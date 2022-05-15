@@ -54,7 +54,7 @@
       <option
         *ngFor="let column of boardInfo.columns; let i= index"
         [selected]="i === 0"
-        [ngValue]="column.id"
+        [ngValue]="column"
         >{{column.title}}</option>
     </select>
 

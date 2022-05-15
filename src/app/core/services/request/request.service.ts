@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
 import {
   IUserLoginData,
   User,
@@ -10,7 +9,9 @@ import {
   IBoardUpdate,
   IBoardDescription,
   IColumnsData,
-  IColumnsRequestData
+  IColumnsRequestData,
+  ITaskData,
+  INewTaskData
 } from '../../models/request.model';
 
 const httpOptions = {
@@ -95,6 +96,10 @@ export class RequestService {
 
   updateColumn(boardId: string, columnId: string, body: IColumnsRequestData): Observable<any> {
     return this.http.put<IColumnsData[]>(`/boards/${boardId}/columns/${columnId}`, body, httpOptions);
+  }
+
+  createTask(boardId: string, columnId: string, body: INewTaskData): Observable<IBoardData> {
+    return this.http.post<IBoardData>(`/boards/${boardId}/columns/${columnId}/tasks`, body, httpOptions);
   }
 
   deleteTask(boardId: string, columnId: string, taskId: string) {

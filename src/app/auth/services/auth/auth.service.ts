@@ -7,6 +7,7 @@ import { IUserLoginData } from 'src/app/core/models/request.model';
 import { RequestService } from 'src/app/core/services/request/request.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { IErrorMessage } from '../../../core/models/respons-error.model';
+import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,7 @@ import { IErrorMessage } from '../../../core/models/respons-error.model';
 export class AuthService {
 
   private _user$$ = new BehaviorSubject<IResAuthLogin | null>(null);
+  private _userInfo$$ = new Subject<User | null>();
   private _errorMessage$$ = new Subject<IErrorMessage>();
   private _millisecondInHoure: number = 3600000;
   private _tokenLifeTime: number = 24;
@@ -26,6 +28,8 @@ export class AuthService {
   public user$ = this._user$$.asObservable();
   public errorMessage$ = this._errorMessage$$.asObservable();
 
+  public userInfo$ = this._userInfo$$.asObservable();
+  public userInfo: User = { id: '', name: '', login: '' };
 
   constructor(
     private router: Router,
@@ -36,6 +40,9 @@ export class AuthService {
     if (user) {
       this._user$$.next(user);
     }
+    this.userInfo$.subscribe(
+      (value) => this.userInfo = value ? value : {id: '', name: '', login: ''}
+    )
   }
 
   registration(user: IUseRegistrationData) {
@@ -67,31 +74,45 @@ export class AuthService {
 
   login(userData: IUserLoginData): void {
 
-    this.requestService.authorizeUser(userData).subscribe(
-      (response: Token) => {
-        const storageData: IResAuthLogin = {
-          name: userData.login,
-          token: response.token,
-          date: new Date().toString(),
-        }
-        this.storage.setData('user', storageData);
-        this._user$$.next(storageData);
-        this.router.navigateByUrl('/main');
-      },
-      (error: HttpErrorResponse) => {
-        console.error(`Ощибка ${error.status} поймана`);
-        const errorMessage: IErrorMessage = {
-          errorMessage: '',
-          isError: true,
-        }
+      this.requestService.authorizeUser(userData).subscribe(
+        (response: Token) => {
 
-        if (error.statusText === 'Unknown Error') {
-          errorMessage.errorMessage = 'Check the connection at the network'
-        } else {
-          errorMessage.errorMessage = error.error.message
-        }
-        this._errorMessage$$.next(errorMessage);
-      });
+          const storageData: IResAuthLogin = {
+            name: userData.login,
+            token: response.token,
+            date: new Date().toString(),
+          }
+          this.storage.setData('user', storageData);
+          this._user$$.next(storageData);
+          this.router.navigateByUrl('/main');
+          this.requestService.getUsers().pipe(
+            map((user) => {
+              return user.find((el) => el.login === userData.login)
+            })
+          ).subscribe({
+            next: (user) => {
+              if (user) {
+                this._userInfo$$.next(user);
+
+              }
+            }
+          })
+        },
+        (error: HttpErrorResponse) => {
+          console.error(`Ощибка ${error.status} поймана`);
+          const errorMessage: IErrorMessage = {
+            errorMessage: '',
+            isError: true,
+          }
+
+          if (error.statusText === 'Unknown Error') {
+            errorMessage.errorMessage = 'Check the connection at the network'
+          } else {
+            errorMessage.errorMessage = error.error.message
+          }
+          this._errorMessage$$.next(errorMessage);
+        });
+
   }
 
   logout(): void {
@@ -118,7 +139,7 @@ export class AuthService {
         const authLogin = this.storage.getData<IResAuthLogin>('user');
         return user.find((el) => el.login === authLogin?.name)
       }
-    ),
+      ),
       mergeMap((item) => this.requestService.deletetUser(item!.id))
     ).subscribe((resp) => {
       this.logout();
@@ -131,7 +152,7 @@ export class AuthService {
         const authLogin = this.storage.getData<IResAuthLogin>('user');
         return user.find((el) => el.login === authLogin?.name)
       }
-    ),
+      ),
       mergeMap((item) => {
         return this.requestService.updateUser(item!.id, userData)
       })

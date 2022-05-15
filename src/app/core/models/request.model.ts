@@ -53,6 +53,14 @@ export interface IColumnsRequestData {
   order: number,
 }
 
+export interface INewTaskData {
+  title: string,
+  done: boolean,
+  order: number,
+  description: string,
+  userId: string,
+}
+
 export interface ITaskData {
   id: string,
   title: string,
