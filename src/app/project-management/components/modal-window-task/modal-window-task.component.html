@@ -1,0 +1,33 @@
+<form class="new-task">
+  <div class="new-task__form">
+    <label for="taskTitle">Title:</label>
+    <input type="text" id="taskTitle">
+    <label for="TaskDescription">description</label>
+    <textarea type="text" id="taskDescription"></textarea>
+    <div class="new-task__form__progress">
+      <label>Done</label>
+      <div class="new-task__form__progress__check">
+        <div></div>
+      </div>
+    </div>
+    <label>Select column</label>
+    <select>
+      <option value="01">Column name</option>
+      <option value="02">Column name</option>
+      <option value="03">Column name</option>
+
+    </select>
+
+
+  </div>
+
+  <div class="new-task__button-wrap">
+    <button
+      (click)="createTask()">{{'BOARDS.BUTTONS.CREATE'
+      | translate}}</button>
+    <button
+      (click)="closeModalWindow()">
+      {{'BOARDS.BUTTONS.CANCEL' | translate}}</button>
+  </div>
+
+</form>

@@ -22,6 +22,10 @@ export class BoardComponent {
   public ismodalOpen$: Observable<boolean>;
   @Input() public modalName: string = '';
 
+  public isModalWindowNewTaskOpen$: Observable<boolean>;
+
+
+
   constructor(
     private pmDataService: PMDataService,
     private route: ActivatedRoute,
@@ -42,6 +46,7 @@ export class BoardComponent {
     }
 
     this.ismodalOpen$ = this.pmDataService.isModalOoen$;
+    this.isModalWindowNewTaskOpen$ = this.pmDataService.isModalWindowNewTaskOpen$;
 
     translate.addLangs(['en', 'ru']);
     translate.setDefaultLang('en');
@@ -87,8 +92,18 @@ export class BoardComponent {
     const elemType = elem.dataset['type'];
 
     if (elemType) {
-      this.modalName = elemType;
-      this.pmDataService.openCreationColumnTaskModal();
+      switch (elemType) {
+        case 'column':
+          this.modalName = elemType;
+          this.pmDataService.openCreationColumnTaskModal();
+          break;
+        case 'task':
+          this.pmDataService.showModalWindowNewTask();
+          break;
+
+        default:
+          break;
+      }
     }
 
   }
