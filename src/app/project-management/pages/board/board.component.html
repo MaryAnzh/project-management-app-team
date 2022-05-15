@@ -1,11 +1,11 @@
 <app-create-new-item-modal
   *ngIf="ismodalOpen$ | async"
   [modalName]="modalName"></app-create-new-item-modal>
-  <app-modal-window-task
+<app-modal-window-task
 
   *ngIf="isModalWindowNewTaskOpen$ | async">
 
-  </app-modal-window-task>
+</app-modal-window-task>
 <div class="board"
   *ngIf="boardInfo">
   <section class="board__main-panel">
@@ -21,37 +21,47 @@
         <button class="hidden-button"
           *ngIf="isTitleChange"
           (click)="changeTitleOnClick(boardTitle.value)">
-          <img src="../../../../assets/icon/chack.png" alt="change title">
-        </button>
-        <button class="hidden-button"
-          *ngIf="isTitleChange"
-          (click)="boardTitle.value = boardInfo.title; isTitleChange = false">
-          <img src="../../../../assets/icon/cross.png" alt="change title">
-        </button>
+          <svg
+            viewBox="0 0 27 26">
+            <path
+              d="M2,11c4,4.33,8,8.67,12,13c3.67-7.33,7.33-14.67,11-22" />
+            </svg>
+          </button>
+          <button class="hidden-button"
+            *ngIf="isTitleChange"
+            (click)="boardTitle.value= boardInfo.title; isTitleChange= false">
+            <svg
+              viewBox="0 0 30 30">
+              <line x1="24.55" y1="5.45" x2="5.45" y2="24.55" />
+                <line x1="5.45" y1="5.45" x2="24.55" y2="24.55" />
+                </svg>
+              </button>
+            </div>
+
+          </form>
+          <div class="board__main-panel__control">
+            <button
+              [ngClass]="{'vusible': (columns && columns.length> 0), 'hidden':
+              !(columns && columns.length > 0)}"
+              data-type="task"
+              (click)="newColumnOnClick($event)">
+              {{'BOARDS.BUTTONS.NEW_TASK' | translate}}</button>
+            <button
+              data-type="column"
+              (click)="newColumnOnClick($event)">{{'BOARDS.BUTTONS.NEW_COLUMN' |
+              translate}}</button>
+            <button
+              (click)="deleteBoardOnClikc()">{{'BOARDS.BUTTONS.DELETE' |
+              translate}}</button>
+          </div>
+        </section>
+
+        <section class="board__column-wrap"
+          *ngIf="columns">
+          <app-column
+            *ngFor="let column of columns"
+            [column]="column">
+          </app-column>
+        </section>
+
       </div>
-
-    </form>
-    <div class="board__main-panel__control">
-      <button
-      [ngClass]="{'vusible': (columns && columns.length > 0), 'hidden': !(columns && columns.length > 0)}"
-        data-type="task"
-        (click)="newColumnOnClick($event)">
-        {{'BOARDS.BUTTONS.NEW_TASK' | translate}}</button>
-      <button
-        data-type="column"
-        (click)="newColumnOnClick($event)">{{'BOARDS.BUTTONS.NEW_COLUMN' | translate}}</button>
-      <button
-        (click)="deleteBoardOnClikc()">{{'BOARDS.BUTTONS.DELETE' | translate}}</button>
-    </div>
-  </section>
-
-  <section class="board__column-wrap"
-  *ngIf="columns"
-  >
-    <app-column
-    *ngFor="let column of columns"
-    [column]="column">
-    </app-column>
-  </section>
-
-</div>
