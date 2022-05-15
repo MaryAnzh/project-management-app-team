@@ -36,8 +36,8 @@ h1 {
 }
 
 h2 {
-    font-size: 2.5rem;
-    font-weight: 200;
+  font-size: 2.5rem;
+  font-weight: 200;
 }
 
 h3 {
@@ -78,9 +78,12 @@ button {
   pointer-events: none;
 }
 
-body {
-  scrollbar-width: thin;
-  /* "auto" or "thin" */
-  scrollbar-color: blue orange;
-  /* scroll thumb and track */
+.un-blocked {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.blocked {
+  opacity: 0.7;
+  pointer-events: none;
 }

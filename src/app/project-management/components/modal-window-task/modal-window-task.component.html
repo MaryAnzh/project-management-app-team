@@ -1,4 +1,5 @@
 <form class="new-task"
+  (submit)="createTask()"
   [formGroup]="newTaskForm">
   <div class="new-task__form">
     <label for="taskTitle">Task Title:</label>
@@ -48,11 +49,11 @@
 
     <label>Select column</label>
     <select
-  formControlName="selectColumn"
+      formControlName="selectColumn"
 
       *ngIf="boardInfo.columns">
       <option
-        *ngFor="let column of boardInfo.columns; let i = index"
+        *ngFor="let column of boardInfo.columns; let i= index"
         [selected]="i === 0"
         [ngValue]="column.title">{{column.title}}</option>
     </select>
@@ -61,8 +62,11 @@
 
   <div class="new-task__button-wrap">
     <button
-      (click)="createTask()">{{'BOARDS.BUTTONS.CREATE'
-      | translate}}</button>
+    type="submit"
+    [ngClass]="{'blocked': newTaskForm.invalid}">
+      {{'BOARDS.BUTTONS.CREATE'
+      | translate}}
+    </button>
     <button
       (click)="closeModalWindow()">
       {{'BOARDS.BUTTONS.CANCEL' | translate}}</button>

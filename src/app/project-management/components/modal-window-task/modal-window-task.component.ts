@@ -28,7 +28,7 @@ export class ModalWindowTaskComponent {
     const firstColumn = this.columns ? this.columns[0].title : '';
     console.log(firstColumn);
     this.newTaskForm = new FormGroup({
-      title: new FormControl('Привет', [
+      title: new FormControl('', [
         Validators.required,
         Validators.maxLength(30),
       ]),
