@@ -50,12 +50,12 @@
     <label>Select column</label>
     <select
       formControlName="selectColumn"
-
       *ngIf="boardInfo.columns">
       <option
         *ngFor="let column of boardInfo.columns; let i= index"
         [selected]="i === 0"
-        [ngValue]="column.title">{{column.title}}</option>
+        [ngValue]="column.id"
+        >{{column.title}}</option>
     </select>
 
   </div>

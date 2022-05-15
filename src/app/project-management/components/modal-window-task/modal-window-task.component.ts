@@ -25,7 +25,7 @@ export class ModalWindowTaskComponent {
     this.boardInfo = this.pmDataService.currentBoard;
     this.columns = this.boardInfo.columns;
 
-    const firstColumn = this.columns ? this.columns[0].title : '';
+    const firstColumn = this.columns ? this.columns[0].id : '--select--';
     console.log(firstColumn);
     this.newTaskForm = new FormGroup({
       title: new FormControl('', [
@@ -56,7 +56,9 @@ export class ModalWindowTaskComponent {
     return <AbstractControl>this.newTaskForm.get('selectColumn');
   }
 
-  createTask() { }
+  createTask() {
+    console.log(this.newTaskForm);
+   }
 
   closeModalWindow() {
     this.pmDataService.closeModalWindowNewTask();
