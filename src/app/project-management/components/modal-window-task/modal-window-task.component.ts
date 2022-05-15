@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { PMDataService } from '../../services/PMData/pmdata.service';
 import { TranslateService } from '@ngx-translate/core';
-import { FormGroup, FormControl, ValidationErrors, Validators } from '@angular/forms';
+import { FormGroup, FormControl, AbstractControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-modal-window-task',
@@ -17,10 +17,10 @@ export class ModalWindowTaskComponent {
     ]),
     description: new FormControl('', [
       Validators.required,
-      Validators.maxLength(100),
+      Validators.maxLength(150),
     ]),
     doneCheck: new FormControl(''),
-    selectColumn: new FormControl(''),
+    selectColumn: new FormControl(),
   });
 
   constructor(
@@ -29,12 +29,26 @@ export class ModalWindowTaskComponent {
   ) {
     translate.addLangs(['en', 'ru']);
     translate.setDefaultLang('en');
-   }
+  }
 
+  get title(): AbstractControl {
+    return <AbstractControl>this.newTaskForm.get('title');
+  }
+  get description(): AbstractControl {
+    return <AbstractControl>this.newTaskForm.get('description');
+  }
+
+  get doneCheck(): AbstractControl {
+    return <AbstractControl>this.newTaskForm.get('doneCheck');
+  }
+
+  get selectColumn(): AbstractControl {
+    return <AbstractControl>this.newTaskForm.get('selectColumn');
+  }
 
   createTask() { }
 
   closeModalWindow() {
     this.pMDataService.closeModalWindowNewTask();
-}
+  }
 }
