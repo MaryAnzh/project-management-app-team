@@ -24,8 +24,7 @@
     <textarea type="text"
       id="taskDescription"
       formControlName="description"
-      maxlength="151"
-      ></textarea>
+      maxlength="151"></textarea>
     <div class="new-task__form__error">
       <ng-container
         *ngIf="description.invalid && description.touched || description.dirty">
@@ -49,14 +48,14 @@
 
     <label>Select column</label>
     <select
+  formControlName="selectColumn"
 
-      *ngIf="boardInfo.columns"
-      >
+      *ngIf="boardInfo.columns">
       <option
-  *ngFor="let column of boardInfo.columns"
-      value="{{column.order}}">{{column.title}}</option>
+        *ngFor="let column of boardInfo.columns; let i = index"
+        [selected]="i === 0"
+        [ngValue]="column.title">{{column.title}}</option>
     </select>
-
 
   </div>
 

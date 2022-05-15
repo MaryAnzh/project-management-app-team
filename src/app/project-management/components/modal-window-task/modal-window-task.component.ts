@@ -1,9 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { PMDataService } from '../../services/PMData/pmdata.service';
 import { TranslateService } from '@ngx-translate/core';
-import { FormGroup, FormControl, AbstractControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, AbstractControl, Validators, FormControlDirective } from '@angular/forms';
 import { IBoardData, IColumnsData } from 'src/app/core/models/request.model';
-import { IColumnCreationRespons } from 'src/app/core/models/response.model';
 
 @Component({
   selector: 'app-modal-window-task',
@@ -14,18 +13,22 @@ import { IColumnCreationRespons } from 'src/app/core/models/response.model';
 export class ModalWindowTaskComponent {
   public newTaskForm: FormGroup;
 
-  @Input() public boardInfo: IBoardData = { id: '', title: '', description: '', columns: [] };
+  public boardInfo: IBoardData = { id: '', title: '', description: '', columns: [] };
+  public columns: IColumnsData[] | undefined = undefined;
 
   constructor(
-    private pMDataService: PMDataService,
+    private pmDataService: PMDataService,
     public translate: TranslateService,
   ) {
     translate.addLangs(['en', 'ru']);
     translate.setDefaultLang('en');
-    const columns: IColumnsData[] = this.boardInfo.columns ? this.boardInfo.columns : [];
+    this.boardInfo = this.pmDataService.currentBoard;
+    this.columns = this.boardInfo.columns;
 
+    const firstColumn = this.columns ? this.columns[0].title : '';
+    console.log(firstColumn);
     this.newTaskForm = new FormGroup({
-      title: new FormControl('', [
+      title: new FormControl('Привет', [
         Validators.required,
         Validators.maxLength(30),
       ]),
@@ -34,7 +37,7 @@ export class ModalWindowTaskComponent {
         Validators.maxLength(150),
       ]),
       doneCheck: new FormControl(''),
-      selectColumn: new FormControl,
+      selectColumn: new FormControl(firstColumn),
     });
   }
 
@@ -56,6 +59,6 @@ export class ModalWindowTaskComponent {
   createTask() { }
 
   closeModalWindow() {
-    this.pMDataService.closeModalWindowNewTask();
+    this.pmDataService.closeModalWindowNewTask();
   }
 }
