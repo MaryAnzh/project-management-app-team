@@ -77,6 +77,39 @@
         label {
           padding: 0;
         }
+
+        input {
+          width: 20px;
+          height: 20px;
+          margin-left: 40px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          user-select: none;
+        }
+
+        input::after {
+          content: '';
+          width: 20px;
+          height: 20px;
+          display: flex;
+          background: $mainColor;
+          border: 2px solid #ffffff;
+          border-radius: 50%;
+          transform: scale(1.2, 1.1);
+        }
+
+        input:checked::after {
+          background: {
+            image: url('../../../../assets/icon/chack.png');
+            position: center;
+            size: 80%;
+            repeat: no-repeat;
+          };
+        }
+
+
       }
 
       select {
