@@ -68,8 +68,4 @@ export class HeaderComponent {
         break;
     }
   }
-
-  getAllBoards():void {
-    this.boardsService.getAllBoards();
-  }
  }

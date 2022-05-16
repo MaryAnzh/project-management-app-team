@@ -10,6 +10,8 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { ProjectManagementModule } from './project-management/project-management.module';
 import { InformationModule } from './information/information.module';
+import { Observable, SubscriptionLike } from 'rxjs';
+import { AuthService } from './auth/services/auth/auth.service';
 
 // export function httpTranslateLoaderFactory(http: HttpClient): TranslateHttpLoader {
 //   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -48,4 +50,10 @@ export function httpTranslateLoaderFactory(httpBackend: HttpBackend): TranslateH
   providers: [httpInterceptorsProviders],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  public isAuth$: Observable<boolean>;
+
+  constructor(private authService: AuthService) {
+    this.isAuth$ = this.authService.isLoggedIn$;
+  }
+ }
