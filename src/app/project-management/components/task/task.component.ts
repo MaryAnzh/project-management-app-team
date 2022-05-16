@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable, Subscriber } from 'rxjs';
 import { ITaskData, User } from 'src/app/core/models/request.model';
-import { PMDataService } from '../../services/PMData/pmdata.service';
+import { TranslateService } from '@ngx-translate/core';
 import { TaskDataService } from '../../services/TaskData/task-data.service';
-import { ActivatedRoute } from '@angular/router';
 import { Subject, Subscription } from 'rxjs';
+import { PMDataService } from '../../services/PMData/pmdata.service';
 
 @Component({
   selector: 'app-task',
@@ -14,6 +14,7 @@ import { Subject, Subscription } from 'rxjs';
 
 export class TaskComponent implements OnInit {
   @Input() public task: ITaskData | undefined;
+  @Input() public columnId: string | undefined;
   public userSubscription: Subscription | null = null;
 
   public boardId: string = '';
@@ -24,10 +25,12 @@ export class TaskComponent implements OnInit {
 
   constructor(
     private taskDataService: TaskDataService,
-    private route: ActivatedRoute,
+    private pmDataService: PMDataService,
+    public translate: TranslateService,
   ) {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.boardId = id ? id : '';
+    translate.addLangs(['en', 'ru']);
+    translate.setDefaultLang('en');
+
   }
 
   getName(id: string) {
@@ -41,7 +44,13 @@ export class TaskComponent implements OnInit {
     this.taskDataService.getUserName(userId).subscribe(
       (value) => this._userName$$.next(value)
     );
+  }
 
+  deleteTask() {
+    const type = 'task';
+    const columnId = this.columnId ?? '';
+    const taskId = this.task ? this.task.id : '';
+    this.pmDataService.showConfirmationModal(type, columnId, taskId);
   }
 
 }

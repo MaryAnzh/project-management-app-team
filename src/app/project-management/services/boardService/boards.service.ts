@@ -20,7 +20,6 @@ export class BoardsService implements OnInit {
     private coreDataService: CoreDataService,
     private router: Router,
   ) {
-    this.getAllBoards();
 
   }
 

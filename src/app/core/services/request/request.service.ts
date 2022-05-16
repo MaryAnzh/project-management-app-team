@@ -103,7 +103,7 @@ export class RequestService {
   }
 
   deleteTask(boardId: string, columnId: string, taskId: string) {
-    return this.http.put<IColumnsData[]>(`/boards/${boardId}/columns/${columnId}/tasks/{taskId}`, httpOptions);
+    return this.http.delete<IColumnsData[]>(`/boards/${boardId}/columns/${columnId}/tasks/${taskId}`, httpOptions);
   }
 
 

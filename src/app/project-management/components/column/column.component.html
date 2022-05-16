@@ -52,6 +52,7 @@
               <app-task
             *ngFor="let task of column.tasks"
             [task]="task"
+            [columnId]="column.id"
               ></app-task>
             </section>
           </div>
