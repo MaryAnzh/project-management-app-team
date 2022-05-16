@@ -21,7 +21,7 @@ const httpOptions = {
   })
 };
 
-const httpOptions2 = {
+const httpOptionsNoContent = {
   headers: new HttpHeaders({
     'accept': '*/*',
   })
@@ -51,7 +51,7 @@ export class RequestService {
   }
 
   deletetUser(id: string): Observable<User> {
-    return this.http.delete<User>(`/users/${id}`, httpOptions2);
+    return this.http.delete<User>(`/users/${id}`, httpOptionsNoContent);
   }
 
   updateUser(id: string, body: IUseRegistrationData): Observable<User> {
@@ -71,7 +71,7 @@ export class RequestService {
   }
 
   deleteBoard(id: string): Observable<IBoardData> {
-    return this.http.delete<IBoardData>(`/boards/${id}`, httpOptions2);
+    return this.http.delete<IBoardData>(`/boards/${id}`, httpOptionsNoContent);
   }
 
   updateBoard(id: string, body: IBoardUpdate): Observable<IBoardData> {
@@ -90,8 +90,8 @@ export class RequestService {
     return this.http.post<IColumnsData[]>(`/boards/${boardId}/columns/${columnId}`, httpOptions);
   }
 
-  deleteColumn(boardId: string, columnId: string): Observable<any> {
-    return this.http.delete<IColumnsData[]>(`/boards/${boardId}/columns/${columnId}`, httpOptions2);
+  deleteColumn(boardId: string, columnId: string) {
+    return this.http.delete<IColumnsData[]>(`/boards/${boardId}/columns/${columnId}`, httpOptionsNoContent);
   }
 
   updateColumn(boardId: string, columnId: string, body: IColumnsRequestData): Observable<any> {
@@ -103,7 +103,7 @@ export class RequestService {
   }
 
   deleteTask(boardId: string, columnId: string, taskId: string) {
-    return this.http.delete<IColumnsData[]>(`/boards/${boardId}/columns/${columnId}/tasks/${taskId}`, httpOptions);
+    return this.http.delete(`/boards/${boardId}/columns/${columnId}/tasks/${taskId}`, httpOptionsNoContent);
   }
 
 
