@@ -10,9 +10,11 @@ export interface IUserLoginData {
 }
 
 export interface IResAuthLogin {
-  name: string,
+  login: string,
   token: string,
-  date: string
+  date: string,
+  name: string,
+  userId: string
 }
 
 export interface Token { token: string }
@@ -51,6 +53,14 @@ export interface IColumnsData {
 export interface IColumnsRequestData {
   title: string,
   order: number,
+}
+
+export interface INewTaskData {
+  title: string,
+  done: boolean,
+  order: number,
+  description: string,
+  userId: string,
 }
 
 export interface ITaskData {

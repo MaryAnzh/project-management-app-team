@@ -7,6 +7,7 @@ import { IUserLoginData } from 'src/app/core/models/request.model';
 import { RequestService } from 'src/app/core/services/request/request.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { IErrorMessage } from '../../../core/models/respons-error.model';
+import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +26,6 @@ export class AuthService {
 
   public user$ = this._user$$.asObservable();
   public errorMessage$ = this._errorMessage$$.asObservable();
-
 
   constructor(
     private router: Router,
@@ -69,14 +69,32 @@ export class AuthService {
 
     this.requestService.authorizeUser(userData).subscribe(
       (response: Token) => {
+
         const storageData: IResAuthLogin = {
-          name: userData.login,
+          login: userData.login,
           token: response.token,
           date: new Date().toString(),
+          name: '',
+          userId: '',
         }
         this.storage.setData('user', storageData);
         this._user$$.next(storageData);
         this.router.navigateByUrl('/main');
+        this.requestService.getUsers().pipe(
+          map((user) => {
+            return user.find((el) => el.login === userData.login)
+          })
+        ).subscribe({
+          next: (user) => {
+            if (user) {
+              storageData.name = user.name;
+              storageData.userId = user.id;
+              this.storage.setData('user', storageData);
+              this._user$$.next(storageData);
+            }
+          },
+          error: (error) => console.error(error)
+        })
       },
       (error: HttpErrorResponse) => {
         console.error(`Ощибка ${error.status} поймана`);
@@ -92,6 +110,7 @@ export class AuthService {
         }
         this._errorMessage$$.next(errorMessage);
       });
+
   }
 
   logout(): void {
@@ -118,7 +137,7 @@ export class AuthService {
         const authLogin = this.storage.getData<IResAuthLogin>('user');
         return user.find((el) => el.login === authLogin?.name)
       }
-    ),
+      ),
       mergeMap((item) => this.requestService.deletetUser(item!.id))
     ).subscribe((resp) => {
       this.logout();
@@ -129,15 +148,16 @@ export class AuthService {
     return this.requestService.getUsers().pipe(
       map((user) => {
         const authLogin = this.storage.getData<IResAuthLogin>('user');
-        return user.find((el) => el.login === authLogin?.name)
+        return user.find((el) => el.login === authLogin?.login)
       }
-    ),
+      ),
       mergeMap((item) => {
         return this.requestService.updateUser(item!.id, userData)
       })
     ).subscribe((resp: User) => {
       const storageData = <IResAuthLogin>this.storage.getData('user');
-      storageData.name = resp.login;
+      storageData.login = resp.login;
+      storageData.name = resp.name;
       this.storage.setData('user', storageData);
       this._user$$.next(storageData);
       this.router.navigateByUrl('/main');

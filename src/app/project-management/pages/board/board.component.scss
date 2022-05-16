@@ -9,6 +9,7 @@
   background-color: $mainColorDark;
   border-radius: 20px;
 }
+
 :host {
   max-width: 1080px;
   width: 100%;
@@ -32,6 +33,10 @@
       background: $mainColor;
       justify-content: space-between;
 
+      @media (max-width: 640px) {
+        flex-direction: column;
+      }
+
       button {
         color: #ffffff;
         border: 1px dashed #ffffff;
@@ -40,14 +45,37 @@
       }
 
       &__title {
-        width: 360px;
+        width: 320px;
         display: flex;
-        flex-wrap: wrap;
         justify-content: space-between;
         align-items: center;
 
-        .hidden-button {
-          height: 40px;
+        &__button-wrap {
+          width: 70px;
+          height: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          button {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2px;
+
+            svg {
+              width: 20px;
+              height: 20px;
+              fill: none;
+              stroke: #ffffff;
+              stroke-width: 4;
+              stroke-linecap: round;
+              stroke-linejoin: round;
+              stroke-miterlimit: 10;
+            }
+          }
         }
 
         &__input {
@@ -66,13 +94,12 @@
         }
 
         &__button-wrap {
-          button {
 
+          button {
 
             img {
               width: 20px;
               height: 20px;
-
             }
           }
         }
@@ -84,6 +111,10 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-end;
+
+        @media (max-width: 640px) {
+          width: 100%;
+        }
 
         button {
           margin-left: 10px;

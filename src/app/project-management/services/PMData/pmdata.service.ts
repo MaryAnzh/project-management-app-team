@@ -5,6 +5,7 @@ import {
   IBoardUpdate,
   IColumnsRequestData,
   IColumnsData,
+  INewTaskData
 } from 'src/app/core/models/request.model';
 import { RequestService } from 'src/app/core/services/request/request.service';
 import { Router } from '@angular/router';
@@ -159,6 +160,10 @@ export class PMDataService {
       },
       error: (error) => console.error(error.message),
     });
+  }
+
+  createTask(columnId: string, body: INewTaskData) {
+    this.requestService.createTask(this.currentBoard.id, columnId, body);
   }
 
   deleteTask(columnId: string, taskId: string) {

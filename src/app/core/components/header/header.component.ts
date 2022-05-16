@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SubscriptionLike } from 'rxjs';
+import { Observable, Subscribable, SubscriptionLike } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth/auth.service';
-import {IBoardData, IResAuthLogin} from '../../models/request.model';
+import {IBoardData, IResAuthLogin, User} from '../../models/request.model';
 import { TranslateService } from '@ngx-translate/core';
 import {BoardsService} from "../../../project-management/services/boardService/boards.service";
 
@@ -18,7 +18,6 @@ export class HeaderComponent {
   public isAuth: boolean = false;
 
   private _userName$: SubscriptionLike;
-
   public userName: string = '';
 
   public isActiveLanguageRu: boolean = false;
