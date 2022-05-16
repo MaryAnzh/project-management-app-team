@@ -15,7 +15,6 @@ import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 export class AuthService {
 
   private _user$$ = new BehaviorSubject<IResAuthLogin | null>(null);
-  private _userInfo$$ = new Subject<User | null>();
   private _errorMessage$$ = new Subject<IErrorMessage>();
   private _millisecondInHoure: number = 3600000;
   private _tokenLifeTime: number = 24;
@@ -28,9 +27,6 @@ export class AuthService {
   public user$ = this._user$$.asObservable();
   public errorMessage$ = this._errorMessage$$.asObservable();
 
-  public userInfo$ = this._userInfo$$.asObservable();
-  public userInfo: User = { id: '', name: '', login: '' };
-
   constructor(
     private router: Router,
     private storage: StorageService,
@@ -40,9 +36,6 @@ export class AuthService {
     if (user) {
       this._user$$.next(user);
     }
-    this.userInfo$.subscribe(
-      (value) => this.userInfo = value ? value : {id: '', name: '', login: ''}
-    )
   }
 
   registration(user: IUseRegistrationData) {
@@ -74,44 +67,49 @@ export class AuthService {
 
   login(userData: IUserLoginData): void {
 
-      this.requestService.authorizeUser(userData).subscribe(
-        (response: Token) => {
+    this.requestService.authorizeUser(userData).subscribe(
+      (response: Token) => {
 
-          const storageData: IResAuthLogin = {
-            name: userData.login,
-            token: response.token,
-            date: new Date().toString(),
-          }
-          this.storage.setData('user', storageData);
-          this._user$$.next(storageData);
-          this.router.navigateByUrl('/main');
-          this.requestService.getUsers().pipe(
-            map((user) => {
-              return user.find((el) => el.login === userData.login)
-            })
-          ).subscribe({
-            next: (user) => {
-              if (user) {
-                this._userInfo$$.next(user);
-
-              }
-            }
+        const storageData: IResAuthLogin = {
+          login: userData.login,
+          token: response.token,
+          date: new Date().toString(),
+          name: '',
+          userId: '',
+        }
+        this.storage.setData('user', storageData);
+        this._user$$.next(storageData);
+        this.router.navigateByUrl('/main');
+        this.requestService.getUsers().pipe(
+          map((user) => {
+            return user.find((el) => el.login === userData.login)
           })
-        },
-        (error: HttpErrorResponse) => {
-          console.error(`Ощибка ${error.status} поймана`);
-          const errorMessage: IErrorMessage = {
-            errorMessage: '',
-            isError: true,
-          }
+        ).subscribe({
+          next: (user) => {
+            if (user) {
+              storageData.name = user.name;
+              storageData.userId = user.id;
+              this.storage.setData('user', storageData);
+              this._user$$.next(storageData);
+            }
+          },
+          error: (error) => console.error(error)
+        })
+      },
+      (error: HttpErrorResponse) => {
+        console.error(`Ощибка ${error.status} поймана`);
+        const errorMessage: IErrorMessage = {
+          errorMessage: '',
+          isError: true,
+        }
 
-          if (error.statusText === 'Unknown Error') {
-            errorMessage.errorMessage = 'Check the connection at the network'
-          } else {
-            errorMessage.errorMessage = error.error.message
-          }
-          this._errorMessage$$.next(errorMessage);
-        });
+        if (error.statusText === 'Unknown Error') {
+          errorMessage.errorMessage = 'Check the connection at the network'
+        } else {
+          errorMessage.errorMessage = error.error.message
+        }
+        this._errorMessage$$.next(errorMessage);
+      });
 
   }
 
@@ -150,7 +148,7 @@ export class AuthService {
     return this.requestService.getUsers().pipe(
       map((user) => {
         const authLogin = this.storage.getData<IResAuthLogin>('user');
-        return user.find((el) => el.login === authLogin?.name)
+        return user.find((el) => el.login === authLogin?.login)
       }
       ),
       mergeMap((item) => {
@@ -158,7 +156,8 @@ export class AuthService {
       })
     ).subscribe((resp: User) => {
       const storageData = <IResAuthLogin>this.storage.getData('user');
-      storageData.name = resp.login;
+      storageData.login = resp.login;
+      storageData.name = resp.name;
       this.storage.setData('user', storageData);
       this._user$$.next(storageData);
       this.router.navigateByUrl('/main');
