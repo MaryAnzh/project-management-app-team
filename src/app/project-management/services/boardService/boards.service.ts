@@ -9,10 +9,11 @@ import {CoreDataService} from "../../../core/services/coreData/core-data.service
 @Injectable({
   providedIn: 'root'
 })
+
 export class BoardsService implements OnInit {
 
   // private _allBoards$$ = new Subject<IBoardData[] | null>();
-  private _allBoards$$ = new BehaviorSubject<IBoardData[] | null>(null);
+  private _allBoards$$ = new Subject<IBoardData[] | null>();
 
   public allBoards$ = this._allBoards$$.asObservable();
 
