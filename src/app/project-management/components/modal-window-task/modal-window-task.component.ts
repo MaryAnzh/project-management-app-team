@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { PMDataService } from '../../services/PMData/pmdata.service';
 import { TranslateService } from '@ngx-translate/core';
 import { FormGroup, FormControl, AbstractControl, Validators, FormControlDirective } from '@angular/forms';
@@ -11,12 +11,13 @@ import { TaskDataService } from '../../services/TaskData/task-data.service';
   styleUrls: ['./modal-window-task.component.scss']
 })
 
-export class ModalWindowTaskComponent {
+export class ModalWindowTaskComponent implements OnInit {
   public newTaskForm: FormGroup;
 
   public boardInfo: IBoardData = { id: '', title: '', description: '', columns: [] };
   public columns: IColumnsData[] | undefined = undefined;
   public tasks: ITaskData[] | undefined = undefined;
+  @Input() task: IBoardData | null = null;
 
   constructor(
     private pmDataService: PMDataService,
@@ -43,6 +44,22 @@ export class ModalWindowTaskComponent {
       doneCheck: new FormControl(''),
       selectColumn: new FormControl(firstColumn),
     });
+  }
+
+  ngOnInit(): void {
+    if (this.task) {
+      this.newTaskForm = new FormGroup({
+        title: new FormControl(this.task.title, [
+          Validators.required,
+          Validators.maxLength(30),
+        ]),
+        description: new FormControl(this.task.description, [
+          Validators.required,
+          Validators.maxLength(150),
+        ]),
+        doneCheck: new FormControl(''),
+      });
+    }
   }
 
   get title(): AbstractControl {
