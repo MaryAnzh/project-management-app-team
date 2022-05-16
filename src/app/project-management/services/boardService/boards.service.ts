@@ -4,7 +4,7 @@ import {BehaviorSubject, Subject} from "rxjs";
 import {RequestService} from "../../../core/services/request/request.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
-import {CoreDataService} from "../../../core/services/coreData/core-data.service";
+import { CoreDataService } from "../../../core/services/coreData/core-data.service";
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +18,8 @@ export class BoardsService implements OnInit {
   constructor(
     private requestService: RequestService,
     private coreDataService: CoreDataService,
-    private router: Router
+    private router: Router,
   ) {
-    this.getAllBoards();
 
   }
 

@@ -51,9 +51,5 @@ export function httpTranslateLoaderFactory(httpBackend: HttpBackend): TranslateH
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  public isAuth$: Observable<boolean>;
 
-  constructor(private authService: AuthService) {
-    this.isAuth$ = this.authService.isLoggedIn$;
-  }
  }

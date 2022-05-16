@@ -24,8 +24,6 @@ export class BoardComponent {
 
   public isModalWindowNewTaskOpen$: Observable<boolean>;
 
-
-
   constructor(
     private pmDataService: PMDataService,
     private route: ActivatedRoute,

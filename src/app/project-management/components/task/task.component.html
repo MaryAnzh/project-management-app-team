@@ -1,10 +1,16 @@
-<section class="task">
+<section class="task"
+  *ngIf="task">
+
   <div class="task__top">
     <div class="task__top__imcomplete">
-      <p>Done</p>
+      <ng-container
+        *ngIf="task.done">
+        <p>Done</p>
+      </ng-container>
     </div>
     <div
       class="task__top__close"
+      (click)="deleteTask()"
       #closeTask>
       <svg
         viewBox="0 0 30 30">
@@ -15,14 +21,14 @@
       </div>
 
       <div class="task__title">
-        <h4>Task name</h4>
+        <h4>{{task.title}}</h4>
       </div>
 
       <div class="task__description">
-        <p>description</p>
+        <p>{{task.description}}</p>
       </div>
 
       <div class="task__user-name">
-        <p>user-name</p>
+        <p>{{userName$ | async}}</p>
       </div>
     </section>
