@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, SubscriptionLike } from 'rxjs';
 import { RequestService } from '../request/request.service';
 import { Router } from '@angular/router';
 
@@ -8,10 +8,9 @@ import { Router } from '@angular/router';
 })
 
 export class CoreDataService {
+
   confirmClick = new Function;
-
   cancelClick = new Function;
-
   public showAsync(data = null): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.confirmClick = () => {
@@ -24,6 +23,7 @@ export class CoreDataService {
       }
     })
   }
+
   private _isConfirmationModalOpen$$ = new Subject<boolean>();
   public isConfirmationModalOpen$ = this._isConfirmationModalOpen$$.asObservable();
 
@@ -31,7 +31,7 @@ export class CoreDataService {
   public isActionConfirm$ = this._isActionConfirm$$.asObservable();
   public isActionConfirm: boolean | null = null;
 
-  constructor(private requestService: RequestService, private router: Router) {
+  constructor() {
     this.isActionConfirm$.subscribe(
       value => this.isActionConfirm = value
     )

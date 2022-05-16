@@ -19,7 +19,7 @@ import { CoreDataService } from 'src/app/core/services/coreData/core-data.servic
 })
 
 export class PMDataService {
-
+  public currentUserId: string = '';
   private _currentBoard$$ = new Subject<IBoardData | null>();
   public currentBoard$: Observable<IBoardData | null> = this._currentBoard$$.asObservable();
   public boardDataEmpty: IBoardData = {
