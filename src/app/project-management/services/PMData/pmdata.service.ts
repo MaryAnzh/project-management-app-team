@@ -179,11 +179,9 @@ export class PMDataService {
   deleteTask(columnId: string, taskId: string) {
     const id = this.currentBoard ? this.currentBoard.id : '';
     this.requestService.deleteTask(id, columnId, taskId).subscribe({
-      next: (response) => {
-        this.getBoard(id);
-      },
+      next: () => this.getBoard(id),
       error: (error) => console.error(error.message),
-    });
+    })
   }
 
   changeErrorMessage(errorMessage: IErrorMessage) {
@@ -211,6 +209,7 @@ export class PMDataService {
           this.deleteColumn(column);
           break;
         case 'task':
+          console.log('Отработал switch');
           this.deleteTask(column, task);
           break;
 
