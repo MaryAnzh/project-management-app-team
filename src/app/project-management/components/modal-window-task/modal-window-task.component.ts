@@ -3,6 +3,7 @@ import { PMDataService } from '../../services/PMData/pmdata.service';
 import { TranslateService } from '@ngx-translate/core';
 import { FormGroup, FormControl, AbstractControl, Validators, FormControlDirective } from '@angular/forms';
 import { IBoardData, IColumnsData, INewTaskData, ITaskData } from 'src/app/core/models/request.model';
+import { TaskDataService } from '../../services/TaskData/task-data.service';
 
 @Component({
   selector: 'app-modal-window-task',
@@ -19,7 +20,9 @@ export class ModalWindowTaskComponent {
 
   constructor(
     private pmDataService: PMDataService,
+    private taskDataService: TaskDataService,
     public translate: TranslateService,
+
   ) {
     translate.addLangs(['en', 'ru']);
     translate.setDefaultLang('en');
@@ -28,7 +31,6 @@ export class ModalWindowTaskComponent {
 
 
     const firstColumn = this.columns ? this.columns[0] : '--select--';
-    console.log(firstColumn);
     this.newTaskForm = new FormGroup({
       title: new FormControl('', [
         Validators.required,
@@ -67,15 +69,17 @@ export class ModalWindowTaskComponent {
     const order = columnForTask.tasks ? columnForTask.tasks.length + 1 : 1;
     const done = this.newTaskForm.value.doneCheck ? true : false;
     const description = this.newTaskForm.value.description;
+    const user = this.taskDataService.getCurrentUser();
 
     const body: INewTaskData = {
       title: title,
       order: order,
       done: done,
       description: description,
-      userId: ''
+      userId: user.id,
     }
-    // this.pmDataService.createTask(columnId, );
+    this.pmDataService.createTask(columnId, body);
+    this.closeModalWindow();
   }
 
   closeModalWindow() {

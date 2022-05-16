@@ -47,8 +47,11 @@
               <p>Tasks</p>
               <p>0</p>
             </div>
-            <section class="column__tasks-wrap">
-
-              <!-- <app-task></app-task> -->
+            <section class="column__tasks-wrap"
+              *ngIf="column.tasks">
+              <app-task
+            *ngFor="let task of column.tasks"
+            [task]="task"
+              ></app-task>
             </section>
           </div>

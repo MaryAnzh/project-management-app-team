@@ -5,7 +5,8 @@ import {
   IBoardUpdate,
   IColumnsRequestData,
   IColumnsData,
-  INewTaskData
+  INewTaskData,
+  IResAuthLogin
 } from 'src/app/core/models/request.model';
 import { RequestService } from 'src/app/core/services/request/request.service';
 import { Router } from '@angular/router';
@@ -13,6 +14,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Subject, map, Observable, mergeMap } from 'rxjs';
 import { IErrorMessage } from 'src/app/core/models/respons-error.model';
 import { CoreDataService } from 'src/app/core/services/coreData/core-data.service';
+import { StorageService } from 'src/app/auth/services/storage/storage.service';
+import { IUserInfoForTask } from '../../model/user-info.model';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +43,7 @@ export class PMDataService {
     private requestService: RequestService,
     private router: Router,
     private coreDataService: CoreDataService,
+    private storageService: StorageService,
   ) {
     this.currentBoard$.subscribe(
       (value) => {
@@ -115,7 +119,7 @@ export class PMDataService {
   }
 
   createColumn(boardId: string, title: string, orde: number): void {
-    console.log('Колонки обработаны')
+
     if (this.currentBoard) {
       const order = this.currentBoard.columns?.length ? this.currentBoard?.columns?.length : 0;
       const id = this.currentBoard.id;
@@ -163,7 +167,13 @@ export class PMDataService {
   }
 
   createTask(columnId: string, body: INewTaskData) {
-    this.requestService.createTask(this.currentBoard.id, columnId, body);
+    if (this.currentBoard) {
+      const id = this.currentBoard.id
+      this.requestService.createTask(this.currentBoard.id, columnId, body).subscribe({
+        next: (response) => this.getBoard(id),
+        error: (error) => console.error(error)
+      })
+    }
   }
 
   deleteTask(columnId: string, taskId: string) {
