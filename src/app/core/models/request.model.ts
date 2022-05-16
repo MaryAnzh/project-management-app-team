@@ -63,6 +63,16 @@ export interface INewTaskData {
   userId: string,
 }
 
+export interface IUpdateTaskData {
+  title: string,
+  done: boolean,
+  order: number,
+  description: string,
+  userId: string,
+  boardId: string,
+  columnId: string,
+}
+
 export interface ITaskData {
   id: string,
   title: string,

@@ -53,4 +53,10 @@ export class TaskComponent implements OnInit {
     this.pmDataService.showConfirmationModal(type, columnId, taskId);
   }
 
+  editTask() {
+    if (this.task) {
+          console.log(this.task)
+    }
+  }
+
 }

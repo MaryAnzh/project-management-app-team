@@ -1,7 +1,8 @@
-<app-modal-window-task
+<!-- <app-modal-window-task
 *ngIf="task"
 [task]="task"
-></app-modal-window-task>
+[columnId]="columnId"
+></app-modal-window-task> -->
 <section class="task"
   *ngIf="task">
 
@@ -29,7 +30,8 @@
         </div>
       </div>
 
-      <section class="task__body">
+      <section class="task__body"
+      (click)="editTask()">
         <div class="task__body__title">
           <h4>{{task.title}}</h4>
         </div>

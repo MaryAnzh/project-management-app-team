@@ -19,9 +19,7 @@ export class HttpClientInterceptor implements HttpInterceptor {
   constructor(private storage: StorageService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log(`method: ${request.method} uri: ${request.url}`);
 
-    console.log(`${request.headers.keys()}`);
     return next.handle(this.addAuthToken(request));
   }
 
