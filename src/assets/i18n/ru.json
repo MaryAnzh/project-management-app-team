@@ -69,16 +69,19 @@
   },
   "BOARDS": {
     "MY_BOARDS": "Мои доски",
-    "BOARD_TITLE": "Название доски",
+    "BOARD_TITLE": "Название",
+    "BOARD_DESCRIPTION": "Описание",
     "ERROR": "Ошибка",
+    "TASK": "Задача",
+    "TASKS": "Задачи",
     "TASK_TITLE": "Название задачи",
     "COLUMN_TITLE": "Название столбца",
     "BUTTONS": {
       "CHANGE": "изменить",
-      "NEW_TASK": "Новая задача",
-      "NEW_COLUMN": "Новая колонка",
+      "NEW_TASK": "Задача",
+      "NEW_COLUMN": "Колонка",
       "DELETE": "УДАЛИТЬ",
-      "TO_MAIN": "на главную",
+      "TO_MAIN": "Домой",
       "CLOSE": "закрыть",
       "CREATE": "Создать",
       "CANCEL": "Отмена"

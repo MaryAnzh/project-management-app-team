@@ -6,7 +6,8 @@ import {
   IColumnsRequestData,
   IColumnsData,
   INewTaskData,
-  IUpdateTaskData
+  IUpdateTaskData,
+  ITaskData
 } from 'src/app/core/models/request.model';
 import { RequestService } from 'src/app/core/services/request/request.service';
 import { Router } from '@angular/router';
@@ -253,9 +254,41 @@ export class PMDataService {
           }
           this.updateColumns(column.id, column.title, newOrder);
         }
+        if (column.tasks) {
+          this.sortYasksByOrder(column.tasks, id, column.id);
+        }
       }
     }
     return isColumnsChange;
+  }
+
+  sortYasksByOrder(tasks: ITaskData[], boardId: string, columnId: string): boolean {
+    let isTasksOrderChange = false;
+    if (tasks.length > 0) {
+
+      tasks.sort((a, b) => a.order - b.order);
+
+      const id = boardId;
+      for (let i = 0; i < tasks.length; i += 1) {
+        const task = tasks[i];
+        if (task.order !== (i + 1)) {
+          const newOrder = i + 1;
+
+          const body: IUpdateTaskData = {
+            boardId: id,
+            columnId: columnId,
+            title: task.title,
+            description: task.description,
+            done: task.done,
+            userId: task.userId,
+            order: newOrder,
+          }
+
+          this.updateTask(columnId, task.id, body);
+        }
+      }
+    }
+    return isTasksOrderChange;
   }
 
   OnDestroy() {

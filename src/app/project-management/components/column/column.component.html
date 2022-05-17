@@ -41,11 +41,12 @@
                 <line x1="5.45" y1="5.45" x2="24.55" y2="24.55" />
                 </svg>
               </button>
+
             </section>
             <!-- <p> Order: {{column.order}}</p> -->
             <div class="column__tasks-wrap__title">
-              <p>Tasks</p>
-              <p>0</p>
+              <p>{{'BOARDS.TASKS' | translate}}</p>
+              <p>{{column.tasks?.length}}</p>
             </div>
             <section class="column__tasks-wrap"
               *ngIf="column.tasks">
