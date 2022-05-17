@@ -90,5 +90,10 @@
     "ERRORS": {
       "ERROR_TITLE": "title should not be empty,description should not be empty"
     }
+  },
+  "MODAL": {
+    "CONFIRM_ACTION": "Confirm the action",
+    "CONFIRM": "Confirm",
+    "CANCEL": "Cancel"
   }
 }

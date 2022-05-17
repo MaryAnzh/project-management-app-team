@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { CoreDataService } from '../../services/coreData/core-data.service';
 
 @Component({
@@ -14,10 +15,14 @@ export class ConfirmationModalComponent {
   cancelClick = new Function;
 
   constructor(
-    private coreDataService: CoreDataService
+    private coreDataService: CoreDataService,
+    public translate: TranslateService
   ) {
     this.confirmClick = this.coreDataService.confirmClick;
     this.cancelClick = this.coreDataService.cancelClick;
+
+    translate.addLangs(['en', 'ru']);
+    translate.setDefaultLang('en');
   }
 
 }
