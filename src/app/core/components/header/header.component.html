@@ -76,16 +76,16 @@
       </div>
       <nav class="header__wrap__section-nav__nav-wrap">
         <ul class="header__wrap__section-nav__nav-wrap__list">
-          <li
+          <li (click)="toggle=!toggle"
           [routerLink]="['/welcome']"
           >{{'HEADER.NAV.WELCOME' | translate}}</li>
-          <li
+          <li (click)="toggle=!toggle"
           [routerLink]="['/main']"
             >{{'HEADER.NAV.BOARDS' | translate}}</li>
-          <li
+          <li (click)="toggle=!toggle"
           [routerLink]="['/main/board']"
           >{{'HEADER.NAV.CREATE_BOARD' | translate}}</li>
-          <li
+          <li (click)="toggle=!toggle"
           [routerLink]="['/auth/edit-profile']"
           >{{'HEADER.NAV.EDIT_PROFILE' | translate}}</li>
         </ul>
