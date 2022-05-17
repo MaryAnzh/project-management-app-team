@@ -1,5 +1,5 @@
 <form class="new-task"
-  (submit)="createTask()"
+  (submit)="sunmit()"
   [formGroup]="newTaskForm">
   <div class="new-task__form">
     <label for="taskTitle">Task Title:</label>
@@ -46,27 +46,38 @@
         type="checkbox"
         formControlName="doneCheck" />
     </div>
-
-    <label>Select column</label>
-    <select
-      formControlName="selectColumn"
-      *ngIf="boardInfo.columns">
-      <option
-        *ngFor="let column of boardInfo.columns; let i= index"
-        [selected]="i === 0"
-        [ngValue]="column"
-        >{{column.title}}</option>
-    </select>
-
+    <ng-container
+      *ngIf="!task">
+      <label>Select column</label>
+      <select
+        formControlName="selectColumn"
+        *ngIf="boardInfo.columns">
+        <option
+          *ngFor="let column of boardInfo.columns; let i= index"
+          [selected]="i === 0"
+          [ngValue]="column">{{column.title}}</option>
+      </select>
+    </ng-container>
   </div>
 
   <div class="new-task__button-wrap">
-    <button
-    type="submit"
-    [ngClass]="{'blocked': newTaskForm.invalid}">
-      {{'BOARDS.BUTTONS.CREATE'
-      | translate}}
-    </button>
+    <ng-container
+      *ngIf="!task">
+      <button
+        type="submit"
+        [ngClass]="{'blocked': newTaskForm.invalid}">
+        {{'BOARDS.BUTTONS.CREATE'
+        | translate}}
+      </button>
+    </ng-container>
+    <ng-container
+      *ngIf="task">
+      <button
+        type="Edit"
+        [ngClass]="{'blocked': newTaskForm.invalid}">
+        Edit
+      </button>
+    </ng-container>
     <button
       (click)="closeModalWindow()">
       {{'BOARDS.BUTTONS.CANCEL' | translate}}</button>

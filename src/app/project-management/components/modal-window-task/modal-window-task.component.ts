@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { PMDataService } from '../../services/PMData/pmdata.service';
 import { TranslateService } from '@ngx-translate/core';
 import { FormGroup, FormControl, AbstractControl, Validators, FormControlDirective } from '@angular/forms';
-import { IBoardData, IColumnsData, INewTaskData, ITaskData } from 'src/app/core/models/request.model';
+import { IBoardData, IColumnsData, INewTaskData, ITaskData, IUpdateTaskData } from 'src/app/core/models/request.model';
 import { TaskDataService } from '../../services/TaskData/task-data.service';
 
 @Component({
@@ -11,12 +11,14 @@ import { TaskDataService } from '../../services/TaskData/task-data.service';
   styleUrls: ['./modal-window-task.component.scss']
 })
 
-export class ModalWindowTaskComponent {
+export class ModalWindowTaskComponent implements OnInit {
   public newTaskForm: FormGroup;
 
   public boardInfo: IBoardData = { id: '', title: '', description: '', columns: [] };
   public columns: IColumnsData[] | undefined = undefined;
   public tasks: ITaskData[] | undefined = undefined;
+  task: ITaskData | null = null;
+  columnId: string | undefined = undefined;
 
   constructor(
     private pmDataService: PMDataService,
@@ -45,6 +47,25 @@ export class ModalWindowTaskComponent {
     });
   }
 
+  ngOnInit(): void {
+    if (this.taskDataService.editTask && this.taskDataService.editTaskColumnId) {
+      this.task = this.taskDataService.editTask;
+      this.columnId = this.taskDataService.editTaskColumnId;
+      this.newTaskForm = new FormGroup({
+        title: new FormControl(this.task.title, [
+          Validators.required,
+          Validators.maxLength(30),
+        ]),
+        description: new FormControl(this.task.description, [
+          Validators.required,
+          Validators.maxLength(150),
+        ]),
+        doneCheck: new FormControl(this.task.done),
+        selectColumn: new FormControl(),
+      });
+    }
+  }
+
   get title(): AbstractControl {
     return <AbstractControl>this.newTaskForm.get('title');
   }
@@ -58,6 +79,14 @@ export class ModalWindowTaskComponent {
 
   get selectColumn(): AbstractControl {
     return <AbstractControl>this.newTaskForm.get('selectColumn');
+  }
+
+  sunmit() {
+    if (this.task) {
+      this.editYask();
+    } else {
+      this.createTask();
+    }
   }
 
   createTask() {
@@ -82,7 +111,31 @@ export class ModalWindowTaskComponent {
     this.closeModalWindow();
   }
 
+  editYask() {
+    const columnId = this.columnId ?? '';
+    if (this.task) {
+      const body: IUpdateTaskData = {
+        title: this.newTaskForm.value.title,
+        description: this.newTaskForm.value.description,
+        done: this.newTaskForm.value.doneCheck,
+        order: this.task.order,
+        userId: this.task.userId,
+        boardId: '',
+        columnId: columnId,
+      }
+      this.pmDataService.updateTask(columnId, this.task.id, body);
+    }
+  }
+
   closeModalWindow() {
-    this.pmDataService.closeModalWindowNewTask();
+    if (this.task) {
+      this.taskDataService.closeEditTaskWindow();
+      this.taskDataService.editTask = null;
+      this.taskDataService.editTaskColumnId = null;
+    } else {
+      this.pmDataService.closeModalWindowNewTask();
+    }
+    this.task = null;
+    this.columnId = '';
   }
 }

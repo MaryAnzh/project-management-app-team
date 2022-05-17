@@ -6,7 +6,7 @@ import {
   IColumnsRequestData,
   IColumnsData,
   INewTaskData,
-  IResAuthLogin
+  IUpdateTaskData
 } from 'src/app/core/models/request.model';
 import { RequestService } from 'src/app/core/services/request/request.service';
 import { Router } from '@angular/router';
@@ -174,6 +174,15 @@ export class PMDataService {
         error: (error) => console.error(error)
       })
     }
+  }
+
+  updateTask(columnId: string, taskId: string, body: IUpdateTaskData) {
+    const id = this.currentBoard ? this.currentBoard.id : ''
+    body.boardId = id;
+    this.requestService.updateTask(id, columnId, taskId, body).subscribe({
+      next: () => this.getBoard(id),
+      error: (error) => console.error(error.message),
+    })
   }
 
   deleteTask(columnId: string, taskId: string) {

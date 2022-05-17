@@ -1,13 +1,22 @@
+<app-modal-window-task
+*ngIf="isEditTaskWindowOpen$ | async">
+</app-modal-window-task>
+
 <section class="task"
   *ngIf="task">
 
   <div class="task__top">
-    <div class="task__top__imcomplete">
-      <ng-container
-        *ngIf="task.done">
+    <ng-container
+      *ngIf="!task.done">
+      <div class="task__top__imcomplete-not">
+      </div>
+    </ng-container>
+    <ng-container
+      *ngIf="task.done">
+      <div class="task__top__imcomplete">
         <p>Done</p>
-      </ng-container>
-    </div>
+      </div>
+    </ng-container>
     <div
       class="task__top__close"
       (click)="deleteTask()"
@@ -20,15 +29,17 @@
         </div>
       </div>
 
-      <div class="task__title">
-        <h4>{{task.title}}</h4>
-      </div>
+      <section class="task__body"
+      (click)="editTask()">
+        <div class="task__body__title">
+          <h4>{{task.title}}</h4>
+        </div>
 
-      <div class="task__description">
-        <p>{{task.description}}</p>
-      </div>
-
-      <div class="task__user-name">
-        <p>{{userName$ | async}}</p>
-      </div>
+        <div class="task__body__description">
+          <p>{{task.description}}</p>
+        </div>
+        <div class="task__body__user-name">
+          <p>{{userName$ | async}}</p>
+        </div>
+      </section>
     </section>
