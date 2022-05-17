@@ -44,7 +44,8 @@
           <p>{{task.description}}</p>
         </div>
         <div class="task__body__user-name">
-          <p>
+          <p *ngIf="!(userName$)">name</p>
+          <p *ngIf="userName$">
             {{userName$ | async}}
           </p>
         </div>
