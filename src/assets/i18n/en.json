@@ -76,7 +76,10 @@
     "TASK": "Task",
     "TASKS": "Tasks",
     "TASK_TITLE": "Task Title",
+    "TASK_DESCRIPTION": "Task Description",
+    "SELECT_COLUMN": "Select column",
     "COLUMN_TITLE": "Column Title",
+    "DONE": "Done",
     "BUTTONS": {
       "CHANGE": "change",
       "NEW_TASK": "New task",
@@ -86,6 +89,12 @@
       "CLOSE": "close",
       "CREATE": "Create",
       "CANCEL": "Cancel"
+    },
+    "VALIDATE": {
+      "TITLE_REQUIRED":"Please enter a Title",
+      "DISCRIPTION_REQUIRED":"Please enter a Description",
+      "MAXLENGTH":"length should not exceed",
+      "SYMBOLS": "symbols"
     },
     "ERRORS": {
       "ERROR_TITLE": "title should not be empty,description should not be empty"

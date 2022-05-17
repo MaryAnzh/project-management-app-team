@@ -3,7 +3,7 @@
   [formGroup]="newColumnForm">
 
   <div class="new-column__form">
-    <label for="columnTitle">column Title:</label>
+    <label for="columnTitle">{{'BOARDS.COLUMN_TITLE' | translate}}:</label>
     <input type="text"
       formControlName="title"
       maxlength="31">
@@ -12,11 +12,11 @@
         *ngIf="title.invalid && title.touched || title.dirty">
         <p
           *ngIf="title.errors?.['required']">
-          Enter title
+          {{'BOARDS.VALIDATE.TITLE_REQUIRED' | translate}}
         </p>
         <p
           *ngIf="title.errors?.['maxlength']">
-          Maxlength 30
+          {{'BOARDS.VALIDATE.MAXLENGTH' | translate}} 30 {{'BOARDS.VALIDATE.SYMBOLS' | translate}}
         </p>
       </ng-container>
     </div>
