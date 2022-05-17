@@ -1,6 +1,7 @@
-<app-create-new-item-modal
-  *ngIf="ismodalOpen$ | async"
-  [modalName]="modalName"></app-create-new-item-modal>
+<app-modal-window-column
+  *ngIf="ismodalOpen$ | async">
+</app-modal-window-column>
+
 <app-modal-window-task
   *ngIf="isModalWindowNewTaskOpen$ | async">
 </app-modal-window-task>

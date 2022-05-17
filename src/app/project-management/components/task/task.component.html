@@ -1,5 +1,5 @@
 <app-modal-window-task
-*ngIf="isEditTaskWindowOpen$ | async">
+  *ngIf="isEditTaskWindowOpen$ | async">
 </app-modal-window-task>
 
 <section class="task"
@@ -30,7 +30,7 @@
       </div>
 
       <section class="task__body"
-      (click)="editTask()">
+        (click)="editTask()">
         <div class="task__body__title">
           <h4>{{task.title}}</h4>
         </div>

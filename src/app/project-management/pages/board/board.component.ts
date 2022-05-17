@@ -20,7 +20,6 @@ export class BoardComponent {
   public boardId: string | null = null;
 
   public ismodalOpen$: Observable<boolean>;
-  @Input() public modalName: string = '';
 
   public isModalWindowNewTaskOpen$: Observable<boolean>;
 
@@ -87,24 +86,7 @@ export class BoardComponent {
   }
 
   newColumnOnClick(e: Event) {
-    const elem = <HTMLElement>e.target;
-    const elemType = elem.dataset['type'];
-
-    if (elemType) {
-      switch (elemType) {
-        case 'column':
-          this.modalName = elemType;
-          this.pmDataService.openCreationColumnTaskModal();
-          break;
-        case 'task':
-          this.pmDataService.showModalWindowNewTask();
-          break;
-
-        default:
-          break;
-      }
-    }
-
+    this.pmDataService.openCreationColumnTaskModal();
   }
 
   OnDestroy() {

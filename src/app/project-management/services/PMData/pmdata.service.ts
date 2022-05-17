@@ -118,7 +118,7 @@ export class PMDataService {
     this.router.navigateByUrl('main');
   }
 
-  createColumn(boardId: string, title: string, orde: number): void {
+  createColumn(title: string): void {
 
     if (this.currentBoard) {
       const order = this.currentBoard.columns?.length ? this.currentBoard?.columns?.length : 0;

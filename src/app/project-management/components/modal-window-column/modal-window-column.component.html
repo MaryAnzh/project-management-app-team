@@ -1,0 +1,36 @@
+<form class="new-column"
+  (submit)="sunmit()"
+  [formGroup]="newColumnForm">
+
+  <div class="new-column__form">
+    <label for="columnTitle">column Title:</label>
+    <input type="text"
+      formControlName="title"
+      maxlength="31">
+    <div class="new-column__form__error">
+      <ng-container
+        *ngIf="title.invalid && title.touched || title.dirty">
+        <p
+          *ngIf="title.errors?.['required']">
+          Enter title
+        </p>
+        <p
+          *ngIf="title.errors?.['maxlength']">
+          Maxlength 30
+        </p>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="new-column__button-wrap">
+    <button
+      type="submit"
+      [ngClass]="{'blocked': newColumnForm.invalid}">
+      {{'BOARDS.BUTTONS.CREATE'
+      | translate}}
+    </button>
+    <button
+      (click)="cancel()">
+      {{'BOARDS.BUTTONS.CANCEL' | translate}}</button>
+  </div>
+</form>
