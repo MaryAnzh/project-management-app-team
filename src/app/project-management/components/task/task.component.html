@@ -4,7 +4,7 @@
 
 <section class="task"
   *ngIf="task"
-  cdkDrag>
+  >
 
   <div class="task__top">
       <p>
@@ -44,8 +44,7 @@
           <p>{{task.description}}</p>
         </div>
         <div class="task__body__user-name">
-          <p *ngIf="!(userName$)">name</p>
-          <p *ngIf="userName$">
+          <p>
             {{userName$ | async}}
           </p>
         </div>
