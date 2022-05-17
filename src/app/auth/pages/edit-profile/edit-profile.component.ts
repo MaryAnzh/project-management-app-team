@@ -83,7 +83,7 @@ export class EditProfileComponent implements OnInit {
   }
 
   onDelete() {
-    this.authService.deleteUser();
+    this.authService.showConfirmationModalEditProfile();
   }
 
 }
