@@ -26,10 +26,12 @@ export class ColumnComponent {
   drop(event: CdkDragDrop<ITaskData[]>) {
     if (this.column && this.column.tasks) {
       const tasks = this.column.tasks;
-      moveItemInArray(this.column.tasks, event.previousIndex, event.currentIndex);
+      moveItemInArray(tasks, event.previousIndex, event.currentIndex);
       const boardId = this.pmDataService.currentBoard.id;
       const columnid = this.column ? this.column.id : '';
-      this.pmDataService.sortYasksByOrder(tasks, boardId, columnid);
+      //this.pmDataService.sortYasksByOrder(tasks, boardId, columnid);
+      // console.log('tasks');
+      // console.log(tasks);
     }
 
   }
