@@ -95,5 +95,12 @@
     "CONFIRM_ACTION": "Confirm the action",
     "CONFIRM": "Confirm",
     "CANCEL": "Cancel"
+  },
+  "SEARCH": {
+    "SEARCH_FOR": "Search for",
+    "NUMBER": "number",
+    "TITLE": "title",
+    "USER": "user",
+    "DISCRIPTION": "description"
   }
 }

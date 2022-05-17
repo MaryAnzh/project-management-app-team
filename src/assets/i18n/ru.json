@@ -94,5 +94,12 @@
     "CONFIRM_ACTION": "Подтвердите действие",
     "CONFIRM": "Подтвердить",
     "CANCEL": "Отмена"
+  },
+  "SEARCH": {
+    "SEARCH_FOR": "Поиск по",
+    "NUMBER": "номеру",
+    "TITLE": "названию",
+    "USER": "пользователю",
+    "DISCRIPTION": "описанию"
   }
 }
