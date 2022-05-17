@@ -4,12 +4,13 @@ import { TranslateService } from '@ngx-translate/core';
 import { PMDataService } from '../../services/PMData/pmdata.service';
 
 @Component({
-  selector: 'app-modal-window-column',
-  templateUrl: './modal-window-column.component.html',
-  styleUrls: ['./modal-window-column.component.scss', '../modal-window-task/modal-window-task.component.scss']
+  selector: 'app-modal-window-board',
+  templateUrl: './modal-window-board.component.html',
+  styleUrls: ['./modal-window-board.component.scss']
 })
-export class ModalWindowColumnComponent {
-  public newColumnForm: FormGroup;
+
+export class ModalWindowBoardComponent {
+  public newBoardForm: FormGroup;
 
   constructor(
     private pmDataService: PMDataService,
@@ -18,25 +19,34 @@ export class ModalWindowColumnComponent {
     translate.addLangs(['en', 'ru']);
     translate.setDefaultLang('en');
 
-    this.newColumnForm = new FormGroup({
+    this.newBoardForm = new FormGroup({
       title: new FormControl('', [
         Validators.required,
         Validators.maxLength(30),
+      ]),
+      description: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(151),
       ]),
     });
   }
 
   get title(): AbstractControl {
-    return <AbstractControl>this.newColumnForm.get('title');
+    return <AbstractControl>this.newBoardForm.get('title');
+  }
+
+  get description(): AbstractControl {
+    return <AbstractControl>this.newBoardForm.get('description');
   }
 
   sunmit() {
-    this.pmDataService.createColumn(this.newColumnForm.value.title);
-    this.pmDataService.closeNewColumnModal();
+    this.pmDataService.createBoard(this.newBoardForm.value.title, this.newBoardForm.value.description);
+
   }
 
   cancel() {
-    this.pmDataService.closeNewColumnModal();
+
   }
+
 
 }

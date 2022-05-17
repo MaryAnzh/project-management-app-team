@@ -13,6 +13,7 @@ import { TaskComponent } from './components/task/task.component';
 import { SearchComponent } from './components/search/search.component';
 import { ModalWindowTaskComponent } from './components/modal-window-task/modal-window-task.component';
 import { ModalWindowColumnComponent } from './components/modal-window-column/modal-window-column.component';
+import { ModalWindowBoardComponent } from './components/modal-window-board/modal-window-board.component';
 
 const routes: Routes = [{ path: '', component: ProjectManagementComponent }];
 
@@ -28,6 +29,7 @@ const routes: Routes = [{ path: '', component: ProjectManagementComponent }];
     SearchComponent,
     ModalWindowTaskComponent,
     ModalWindowColumnComponent,
+    ModalWindowBoardComponent,
   ],
   imports: [
     CommonModule,

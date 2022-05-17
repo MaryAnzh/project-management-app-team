@@ -1,0 +1,57 @@
+<form class="new-board"
+  (submit)="sunmit()"
+  [formGroup]="newBoardForm">
+
+  <div class="new-board__form">
+    <label for="boardTitle">
+      {{'BOARDS.BOARD_TITLE' | translate}}
+    </label>
+    <input type="text"
+      formControlName="title"
+      maxlength="31">
+    <div class="new-board__form__error">
+      <ng-container
+        *ngIf="title.invalid && title.touched || title.dirty">
+        <p
+          *ngIf="title.errors?.['required']">
+          Enter title
+        </p>
+        <p
+          *ngIf="title.errors?.['maxlength']">
+          Maxlength 30
+        </p>
+      </ng-container>
+    </div>
+
+    <label for="boardDescription">
+      {{'BOARDS.BUTTONS.CREATE' | translate}}
+    </label>
+    <textarea type="text"
+      formControlName="description"
+      maxlength="151"></textarea>
+    <div class="new-board__form__error">
+      <ng-container
+        *ngIf="description.invalid && description.touched || description.dirty">
+        <p
+          *ngIf="description.errors?.['required']">
+          Enter description
+        </p>
+        <p
+          *ngIf="description.errors?.['maxlength']">
+          Maxlength 150
+        </p>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="new-board__button-wrap">
+    <button
+      type="submit"
+      [ngClass]="{'blocked': newBoardForm.invalid}">
+      {{'BOARDS.BUTTONS.CREATE'
+      | translate}}
+    </button>
+    <button
+        [routerLink]="['/main']">{{'BOARDS.BUTTONS.TO_MAIN' | translate}}</button>
+  </div>
+</form>
