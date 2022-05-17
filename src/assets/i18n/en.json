@@ -71,6 +71,7 @@
   "BOARDS": {
     "MY_BOARDS": "My Boards",
     "BOARD_TITLE": "Board Title",
+    "BOARD_DESCRIPTION": "Board description",
     "ERROR": "Error",
     "TASK_TITLE": "Task Title",
     "COLUMN_TITLE": "Column Title",
