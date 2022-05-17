@@ -8,6 +8,7 @@ import { RequestService } from 'src/app/core/services/request/request.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { IErrorMessage } from '../../../core/models/respons-error.model';
 import { ValueConverter } from '@angular/compiler/src/render3/view/template';
+import { CoreDataService } from 'src/app/core/services/coreData/core-data.service';
 
 @Injectable({
   providedIn: 'root',
@@ -30,7 +31,8 @@ export class AuthService {
   constructor(
     private router: Router,
     private storage: StorageService,
-    private requestService: RequestService
+    private requestService: RequestService,
+    private coreDataService: CoreDataService
   ) {
     const user: IResAuthLogin | null = this.storage.getData('user');
     if (user) {
@@ -135,7 +137,8 @@ export class AuthService {
     return this.requestService.getUsers().pipe(
       map((user) => {
         const authLogin = this.storage.getData<IResAuthLogin>('user');
-        return user.find((el) => el.login === authLogin?.name)
+        return user.find((el) => el.login === authLogin?.login
+        )
       }
       ),
       mergeMap((item) => this.requestService.deletetUser(item!.id))
@@ -162,5 +165,12 @@ export class AuthService {
       this._user$$.next(storageData);
       this.router.navigateByUrl('/main');
     })
+  }
+
+  showConfirmationModalEditProfile():void {
+    const res = this.coreDataService.openConfirmationModal().then(() => {
+      this.deleteUser();
+    })
+      .catch(() => {})
   }
 }
