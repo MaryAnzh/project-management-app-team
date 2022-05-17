@@ -1,11 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { PMDataService } from '../../services/PMData/pmdata.service';
-import { crossSvg } from 'src/app/shared/svg/icon';
-import { IColumnsData } from 'src/app/core/models/request.model';
-
-import { FormControl, FormGroup, AbstractControl } from '@angular/forms';
-
+import { IColumnsData, ITaskData } from 'src/app/core/models/request.model';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-column',
@@ -24,7 +21,12 @@ export class ColumnComponent {
     public translate: TranslateService) {
     translate.addLangs(['en', 'ru']);
     translate.setDefaultLang('en');
+  }
 
+  drop(event: CdkDragDrop<ITaskData[]>) {
+    if (this.column && this.column.tasks) {
+      moveItemInArray(this.column.tasks, event.previousIndex, event.currentIndex);
+    }
   }
 
   blur() {
