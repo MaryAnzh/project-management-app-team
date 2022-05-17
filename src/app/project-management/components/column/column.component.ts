@@ -29,9 +29,9 @@ export class ColumnComponent {
       moveItemInArray(tasks, event.previousIndex, event.currentIndex);
       const boardId = this.pmDataService.currentBoard.id;
       const columnid = this.column ? this.column.id : '';
-      //this.pmDataService.sortYasksByOrder(tasks, boardId, columnid);
-      // console.log('tasks');
-      // console.log(tasks);
+      this.pmDataService.droptasksByOrder(tasks, boardId, columnid);
+      console.log('tasks');
+      console.log(tasks);
     }
 
   }

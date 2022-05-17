@@ -291,6 +291,33 @@ export class PMDataService {
     return isTasksOrderChange;
   }
 
+  droptasksByOrder(tasks: ITaskData[], boardId: string, columnId: string): boolean {
+    let isTasksOrderChange = false;
+    if (tasks.length > 0) {
+
+      const id = boardId;
+      for (let i = 0; i < tasks.length; i += 1) {
+        const task = tasks[i];
+        if (task.order !== (i + 1)) {
+          const newOrder = i + 1;
+
+          const body: IUpdateTaskData = {
+            boardId: id,
+            columnId: columnId,
+            title: task.title,
+            description: task.description,
+            done: task.done,
+            userId: task.userId,
+            order: newOrder,
+          }
+
+          this.updateTask(columnId, task.id, body);
+        }
+      }
+    }
+    return isTasksOrderChange;
+  }
+
   OnDestroy() {
     if (this._currentBoard$$) {
       this._currentBoard$$.unsubscribe()
