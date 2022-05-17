@@ -254,18 +254,21 @@ export class PMDataService {
           }
           this.updateColumns(column.id, column.title, newOrder);
         }
+        if (column.tasks) {
+          this.sortYasksByOrder(column.tasks, id, column.id);
+        }
       }
     }
     return isColumnsChange;
   }
 
-  sortYasksByOrder(tasks: ITaskData[], columnId: string): boolean {
+  sortYasksByOrder(tasks: ITaskData[], boardId: string, columnId: string): boolean {
     let isTasksOrderChange = false;
     if (tasks.length > 0) {
 
       tasks.sort((a, b) => a.order - b.order);
 
-      const id = this.currentBoard ? this.currentBoard.id : '';
+      const id = boardId;
       for (let i = 0; i < tasks.length; i += 1) {
         const task = tasks[i];
         if (task.order !== (i + 1)) {
