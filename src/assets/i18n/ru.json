@@ -72,6 +72,7 @@
     "BOARD_TITLE": "Название",
     "BOARD_DESCRIPTION": "Описание",
     "ERROR": "Ошибка",
+    "TASK": "Задача",
     "TASKS": "Задачи",
     "TASK_TITLE": "Название задачи",
     "COLUMN_TITLE": "Название столбца",

@@ -6,6 +6,9 @@
   *ngIf="task">
 
   <div class="task__top">
+      <p>
+    {{'BOARDS.TASK' | translate}}
+    {{task.order}}</p>
     <ng-container
       *ngIf="!task.done">
       <div class="task__top__imcomplete-not">
@@ -17,6 +20,7 @@
         <p>Done</p>
       </div>
     </ng-container>
+
     <div
       class="task__top__close"
       (click)="deleteTask()"
@@ -39,7 +43,9 @@
           <p>{{task.description}}</p>
         </div>
         <div class="task__body__user-name">
-          <p>{{userName$ | async}}</p>
+          <p>
+            {{userName$ | async}}
+          </p>
         </div>
       </section>
     </section>

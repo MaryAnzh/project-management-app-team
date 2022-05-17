@@ -61,13 +61,14 @@ export class BoardsService implements OnInit {
       .catch(() => {})
   }
 
-  onDistroy():void {
+  ngOnInit():void {
+    this.getAllBoards();
+  }
+
+  onDistroy(): void {
     if (this._allBoards$$) {
       this._allBoards$$.unsubscribe();
     }
   }
 
-  ngOnInit():void {
-    this.getAllBoards();
-  }
 }
