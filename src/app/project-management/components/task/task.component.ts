@@ -23,6 +23,8 @@ export class TaskComponent implements OnInit {
   public userName$ = this._userName$$.asObservable();
   public userName: string = 'user deleted';
 
+  public isEditTaskWindowOpen$: Observable<boolean>;
+
   constructor(
     private taskDataService: TaskDataService,
     private pmDataService: PMDataService,
@@ -30,7 +32,7 @@ export class TaskComponent implements OnInit {
   ) {
     translate.addLangs(['en', 'ru']);
     translate.setDefaultLang('en');
-
+    this.isEditTaskWindowOpen$ = this.taskDataService.isEditTaskWindowOpen$;
   }
 
   getName(id: string) {
@@ -55,7 +57,9 @@ export class TaskComponent implements OnInit {
 
   editTask() {
     if (this.task) {
-          console.log(this.task)
+      this.taskDataService.editTask = this.task;
+      this.taskDataService.editTaskColumnId = this.columnId ?? '';
+      this.taskDataService.showEditTaskWindow();
     }
   }
 

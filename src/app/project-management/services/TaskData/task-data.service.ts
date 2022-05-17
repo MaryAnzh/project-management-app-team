@@ -3,7 +3,7 @@ import { RequestService } from 'src/app/core/services/request/request.service';
 import { Router } from '@angular/router';
 import { map, Subscription, Subject, Observable } from 'rxjs';
 import { IUserInfoForTask } from '../../model/user-info.model';
-import { IResAuthLogin, User } from 'src/app/core/models/request.model';
+import { IResAuthLogin, ITaskData, User } from 'src/app/core/models/request.model';
 import { StorageService } from 'src/app/auth/services/storage/storage.service';
 
 @Injectable({
@@ -12,6 +12,11 @@ import { StorageService } from 'src/app/auth/services/storage/storage.service';
 
 export class TaskDataService {
   private userNameSubscription: Subscription | null = null;
+  private _isEditTaskWindowOpen$$ = new Subject<boolean>();
+  public isEditTaskWindowOpen$ = this._isEditTaskWindowOpen$$.asObservable();
+
+  public editTask: ITaskData | null = null;
+  public editTaskColumnId: string | null = null;
 
   constructor(
     private requestService: RequestService,
@@ -40,5 +45,14 @@ export class TaskDataService {
           return user.find((userInfo) => userInfo.id === userId)?.name ?? ''
         })
       )
+  }
+
+  showEditTaskWindow() {
+    this._isEditTaskWindowOpen$$.next(true);
+  }
+
+  closeEditTaskWindow() {
+    this._isEditTaskWindowOpen$$.next(false);
+
   }
 }

@@ -17,8 +17,8 @@ export class ModalWindowTaskComponent implements OnInit {
   public boardInfo: IBoardData = { id: '', title: '', description: '', columns: [] };
   public columns: IColumnsData[] | undefined = undefined;
   public tasks: ITaskData[] | undefined = undefined;
-  @Input() task: ITaskData | null = null;
-  @Input() columnId: string | undefined = undefined;
+  task: ITaskData | null = null;
+  columnId: string | undefined = undefined;
 
   constructor(
     private pmDataService: PMDataService,
@@ -48,7 +48,9 @@ export class ModalWindowTaskComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.task) {
+    if (this.taskDataService.editTask && this.taskDataService.editTaskColumnId) {
+      this.task = this.taskDataService.editTask;
+      this.columnId = this.taskDataService.editTaskColumnId;
       this.newTaskForm = new FormGroup({
         title: new FormControl(this.task.title, [
           Validators.required,
@@ -58,7 +60,7 @@ export class ModalWindowTaskComponent implements OnInit {
           Validators.required,
           Validators.maxLength(150),
         ]),
-        doneCheck: new FormControl(''),
+        doneCheck: new FormControl(this.task.done),
         selectColumn: new FormControl(),
       });
     }
@@ -126,6 +128,14 @@ export class ModalWindowTaskComponent implements OnInit {
   }
 
   closeModalWindow() {
-    this.pmDataService.closeModalWindowNewTask();
+    if (this.task) {
+      this.taskDataService.closeEditTaskWindow();
+      this.taskDataService.editTask = null;
+      this.taskDataService.editTaskColumnId = null;
+    } else {
+      this.pmDataService.closeModalWindowNewTask();
+    }
+    this.task = null;
+    this.columnId = '';
   }
 }

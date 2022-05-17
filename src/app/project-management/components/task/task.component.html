@@ -1,8 +1,7 @@
-<!-- <app-modal-window-task
-*ngIf="task"
-[task]="task"
-[columnId]="columnId"
-></app-modal-window-task> -->
+<app-modal-window-task
+*ngIf="isEditTaskWindowOpen$ | async">
+</app-modal-window-task>
+
 <section class="task"
   *ngIf="task">
 
