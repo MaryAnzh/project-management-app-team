@@ -68,6 +68,12 @@
     <section
       *ngIf="isAuth"
       [ngClass]="{'header__wrap__section-nav': isAuth}">
+      <div (click)="toggle=!toggle" [ngClass]="{
+      'header__wrap__section-nav__burger': !toggle,
+      'header__wrap__section-nav__burger_active': toggle
+      }">
+        <span><a href="#"></a></span>
+      </div>
       <nav class="header__wrap__section-nav__nav-wrap">
         <ul class="header__wrap__section-nav__nav-wrap__list">
           <li
