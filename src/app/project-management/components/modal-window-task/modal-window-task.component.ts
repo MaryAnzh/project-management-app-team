@@ -133,7 +133,7 @@ export class ModalWindowTaskComponent implements OnInit {
       this.taskDataService.editTask = null;
       this.taskDataService.editTaskColumnId = null;
     } else {
-      this.pmDataService.closeModalWindowNewTask();
+      this.pmDataService.closeNewTaskModal();
     }
     this.task = null;
     this.columnId = '';

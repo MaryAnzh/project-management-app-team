@@ -15,7 +15,6 @@ import { Subject, map, Observable, mergeMap } from 'rxjs';
 import { IErrorMessage } from 'src/app/core/models/respons-error.model';
 import { CoreDataService } from 'src/app/core/services/coreData/core-data.service';
 import { StorageService } from 'src/app/auth/services/storage/storage.service';
-import { IUserInfoForTask } from '../../model/user-info.model';
 
 @Injectable({
   providedIn: 'root'
@@ -33,11 +32,11 @@ export class PMDataService {
   private _errorMessage$$ = new Subject<IErrorMessage>();
   public errorMessage$ = this._errorMessage$$.asObservable();
 
-  private _isModalOoen$$ = new Subject<boolean>();
-  public isModalOoen$ = this._isModalOoen$$.asObservable();
+  private _isNewColunmWindowOpen$$ = new Subject<boolean>();
+  public isNewColunmWindowOpen$ = this._isNewColunmWindowOpen$$.asObservable();
 
-  private _isModalWindowNewTaskOpen$$ = new Subject<boolean>();
-  public isModalWindowNewTaskOpen$ = this._isModalWindowNewTaskOpen$$.asObservable();
+  private _isNewTaskWindowOpen$$ = new Subject<boolean>();
+  public isNewTaskWindowOpen$ = this._isNewTaskWindowOpen$$.asObservable();
 
   constructor(
     private requestService: RequestService,
@@ -118,7 +117,7 @@ export class PMDataService {
     this.router.navigateByUrl('main');
   }
 
-  createColumn(boardId: string, title: string, orde: number): void {
+  createColumn(title: string): void {
 
     if (this.currentBoard) {
       const order = this.currentBoard.columns?.length ? this.currentBoard?.columns?.length : 0;
@@ -197,13 +196,20 @@ export class PMDataService {
     this._errorMessage$$.next(errorMessage);
   }
 
-  openCreationColumnTaskModal() {
-    this._isModalOoen$$.next(true);
-
+  showNewColumnModal() {
+    this._isNewColunmWindowOpen$$.next(true);
   }
 
-  closeCreationColumnTaskModal() {
-    this._isModalOoen$$.next(false);
+  closeNewColumnModal() {
+    this._isNewColunmWindowOpen$$.next(false);
+  }
+
+  showNewTaskModal() {
+    this._isNewTaskWindowOpen$$.next(true);
+  }
+
+  closeNewTaskModal() {
+    this._isNewTaskWindowOpen$$.next(false);
   }
 
   showConfirmationModal(name: string, columnID?: string, taskID?: string) {
@@ -252,14 +258,6 @@ export class PMDataService {
     return isColumnsChange;
   }
 
-  showModalWindowNewTask() {
-    this._isModalWindowNewTaskOpen$$.next(true);
-  }
-
-  closeModalWindowNewTask() {
-    this._isModalWindowNewTaskOpen$$.next(false);
-  }
-
   OnDestroy() {
     if (this._currentBoard$$) {
       this._currentBoard$$.unsubscribe()
@@ -267,8 +265,11 @@ export class PMDataService {
     if (this._errorMessage$$) {
       this._errorMessage$$.unsubscribe();
     }
-    if (this._isModalWindowNewTaskOpen$$) {
-      this._isModalWindowNewTaskOpen$$.unsubscribe();
+    if (this._isNewTaskWindowOpen$$) {
+      this._isNewTaskWindowOpen$$.unsubscribe();
+    }
+    if (this._isNewColunmWindowOpen$$) {
+      this._isNewColunmWindowOpen$$.unsubscribe();
     }
   }
 

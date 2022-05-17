@@ -1,8 +1,9 @@
-<app-create-new-item-modal
-  *ngIf="ismodalOpen$ | async"
-  [modalName]="modalName"></app-create-new-item-modal>
+<app-modal-window-column
+  *ngIf="isNewColunmWindowOpen$ | async">
+</app-modal-window-column>
+
 <app-modal-window-task
-  *ngIf="isModalWindowNewTaskOpen$ | async">
+  *ngIf="isNewTaskWindowOpen$ | async">
 </app-modal-window-task>
 
 <div class="board"
@@ -43,11 +44,11 @@
               [ngClass]="{'vusible': (columns && columns.length> 0), 'hidden':
               !(columns && columns.length > 0)}"
               data-type="task"
-              (click)="newColumnOnClick($event)">
+              (click)="newTaskOnClick()">
               {{'BOARDS.BUTTONS.NEW_TASK' | translate}}</button>
             <button
               data-type="column"
-              (click)="newColumnOnClick($event)">{{'BOARDS.BUTTONS.NEW_COLUMN' |
+              (click)="newColumnOnClick()">{{'BOARDS.BUTTONS.NEW_COLUMN' |
               translate}}</button>
             <button
               (click)="deleteBoardOnClikc()">{{'BOARDS.BUTTONS.DELETE' |

@@ -19,10 +19,8 @@ export class BoardComponent {
   public isTitleChange: boolean = false;
   public boardId: string | null = null;
 
-  public ismodalOpen$: Observable<boolean>;
-  @Input() public modalName: string = '';
-
-  public isModalWindowNewTaskOpen$: Observable<boolean>;
+  public isNewColunmWindowOpen$: Observable<boolean>;
+  public isNewTaskWindowOpen$: Observable<boolean>;
 
   constructor(
     private pmDataService: PMDataService,
@@ -44,8 +42,8 @@ export class BoardComponent {
       this.pmDataService.getBoard(id);
     }
 
-    this.ismodalOpen$ = this.pmDataService.isModalOoen$;
-    this.isModalWindowNewTaskOpen$ = this.pmDataService.isModalWindowNewTaskOpen$;
+    this.isNewColunmWindowOpen$ = this.pmDataService.isNewColunmWindowOpen$;
+    this.isNewTaskWindowOpen$ = this.pmDataService.isNewTaskWindowOpen$;
 
     translate.addLangs(['en', 'ru']);
     translate.setDefaultLang('en');
@@ -86,26 +84,14 @@ export class BoardComponent {
     }
   }
 
-  newColumnOnClick(e: Event) {
-    const elem = <HTMLElement>e.target;
-    const elemType = elem.dataset['type'];
-
-    if (elemType) {
-      switch (elemType) {
-        case 'column':
-          this.modalName = elemType;
-          this.pmDataService.openCreationColumnTaskModal();
-          break;
-        case 'task':
-          this.pmDataService.showModalWindowNewTask();
-          break;
-
-        default:
-          break;
-      }
-    }
-
+  newColumnOnClick() {
+    this.pmDataService.showNewColumnModal();
   }
+
+  newTaskOnClick() {
+    this.pmDataService.showNewTaskModal();
+  }
+
 
   OnDestroy() {
     if (this.boardInfo$) {
