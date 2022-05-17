@@ -51,10 +51,10 @@
               <p>{{column.tasks?.length}}</p>
             </div>
 
-            z
-            <section class="column__tasks-wrap" *ngIf="column.tasks">
+            <section class="column__tasks-wrap drag-box" *ngIf="column.tasks">
               <ul cdkDropList (cdkDropListDropped)="drop($event)">
                 <li> <app-task
+                    class="drag-list"
                     *ngFor="let task of column.tasks"
                     cdkDrag
                     [task]="task"
