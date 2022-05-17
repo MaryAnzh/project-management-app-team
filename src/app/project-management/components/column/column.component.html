@@ -43,19 +43,22 @@
               </button>
 
             </section>
-            <!-- <p> Order: {{column.order}}</p> -->
-            <div class="column__tasks-wrap__title">
+
+            <div class="column__tasks-info">
               <p>
                 {{'BOARDS.TASKS' | translate}}
               </p>
               <p>{{column.tasks?.length}}</p>
             </div>
+
             <section class="column__tasks-wrap"
-              *ngIf="column.tasks">
+              *ngIf="column.tasks"
+              >
               <app-task
             *ngFor="let task of column.tasks"
             [task]="task"
             [columnId]="column.id"
+            cdkDrag
               ></app-task>
             </section>
           </div>
