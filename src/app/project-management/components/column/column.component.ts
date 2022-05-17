@@ -25,8 +25,13 @@ export class ColumnComponent {
 
   drop(event: CdkDragDrop<ITaskData[]>) {
     if (this.column && this.column.tasks) {
+      const tasks = this.column.tasks;
       moveItemInArray(this.column.tasks, event.previousIndex, event.currentIndex);
+      const boardId = this.pmDataService.currentBoard.id;
+      const columnid = this.column ? this.column.id : '';
+      this.pmDataService.sortYasksByOrder(tasks, boardId, columnid);
     }
+
   }
 
   blur() {
@@ -44,7 +49,7 @@ export class ColumnComponent {
   deleteColumnOnCkick() {
     if (this.column) {
       const name = 'column';
-        this.pmDataService.showConfirmationModal(name, this.column.id);
+      this.pmDataService.showConfirmationModal(name, this.column.id);
 
     }
   }
