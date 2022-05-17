@@ -10,8 +10,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { ProjectManagementModule } from './project-management/project-management.module';
 import { InformationModule } from './information/information.module';
-import { Observable, SubscriptionLike } from 'rxjs';
-import { AuthService } from './auth/services/auth/auth.service';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 // export function httpTranslateLoaderFactory(http: HttpClient): TranslateHttpLoader {
 //   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -41,11 +40,12 @@ export function httpTranslateLoaderFactory(httpBackend: HttpBackend): TranslateH
           provide: TranslateLoader,
           deps: [HttpBackend],
           useFactory: httpTranslateLoaderFactory
-      }
+      },
   }),
     CoreModule,
     ProjectManagementModule,
-    InformationModule
+    InformationModule,
+    DragDropModule
   ],
   providers: [httpInterceptorsProviders],
   bootstrap: [AppComponent]

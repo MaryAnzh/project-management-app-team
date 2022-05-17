@@ -11,6 +11,11 @@
   background: #ffffff;
   padding: 10px;
   margin: 5px 0;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
 
   &__top {
     width: 100%;
