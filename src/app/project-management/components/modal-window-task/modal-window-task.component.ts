@@ -69,6 +69,7 @@ export class ModalWindowTaskComponent implements OnInit {
   get title(): AbstractControl {
     return <AbstractControl>this.newTaskForm.get('title');
   }
+
   get description(): AbstractControl {
     return <AbstractControl>this.newTaskForm.get('description');
   }
@@ -87,6 +88,8 @@ export class ModalWindowTaskComponent implements OnInit {
     } else {
       this.createTask();
     }
+    this.taskDataService.editTask = null;
+    this.taskDataService.editTaskColumnId = null;
   }
 
   createTask() {
@@ -135,7 +138,7 @@ export class ModalWindowTaskComponent implements OnInit {
     } else {
       this.pmDataService.closeNewTaskModal();
     }
-    this.task = null;
-    this.columnId = '';
+    this.taskDataService.editTask = null;
+    this.taskDataService.editTaskColumnId = null;
   }
 }
