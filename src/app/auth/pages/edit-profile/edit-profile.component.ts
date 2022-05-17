@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/auth/services/auth/auth.service';
-import { IUseRegistrationData } from 'src/app/core/models/request.model';
+import { IResAuthLogin, IUseRegistrationData } from 'src/app/core/models/request.model';
 import { loginFormValidators } from 'src/app/shared/utils/login-form-validators';
+import { StorageService } from '../../services/storage/storage.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -12,10 +13,16 @@ import { loginFormValidators } from 'src/app/shared/utils/login-form-validators'
 })
 export class EditProfileComponent implements OnInit {
 
+  userStorage: IResAuthLogin = <IResAuthLogin>this.storage.getData('user');
+  oldUserName: string = this.userStorage.name;
+  oldUserLogin: string = this.userStorage.login;
+
+
   profileEditingForm!: FormGroup;
 
   constructor(
     private authService: AuthService,
+    private storage: StorageService,
     public translate: TranslateService,
   ) {
     translate.addLangs(['en', 'ru']);
@@ -24,11 +31,11 @@ export class EditProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.profileEditingForm = new FormGroup({
-      userName: new FormControl('', [
+      userName: new FormControl(this.oldUserName, [
         Validators.required,
         Validators.minLength(2)
       ]),
-      email: new FormControl('', [Validators.email, Validators.required
+      email: new FormControl(this.oldUserLogin, [Validators.email, Validators.required
       ]),
       password: new FormControl(null, [
         Validators.required,
