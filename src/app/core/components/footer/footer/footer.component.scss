@@ -6,12 +6,13 @@ $additionalColorLight: #8ddada;
 
 .footer {
   width: 100%;
-  height: 100px;
+  height: 40px;
   font-size: 15px;
 
   &__wrap {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     padding: 5px 10px;
     align-items: center;
     max-width: 1080px;
@@ -25,8 +26,11 @@ $additionalColorLight: #8ddada;
       }
 
       &__authors {
+        display: flex;
+        align-items: center;
 
         &__container {
+          height: 100%;
           display: flex;
           align-items: center;
 
@@ -43,6 +47,8 @@ $additionalColorLight: #8ddada;
             -o-transition: all 0.5s ease;
             -ms-transition: all 0.5s ease;
             transition: all 0.5s ease;
+
+
 
             &:hover {
               background-color: #8ddada;
@@ -65,6 +71,10 @@ $additionalColorLight: #8ddada;
         width: 100px;
         height: 38px;
 
+          @media (max-width: 450px) {
+            width: 50px;
+          }
+
         img {
           width: 100%;
           -webkit-filter: brightness(80%);
@@ -74,6 +84,7 @@ $additionalColorLight: #8ddada;
           -ms-transition: all 1s ease;
           transition: all 1s ease;
         }
+
         &:hover {
           animation: scales 1s;
           -webkit-filter: brightness(160%);
@@ -82,6 +93,7 @@ $additionalColorLight: #8ddada;
     }
   }
 }
+
 @keyframes scales {
   75% {
     transform: scale(75%);
