@@ -5,15 +5,13 @@ $additionalColor: #2eb1b1;
 $additionalColorLight: #8ddada;
 
 :host {
-    background: linear-gradient(to right, #DEF5F5, #6C8CD5);
+  background: linear-gradient(to right, #DEF5F5, #6C8CD5);
 
   .header {
     width: 100%;
     display: flex;
     justify-content: center;
-
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding: 5px;
 
 
     &__wrap {
@@ -31,6 +29,10 @@ $additionalColorLight: #8ddada;
         display: flex;
         align-items: center;
         padding-left: 10px;
+
+        @media (max-width: 580px) {
+          display: none;
+        }
 
         &__logo {
           width: 100%;
