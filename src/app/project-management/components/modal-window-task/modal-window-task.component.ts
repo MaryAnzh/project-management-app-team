@@ -86,7 +86,7 @@ export class ModalWindowTaskComponent implements OnInit {
     return <AbstractControl>this.newTaskForm.get('selectColumn');
   }
 
-  sunmit() {
+  sunmit(): void {
     if (this.task) {
       this.editYask();
     } else {
@@ -96,7 +96,7 @@ export class ModalWindowTaskComponent implements OnInit {
     this.taskDataService.editTaskColumnId = null;
   }
 
-  createTask() {
+  createTask(): void {
     const columnOrder = (this.newTaskForm.value.selectColumn.order - 1);
     const columnForTask: IColumnsData = this.boardInfo.columns ? this.boardInfo.columns[columnOrder] : { id: '', title: '', order: 0, tasks: [] };
 
@@ -118,7 +118,7 @@ export class ModalWindowTaskComponent implements OnInit {
     this.closeModalWindow();
   }
 
-  editYask() {
+  editYask(): void {
     const columnId = this.columnId ?? '';
     if (this.task) {
       const body: IUpdateTaskData = {
@@ -134,7 +134,7 @@ export class ModalWindowTaskComponent implements OnInit {
     }
   }
 
-  closeModalWindow() {
+  closeModalWindow(): void {
     if (this.task) {
       this.taskDataService.closeEditTaskWindow();
       this.taskDataService.editTask = null;

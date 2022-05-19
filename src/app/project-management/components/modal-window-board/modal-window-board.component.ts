@@ -39,14 +39,8 @@ export class ModalWindowBoardComponent {
     return <AbstractControl>this.newBoardForm.get('description');
   }
 
-  sunmit() {
+  sunmit(): void {
     this.pmDataService.createBoard(this.newBoardForm.value.title, this.newBoardForm.value.description);
-
   }
-
-  cancel() {
-
-  }
-
 
 }

@@ -61,7 +61,7 @@ export class PMDataService {
     )
   }
 
-  createBoard(title: string, description: string) {
+  createBoard(title: string, description: string): void {
     const board: IBoardDescription = {
       title: title,
       description: description,
@@ -116,7 +116,7 @@ export class PMDataService {
     });
   }
 
-  deleteBoard(id: string) {
+  deleteBoard(id: string): void {
     this.requestService.deleteBoard(id).subscribe({
       next: (response: any) => response,
       error: (error: HttpErrorResponse) => error.message,
@@ -149,7 +149,7 @@ export class PMDataService {
 
   }
 
-  updateColumns(columnId: string, title: string, order: number) {
+  updateColumns(columnId: string, title: string, order: number): void {
     const body: IColumnsRequestData = {
       title: title,
       order: order
@@ -163,7 +163,7 @@ export class PMDataService {
 
   }
 
-  deleteColumn(columnId: string) {
+  deleteColumn(columnId: string): void {
     const id = this.currentBoard ? this.currentBoard.id : '';
     this.requestService.deleteColumn(id, columnId).subscribe({
       next: (response) => {
@@ -173,7 +173,7 @@ export class PMDataService {
     });
   }
 
-  createTask(columnId: string, body: INewTaskData) {
+  createTask(columnId: string, body: INewTaskData): void {
     if (this.currentBoard) {
       const id = this.currentBoard.id
       this.requestService.createTask(this.currentBoard.id, columnId, body).subscribe({
@@ -183,7 +183,7 @@ export class PMDataService {
     }
   }
 
-  updateTask(columnId: string, taskId: string, body: IUpdateTaskData) {
+  updateTask(columnId: string, taskId: string, body: IUpdateTaskData): void {
     const id = this.currentBoard ? this.currentBoard.id : ''
     body.boardId = id;
     this.requestService.updateTask(id, columnId, taskId, body).subscribe({
@@ -192,7 +192,7 @@ export class PMDataService {
     })
   }
 
-  deleteTask(columnId: string, taskId: string) {
+  deleteTask(columnId: string, taskId: string): void {
     const id = this.currentBoard ? this.currentBoard.id : '';
     this.requestService.deleteTask(id, columnId, taskId).subscribe({
       next: () => this.getBoard(id),
@@ -200,27 +200,27 @@ export class PMDataService {
     })
   }
 
-  changeErrorMessage(errorMessage: IErrorMessage) {
+  changeErrorMessage(errorMessage: IErrorMessage): void {
     this._errorMessage$$.next(errorMessage);
   }
 
-  showNewColumnModal() {
+  showNewColumnModal(): void {
     this._isNewColunmWindowOpen$$.next(true);
   }
 
-  closeNewColumnModal() {
+  closeNewColumnModal(): void {
     this._isNewColunmWindowOpen$$.next(false);
   }
 
-  showNewTaskModal() {
+  showNewTaskModal(): void {
     this._isNewTaskWindowOpen$$.next(true);
   }
 
-  closeNewTaskModal() {
+  closeNewTaskModal(): void {
     this._isNewTaskWindowOpen$$.next(false);
   }
 
-  showConfirmationModal(name: string, columnID?: string, taskID?: string) {
+  showConfirmationModal(name: string, columnID?: string, taskID?: string): void {
     const column = columnID ? columnID : '';
     const task = taskID ? taskID : '';
     const res = this.coreDataService.openConfirmationModal().then(() => {
@@ -345,7 +345,7 @@ export class PMDataService {
     return isTasksOrderChange;
   }
 
-  OnDestroy() {
+  OnDestroy(): void {
     if (this._currentBoard$$) {
       this._currentBoard$$.unsubscribe()
     }

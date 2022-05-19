@@ -50,11 +50,11 @@ export class TaskDataService {
       )
   }
 
-  showEditTaskWindow() {
+  showEditTaskWindow(): void {
     this._isEditTaskWindowOpen$$.next(true);
   }
 
-  closeEditTaskWindow() {
+  closeEditTaskWindow(): void {
     this._isEditTaskWindowOpen$$.next(false);
 
   }

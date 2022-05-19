@@ -30,12 +30,12 @@ export class ModalWindowColumnComponent {
     return <AbstractControl>this.newColumnForm.get('title');
   }
 
-  sunmit() {
+  sunmit(): void {
     this.pmDataService.createColumn(this.newColumnForm.value.title);
     this.pmDataService.closeNewColumnModal();
   }
 
-  cancel() {
+  cancel(): void {
     this.pmDataService.closeNewColumnModal();
   }
 

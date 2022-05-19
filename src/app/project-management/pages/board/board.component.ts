@@ -16,7 +16,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 export class BoardComponent {
   public boardInfo$: SubscriptionLike;
 
-  public boardInfo: IBoardData = {id: '', title: '', description: '', columns: []};
+  public boardInfo: IBoardData = { id: '', title: '', description: '', columns: [] };
 
   public columns: IColumnsData[] | undefined = undefined;
 
@@ -55,22 +55,22 @@ export class BoardComponent {
     translate.setDefaultLang('en');
   }
 
-  drop(event: CdkDragDrop<IColumnsData[]>) {
+  drop(event: CdkDragDrop<IColumnsData[]>): void {
     if (this.boardInfo && this.boardInfo.columns) {
       const column = this.boardInfo.columns;
       moveItemInArray(column, event.previousIndex, event.currentIndex);
     }
   }
 
-  makeButtonVisible() {
+  makeButtonVisible(): void {
     this.isTitleChange = true;
   }
 
-  makeButtonHidden() {
+  makeButtonHidden(): void {
     setTimeout(() => this.isTitleChange = false, 300);
   }
 
-  changeTitleOnClick(value: string) {
+  changeTitleOnClick(value: string): void {
     this.isTitleChange = false;
 
     if (this.boardId
@@ -81,32 +81,32 @@ export class BoardComponent {
     }
   }
 
-  cancelChangeTitleOnClick(e: HTMLInputElement) {
+  cancelChangeTitleOnClick(e: HTMLInputElement): void {
     this.isTitleChange = false;
     this.inputValue();
   }
 
-  inputValue() {
+  inputValue(): string {
     return this.boardInfo?.title;
   }
 
-  deleteBoardOnClikc() {
+  deleteBoardOnClikc(): void {
     const name = 'board';
     if (this.boardId) {
       this.pmDataService.showConfirmationModal(name);
     }
   }
 
-  newColumnOnClick() {
+  newColumnOnClick(): void {
     this.pmDataService.showNewColumnModal();
   }
 
-  newTaskOnClick() {
+  newTaskOnClick(): void {
     this.pmDataService.showNewTaskModal();
   }
 
 
-  OnDestroy() {
+  OnDestroy(): void {
     if (this.boardInfo$) {
       this.boardInfo$.unsubscribe()
     }

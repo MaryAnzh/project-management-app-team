@@ -39,7 +39,7 @@ export class TaskComponent implements OnInit {
     this.isEditTaskWindowOpen$ = this.taskDataService.isEditTaskWindowOpen$;
   }
 
-  getName(id: string) {
+  getName(id: string): Observable<string> {
     return this.taskDataService.getUserName(id);
   }
 
@@ -52,14 +52,14 @@ export class TaskComponent implements OnInit {
     );
   }
 
-  deleteTask() {
+  deleteTask(): void {
     const type = 'task';
     const columnId = this.columnId ?? '';
     const taskId = this.task ? this.task.id : '';
     this.pmDataService.showConfirmationModal(type, columnId, taskId);
   }
 
-  editTask() {
+  editTask(): void {
     if (this.task) {
       this.taskDataService.editTask = this.task;
       this.taskDataService.editTaskColumnId = this.columnId ?? '';
