@@ -15,9 +15,13 @@ export class ModalWindowTaskComponent implements OnInit {
   public newTaskForm: FormGroup;
 
   public boardInfo: IBoardData = { id: '', title: '', description: '', columns: [] };
+
   public columns: IColumnsData[] | undefined = undefined;
+
   public tasks: ITaskData[] | undefined = undefined;
+
   task: ITaskData | null = null;
+
   columnId: string | undefined = undefined;
 
   constructor(

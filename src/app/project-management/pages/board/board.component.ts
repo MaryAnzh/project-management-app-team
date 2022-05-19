@@ -15,13 +15,17 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 export class BoardComponent {
   public boardInfo$: SubscriptionLike;
+
   public boardInfo: IBoardData = {id: '', title: '', description: '', columns: []};
+
   public columns: IColumnsData[] | undefined = undefined;
 
   public isTitleChange: boolean = false;
+
   public boardId: string | null = null;
 
   public isNewColunmWindowOpen$: Observable<boolean>;
+
   public isNewTaskWindowOpen$: Observable<boolean>;
 
   constructor(
@@ -32,7 +36,7 @@ export class BoardComponent {
 
     this.boardInfo$ = this.pmDataService.currentBoard$.subscribe(
       (value) => {
-        console.log('subscribe board работает');
+        // console.log('subscribe board работает');
         this.boardInfo = value ? value : {id: '', title: '', description: ''};
         this.columns = this.boardInfo.columns ? this.boardInfo.columns : [];
       }

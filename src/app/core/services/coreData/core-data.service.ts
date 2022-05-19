@@ -10,14 +10,16 @@ import { Router } from '@angular/router';
 export class CoreDataService {
 
   confirmClick = new Function;
+
   cancelClick = new Function;
+
   public showAsync(data = null): Promise<any> {
     return new Promise<any>((resolve, reject) => {
-      this.confirmClick = () => {
+      this.confirmClick = (): void => {
         this.closeConfirmationModal();
         resolve(data);
       };
-      this.cancelClick = () => {
+      this.cancelClick = (): void => {
         this.closeConfirmationModal();
         reject(data);
       }
@@ -25,10 +27,13 @@ export class CoreDataService {
   }
 
   private _isConfirmationModalOpen$$ = new Subject<boolean>();
+
   public isConfirmationModalOpen$ = this._isConfirmationModalOpen$$.asObservable();
 
   private _isActionConfirm$$ = new Subject<boolean | null>();
+
   public isActionConfirm$ = this._isActionConfirm$$.asObservable();
+
   public isActionConfirm: boolean | null = null;
 
   constructor() {
@@ -37,16 +42,16 @@ export class CoreDataService {
     )
   }
 
-  async openConfirmationModal() {
+  async openConfirmationModal(): Promise<any> {
     this._isConfirmationModalOpen$$.next(true);
     return this.showAsync();
   }
 
-  closeConfirmationModal() {
+  closeConfirmationModal(): void {
     this._isConfirmationModalOpen$$.next(false);
   }
 
-  actionConfirm(action: boolean) {
+  actionConfirm(action: boolean): boolean {
     this.closeConfirmationModal();
     return action;
   }

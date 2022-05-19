@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/auth/services/auth/auth.service';
 import { IResAuthLogin, IUseRegistrationData } from 'src/app/core/models/request.model';
@@ -14,7 +14,9 @@ import { StorageService } from '../../services/storage/storage.service';
 export class EditProfileComponent implements OnInit {
 
   userStorage: IResAuthLogin = <IResAuthLogin>this.storage.getData('user');
+
   oldUserName: string = this.userStorage.name;
+
   oldUserLogin: string = this.userStorage.login;
 
 
@@ -50,7 +52,7 @@ export class EditProfileComponent implements OnInit {
       ]),
     },
       {
-        validators: (control) => {
+        validators: (control: AbstractControl): ValidatorFn | null => {
           if (control.value.password !== control.value.confirmPassword) {
             (<AbstractControl>control.get('confirmPassword')).setErrors({ notSame: true });
           }
@@ -89,7 +91,7 @@ export class EditProfileComponent implements OnInit {
     }
   }
 
-  onDelete() {
+  onDelete(): void {
     this.authService.showConfirmationModalEditProfile();
   }
 

@@ -23,20 +23,27 @@ import { StorageService } from 'src/app/auth/services/storage/storage.service';
 
 export class PMDataService {
   public currentUserId: string = '';
+
   private _currentBoard$$ = new Subject<IBoardData | null>();
+
   public currentBoard$: Observable<IBoardData | null> = this._currentBoard$$.asObservable();
+
   public boardDataEmpty: IBoardData = {
     id: '', title: '', description: '', columns: [],
   }
+
   public currentBoard: IBoardData = this.boardDataEmpty;
 
   private _errorMessage$$ = new Subject<IErrorMessage>();
+
   public errorMessage$ = this._errorMessage$$.asObservable();
 
   private _isNewColunmWindowOpen$$ = new Subject<boolean>();
+
   public isNewColunmWindowOpen$ = this._isNewColunmWindowOpen$$.asObservable();
 
   private _isNewTaskWindowOpen$$ = new Subject<boolean>();
+
   public isNewTaskWindowOpen$ = this._isNewTaskWindowOpen$$.asObservable();
 
   constructor(
@@ -111,8 +118,8 @@ export class PMDataService {
 
   deleteBoard(id: string) {
     this.requestService.deleteBoard(id).subscribe({
-      next: (response: any) => console.log(response),
-      error: (error: HttpErrorResponse) => console.error(error.message),
+      next: (response: any) => response,
+      error: (error: HttpErrorResponse) => error.message,
     });
     this._currentBoard$$.next(null);
     this.router.navigateByUrl('main');
@@ -225,7 +232,7 @@ export class PMDataService {
           this.deleteColumn(column);
           break;
         case 'task':
-          console.log('Отработал switch');
+          // console.log('Отработал switch');
           this.deleteTask(column, task);
           break;
 
