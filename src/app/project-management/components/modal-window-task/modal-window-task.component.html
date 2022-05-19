@@ -2,7 +2,7 @@
   (submit)="sunmit()"
   [formGroup]="newTaskForm">
   <div class="new-task__form">
-    <label for="taskTitle">Task Title:</label>
+    <label for="taskTitle">{{'BOARDS.TASK_TITLE' | translate}}:</label>
     <input type="text"
       id="taskTitle"
       formControlName="title"
@@ -12,16 +12,16 @@
         *ngIf="title.invalid && title.touched || title.dirty">
         <p
           *ngIf="title.errors?.['required']">
-          Enter title
+          {{'BOARDS.VALIDATE.TITLE_REQUIRED' | translate}}
         </p>
         <p
           *ngIf="title.errors?.['maxlength']">
-          Maxlength 30
+          {{'BOARDS.VALIDATE.MAXLENGTH' | translate}} 30 {{'BOARDS.VALIDATE.SYMBOLS' | translate}}
         </p>
       </ng-container>
     </div>
 
-    <label for="TaskDescription">Task Description:</label>
+    <label for="TaskDescription">{{'BOARDS.TASK_DESCRIPTION' | translate}}:</label>
     <textarea type="text"
       id="taskDescription"
       formControlName="description"
@@ -31,24 +31,24 @@
         *ngIf="description.invalid && description.touched || description.dirty">
         <p
           *ngIf="description.errors?.['required']">
-          Enter description
+          {{'BOARDS.VALIDATE.DISCRIPTION_REQUIRED' | translate}}
         </p>
         <p
           *ngIf="description.errors?.['maxlength']">
-          Maxlength 150
+          {{'BOARDS.VALIDATE.MAXLENGTH' | translate}} 150 {{'BOARDS.VALIDATE.SYMBOLS' | translate}}
         </p>
       </ng-container>
     </div>
 
     <div class="new-task__form__progress">
-      <label>Done</label>
+      <label>{{'BOARDS.DONE' | translate}}</label>
       <input class="new-task__form__progress__check"
         type="checkbox"
         formControlName="doneCheck" />
     </div>
     <ng-container
       *ngIf="!task">
-      <label>Select column</label>
+      <label>{{'BOARDS.SELECT_COLUMN' | translate}}</label>
       <select
         formControlName="selectColumn"
         *ngIf="boardInfo.columns">

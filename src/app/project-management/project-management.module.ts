@@ -14,6 +14,8 @@ import { SearchComponent } from './components/search/search.component';
 import { ModalWindowTaskComponent } from './components/modal-window-task/modal-window-task.component';
 import { ModalWindowColumnComponent } from './components/modal-window-column/modal-window-column.component';
 import { ModalWindowBoardComponent } from './components/modal-window-board/modal-window-board.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
 
 const routes: Routes = [{ path: '', component: ProjectManagementComponent }];
 
@@ -40,7 +42,8 @@ const routes: Routes = [{ path: '', component: ProjectManagementComponent }];
       { path: '', component: ProjectManagementComponent },
       { path: 'board', component: CreateBoardComponent },
       { path: 'board/:id', component: BoardComponent},
-    ])
+    ]),
+    DragDropModule
   ],
   exports: [RouterModule],
 })

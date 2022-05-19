@@ -1,21 +1,19 @@
 @import '../../../../vareable';
 
 :host {
-    background: linear-gradient(to right, #DEF5F5, #6C8CD5);
+  background: linear-gradient(to right, #DEF5F5, #6C8CD5);
 
   .header {
     width: 100%;
     display: flex;
     justify-content: center;
-
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding: 5px;
 
 
     &__wrap {
       width: 100%;
       max-width: 1080px;
-      min-height: 100px;
+      min-height: 50px;
       height: 100%;
       display: flex;
       flex-wrap: wrap;
@@ -27,6 +25,10 @@
         display: flex;
         align-items: center;
         padding-left: 10px;
+
+        @media (max-width: 580px) {
+          display: none;
+        }
 
         &__logo {
           width: 100%;
@@ -52,10 +54,101 @@
 
       &__section-nav {
         width: 100%;
-        height: 100px;
+        height: 60px;
         padding: 0 20px;
         display: flex;
         align-items: center;
+
+
+        @media (max-width: 580px) {
+          display: block;
+
+          &__burger {
+            position: relative;
+            width: 30px;
+            height: 20px;
+            z-index: 3;
+            cursor: pointer;
+
+            span,
+            &::before,
+            &::after{
+              left: 0;
+              position: absolute;
+              height: 10%;
+              width: 100%;
+              transition: all 0.2s ease 0s;
+              background-color: #4631bb;
+            }
+
+            &::before,
+            &::after{
+              content: '';
+            }
+            &::before{
+              top:0
+            }
+            &::after{
+              bottom: 0;
+            }
+            span{
+              top: 50%;
+              transform: scale(1) translate(0px, -50%);
+            }
+
+            &_active {
+              display: block;
+              position: relative;
+              width: 30px;
+              height: 20px;
+              z-index: 3;
+              cursor: pointer;
+
+              span,
+              &::before,
+              &::after{
+                left: 0;
+                position: absolute;
+                height: 10%;
+                width: 100%;
+                transition: all 0.2s ease 0s;
+                background-color: #4631bb;
+              }
+
+              &::before,
+              &::after{
+                content: '';
+              }
+              &::before{
+                top:0
+              }
+              &::after{
+                bottom: 0;
+              }
+              span {
+                top: 50%;
+                transform: scale(1) translate(0px, -50%);
+              }
+
+              span {
+                transform: scale(0) translate(0px, -50%);
+              }
+              &::before{
+                top: 50%;
+                transform: rotate(-45deg) translate(0px, -50%);
+              }
+              &::after{
+                bottom: 50%;
+                transform: rotate(45deg) translate(0px, 50%);
+              }
+
+              &~.header__wrap__section-nav__nav-wrap {
+                transition: translate 0.3s ease 0s;
+                transform: translate(0px, 0px);
+              }
+            }
+          }
+        }
 
 
         &__nav-wrap {
@@ -63,9 +156,13 @@
           display: flex;
           justify-content: center;
           align-items: center;
+          transition: translate 0.3s ease 0s;
 
           @media (max-width: 580px) {
-            display: none;
+            z-index: 3;
+            transform: translate(-200%, 0px);
+            transition: translate 0.3s ease 0s;
+            overflow: auto;
           }
 
           &__list {
@@ -75,17 +172,29 @@
             gap: 5px;
             justify-content: space-between;
 
+            @media (max-width: 580px) {
+              margin-top: 20px;
+            }
+
             li {
               width: 125px;
               display: flex;
               align-items: center;
               justify-content: center;
-              padding: 10px;
+              padding: 5px 5px;
               border: 1px solid #DEF5F5;
               border-radius: 5px;
-              transition: .5;
+              transition: .5s;
               text-align: center;
               cursor: pointer;
+
+              @media (max-width: 580px) {
+                display: block;
+                width: 100%;
+                height: 50px;
+                padding: 12px 5px;
+                z-index: 10;
+              }
 
               &:active {
                 transform: scale(115%, 115%);

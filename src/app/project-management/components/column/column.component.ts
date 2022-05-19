@@ -1,11 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { PMDataService } from '../../services/PMData/pmdata.service';
-import { crossSvg } from 'src/app/shared/svg/icon';
-import { IColumnsData } from 'src/app/core/models/request.model';
-
-import { FormControl, FormGroup, AbstractControl } from '@angular/forms';
-
+import { IColumnsData, ITaskData } from 'src/app/core/models/request.model';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-column',
@@ -24,6 +21,18 @@ export class ColumnComponent {
     public translate: TranslateService) {
     translate.addLangs(['en', 'ru']);
     translate.setDefaultLang('en');
+  }
+
+  drop(event: CdkDragDrop<ITaskData[]>) {
+    if (this.column && this.column.tasks) {
+      const tasks = this.column.tasks;
+      moveItemInArray(tasks, event.previousIndex, event.currentIndex);
+      const boardId = this.pmDataService.currentBoard.id;
+      const columnid = this.column ? this.column.id : '';
+      this.pmDataService.droptasksByOrder(tasks, boardId, columnid);
+      console.log('tasks');
+      console.log(tasks);
+    }
 
   }
 
@@ -42,7 +51,7 @@ export class ColumnComponent {
   deleteColumnOnCkick() {
     if (this.column) {
       const name = 'column';
-        this.pmDataService.showConfirmationModal(name, this.column.id);
+      this.pmDataService.showConfirmationModal(name, this.column.id);
 
     }
   }
