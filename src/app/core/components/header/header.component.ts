@@ -18,6 +18,7 @@ export class HeaderComponent {
   public isAuth: boolean = false;
 
   private _userName$: SubscriptionLike;
+
   public userName: string = '';
 
   public isActiveLanguageRu: boolean = false;
@@ -27,6 +28,8 @@ export class HeaderComponent {
   public boardInfo$: SubscriptionLike;
 
   public boardInfo: IBoardData[] | null = null;
+
+  public toggle: boolean = false;
 
   constructor(
     private authService: AuthService,
