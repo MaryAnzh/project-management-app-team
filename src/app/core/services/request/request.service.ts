@@ -12,7 +12,8 @@ import {
   IColumnsRequestData,
   ITaskData,
   INewTaskData,
-  IUpdateTaskData
+  IUpdateTaskData,
+  ITaskSearchData
 } from '../../models/request.model';
 
 const httpOptions = {
@@ -88,7 +89,7 @@ export class RequestService {
   }
 
   getColumn(boardId: string, columnId: string): Observable<any> {
-    return this.http.post<IColumnsData[]>(`/boards/${boardId}/columns/${columnId}`, httpOptions);
+    return this.http.get<IColumnsData[]>(`/boards/${boardId}/columns/${columnId}`, httpOptions);
   }
 
   deleteColumn(boardId: string, columnId: string) {
@@ -97,6 +98,10 @@ export class RequestService {
 
   updateColumn(boardId: string, columnId: string, body: IColumnsRequestData): Observable<any> {
     return this.http.put<IColumnsData[]>(`/boards/${boardId}/columns/${columnId}`, body, httpOptions);
+  }
+
+  getTasks(boardId: string, columnId: string): Observable<ITaskSearchData> {
+    return this.http.get<ITaskSearchData>(`/boards/${boardId}/columns/${columnId}/tasks`, httpOptions);
   }
 
   createTask(boardId: string, columnId: string, body: INewTaskData): Observable<IBoardData> {

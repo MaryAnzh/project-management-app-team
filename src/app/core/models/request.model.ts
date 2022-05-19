@@ -83,6 +83,18 @@ export interface ITaskData {
   files?: IFilesData[]
 }
 
+export interface ITaskSearchData {
+  id: string,
+  title: string,
+  order: number,
+  done: boolean,
+  description: string,
+  userId: string,
+  boardId?: string,
+  columnId?: string,
+  files?: IFilesData[]
+}
+
 export interface IFilesData {
   filename: string,
   fileSize: number,
