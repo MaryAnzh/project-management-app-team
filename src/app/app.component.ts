@@ -36,7 +36,7 @@ export class AppComponent {
     this.cancelisConfirmationModalOpen$ = this.coreDataService.isConfirmationModalOpen$;
   }
 
-  @HostListener("window:scroll", []) onWindowScroll() {
+  @HostListener("window:scroll", []) onWindowScroll(): void {
 
     const pageYOffset = window.pageYOffset;
     if (this.isAuth) {

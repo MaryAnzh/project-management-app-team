@@ -23,7 +23,7 @@ export class HttpClientInterceptor implements HttpInterceptor {
     return next.handle(this.addAuthToken(request));
   }
 
-  addAuthToken(request: HttpRequest<any>) {
+  addAuthToken(request: HttpRequest<any>): HttpRequest<any> {
     const user: IResAuthLogin | null = this.storage.getData('user') ? this.storage.getData('user') : null;
     const token = user ? user.token : '';
 

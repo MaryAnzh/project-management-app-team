@@ -36,7 +36,7 @@ export class BoardComponent {
 
     this.boardInfo$ = this.pmDataService.currentBoard$.subscribe(
       (value) => {
-        console.log('subscribe board работает');
+        // console.log('subscribe board работает');
         this.boardInfo = value ? value : {id: '', title: '', description: ''};
         this.columns = this.boardInfo.columns ? this.boardInfo.columns : [];
       }

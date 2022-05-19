@@ -15,11 +15,11 @@ export class CoreDataService {
 
   public showAsync(data = null): Promise<any> {
     return new Promise<any>((resolve, reject) => {
-      this.confirmClick = () => {
+      this.confirmClick = (): void => {
         this.closeConfirmationModal();
         resolve(data);
       };
-      this.cancelClick = () => {
+      this.cancelClick = (): void => {
         this.closeConfirmationModal();
         reject(data);
       }
@@ -42,16 +42,16 @@ export class CoreDataService {
     )
   }
 
-  async openConfirmationModal() {
+  async openConfirmationModal(): Promise<any> {
     this._isConfirmationModalOpen$$.next(true);
     return this.showAsync();
   }
 
-  closeConfirmationModal() {
+  closeConfirmationModal(): void {
     this._isConfirmationModalOpen$$.next(false);
   }
 
-  actionConfirm(action: boolean) {
+  actionConfirm(action: boolean): boolean {
     this.closeConfirmationModal();
     return action;
   }

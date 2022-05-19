@@ -20,7 +20,7 @@ export class PopUpAuthErrorComponent {
 
   }
 
-  closeOnClick() {
+  closeOnClick(): void {
     this.visible = false;
     this.visibleChange.emit(this.visible);
 

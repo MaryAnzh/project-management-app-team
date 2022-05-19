@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { SubscriptionLike } from 'rxjs';
 import { IUseRegistrationData } from 'src/app/core/models/request.model';
 import { loginFormValidators } from '../../../shared/utils/login-form-validators';
@@ -59,7 +59,7 @@ export class RegistrationPageComponent implements OnInit {
       ]),
     },
       {
-        validators: (control) => {
+        validators: (control: AbstractControl): ValidatorFn | null => {
           if (control.value.password !== control.value.confirmPassword) {
             (<AbstractControl>control.get('confirmPassword')).setErrors({ notSame: true });
           }

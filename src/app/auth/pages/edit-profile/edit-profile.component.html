@@ -16,7 +16,7 @@
           formControlName="userName"
           required>
       </div>
-      <div class="profile-edit-form__input-container__error">
+      <div class="profile-edit-form__input-container__error high-container-error">
         <ng-container
           *ngIf="userName?.invalid && userName?.touched">
           <small i18n="@@auth-form.user-name-errors-required" *ngIf="userName?.errors?.required">
@@ -70,7 +70,7 @@
           required>
 
       </div>
-      <div class="profile-edit-form__input-container__error password-error">
+      <div class="profile-edit-form__input-container__error high-container-error">
         <ng-container
           *ngIf="password?.invalid && password?.touched">
           <small i18n="@@auth-form.password-errors-required" *ngIf="password?.errors?.required">

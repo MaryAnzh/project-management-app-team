@@ -118,8 +118,8 @@ export class PMDataService {
 
   deleteBoard(id: string): void {
     this.requestService.deleteBoard(id).subscribe({
-      next: (response: any) => console.log(response),
-      error: (error: HttpErrorResponse) => console.error(error.message),
+      next: (response: any) => response,
+      error: (error: HttpErrorResponse) => error.message,
     });
     this._currentBoard$$.next(null);
     this.router.navigateByUrl('main');
@@ -232,7 +232,7 @@ export class PMDataService {
           this.deleteColumn(column);
           break;
         case 'task':
-          console.log('Отработал switch');
+          // console.log('Отработал switch');
           this.deleteTask(column, task);
           break;
 

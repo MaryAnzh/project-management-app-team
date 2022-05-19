@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, catchError, map, mergeMap, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, catchError, map, mergeMap, Observable, Subject, Subscription } from 'rxjs';
 import { IResAuthLogin, IUseRegistrationData, Token, User } from 'src/app/core/models/request.model';
 import { StorageService } from '../storage/storage.service';
 import { IUserLoginData } from 'src/app/core/models/request.model';
@@ -44,7 +44,7 @@ export class AuthService {
     }
   }
 
-  registration(user: IUseRegistrationData) {
+  registration(user: IUseRegistrationData): Subscription {
     return this.requestService.createUser(user).subscribe(
       (response: User) => {
         const userData: IUserLoginData = {
@@ -129,15 +129,15 @@ export class AuthService {
     const dateNow = Date.now();
     const tokenDate = new Date(tokencreationDate);
     const tokenAge = (dateNow - tokenDate.getTime()) / this._millisecondInHoure;
-    console.log(`tokenAge = ${tokenAge} часов`);
+    // console.log(`tokenAge = ${tokenAge} часов`);
 
     if (tokenAge > this._tokenLifeTime) {
       this.logout();
-      console.log(`tokenAge = ${tokenAge} часов, Токен истек`);
+      // console.log(`tokenAge = ${tokenAge} часов, Токен истек`);
     }
   }
 
-  deleteUser() {
+  deleteUser(): Subscription {
     return this.requestService.getUsers().pipe(
       map((user) => {
         const authLogin = this.storage.getData<IResAuthLogin>('user');
@@ -151,7 +151,7 @@ export class AuthService {
     })
   }
 
-  updateUser(userData: IUseRegistrationData) {
+  updateUser(userData: IUseRegistrationData): Subscription {
     return this.requestService.getUsers().pipe(
       map((user) => {
         const authLogin = this.storage.getData<IResAuthLogin>('user');
