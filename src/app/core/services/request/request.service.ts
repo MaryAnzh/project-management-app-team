@@ -100,8 +100,8 @@ export class RequestService {
     return this.http.put<IColumnsData[]>(`/boards/${boardId}/columns/${columnId}`, body, httpOptions);
   }
 
-  getTasks(boardId: string, columnId: string): Observable<ITaskSearchData> {
-    return this.http.get<ITaskSearchData>(`/boards/${boardId}/columns/${columnId}/tasks`, httpOptions);
+  getTasks(boardId: string, columnId: string): Observable<ITaskSearchData[]> {
+    return this.http.get<ITaskSearchData[]>(`/boards/${boardId}/columns/${columnId}/tasks`, httpOptions);
   }
 
   createTask(boardId: string, columnId: string, body: INewTaskData): Observable<IBoardData> {
@@ -117,5 +117,8 @@ export class RequestService {
     return this.http.delete(`/boards/${boardId}/columns/${columnId}/tasks/${taskId}`, httpOptionsNoContent);
   }
 
+  getTask(boardId: string, columnId: string, taskId: string): Observable<ITaskSearchData> {
+    return this.http.get<ITaskSearchData>(`/boards/${boardId}/columns/${columnId}/tasks/${taskId}`, httpOptions);
+  }
 
 }

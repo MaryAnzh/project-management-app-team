@@ -25,23 +25,15 @@ export class BoardItemComponent {
   goToBoard(id:string): void {
     this.boardsService.goToBoard(id);
 
-    this.getColumnsId(id).pipe(
-      map((i) => i.map((el) => this.request.getTasks(id, el)))
-    ).subscribe((res) => console.log(res));
+    this.getTasksOfBoard(id).subscribe((res) => console.log(res));
   }
 
-  getColumnsId(id: string): Observable<string[]> {
+  getTasksOfBoard(id: string) {
     return this.request.getColumns(id).pipe(
-      map((el) => el.map((elem) => elem.id))
+      map((el) => el.map((elem) => elem.id)),
+      mergeMap((ids) => ids.map((i) => this.request.getTasks(id, i).subscribe((res) => console.log(res))))
     )
   }
-
-  // getTasksOfBoard(id: string) {
-  //   return this.request.getColumns(id).pipe(
-  //     map((el) => el.map((elem) => elem.id)),
-  //     mergeMap((arrayId) => arrayId.map((i) => this.request.getTasks(id, i).subscribe((res) => console.log(res))))
-  //   )
-  // }
 
   deleteOnClick(id:string):void {
     this.boardsService.showConfirmationModalBoardItem(id)
