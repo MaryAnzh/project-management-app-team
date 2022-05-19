@@ -1,8 +1,4 @@
-$mainColorDark: #2A4480;
-$mainColorLight: #DEF5F5;
-$mainColor: hsl(222, 63%, 55%);
-$additionalColor: #2eb1b1;
-$additionalColorLight: #8ddada;
+@import '../../../../vareable';
 
 :host {
     background: linear-gradient(to right, #DEF5F5, #6C8CD5);
