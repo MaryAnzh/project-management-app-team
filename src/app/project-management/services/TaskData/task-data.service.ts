@@ -12,10 +12,13 @@ import { StorageService } from 'src/app/auth/services/storage/storage.service';
 
 export class TaskDataService {
   private userNameSubscription: Subscription | null = null;
+
   private _isEditTaskWindowOpen$$ = new Subject<boolean>();
+
   public isEditTaskWindowOpen$ = this._isEditTaskWindowOpen$$.asObservable();
 
   public editTask: ITaskData | null = null;
+
   public editTaskColumnId: string | null = null;
 
   constructor(
@@ -47,11 +50,11 @@ export class TaskDataService {
       )
   }
 
-  showEditTaskWindow() {
+  showEditTaskWindow(): void {
     this._isEditTaskWindowOpen$$.next(true);
   }
 
-  closeEditTaskWindow() {
+  closeEditTaskWindow(): void {
     this._isEditTaskWindowOpen$$.next(false);
 
   }

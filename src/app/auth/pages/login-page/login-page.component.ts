@@ -18,7 +18,9 @@ import { TranslateService } from '@ngx-translate/core';
 
 export class LoginPageComponent implements OnInit {
   public errorMessage$: SubscriptionLike;
+
   public errorMessage: string = '';
+
   public visibleError: boolean = false;
 
   loginForm!: FormGroup;

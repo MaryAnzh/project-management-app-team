@@ -23,7 +23,7 @@ export class ColumnComponent {
     translate.setDefaultLang('en');
   }
 
-  drop(event: CdkDragDrop<ITaskData[]>) {
+  drop(event: CdkDragDrop<ITaskData[]>): void {
     if (this.column && this.column.tasks) {
       const tasks = this.column.tasks;
       moveItemInArray(tasks, event.previousIndex, event.currentIndex);
@@ -33,11 +33,11 @@ export class ColumnComponent {
     }
   }
 
-  blur() {
+  blur(): void {
     setTimeout(() => { this.isTitleChange = false }, 400);
   }
 
-  changeColumnTitle(value: string) {
+  changeColumnTitle(value: string): void {
     if (this.column && this.column.title !== value) {
       this.pmDataService.updateColumns(this.column.id, value, this.column.order);
     }
@@ -45,7 +45,7 @@ export class ColumnComponent {
     this.isTitleChange = false;
   }
 
-  deleteColumnOnCkick() {
+  deleteColumnOnCkick(): void {
     if (this.column) {
       const name = 'column';
       this.pmDataService.showConfirmationModal(name, this.column.id);

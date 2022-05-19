@@ -12,9 +12,11 @@ import { TranslateService } from '@ngx-translate/core';
 
 export class AppComponent {
   public isScroll: boolean = false;
+
   public isScrollUp: boolean = false;
 
   public isAuth: boolean = false;
+
   public isAuth$: SubscriptionLike;
 
   public cancelisConfirmationModalOpen$: Observable<boolean>;

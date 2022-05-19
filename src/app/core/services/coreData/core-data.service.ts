@@ -10,7 +10,9 @@ import { Router } from '@angular/router';
 export class CoreDataService {
 
   confirmClick = new Function;
+
   cancelClick = new Function;
+
   public showAsync(data = null): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.confirmClick = () => {
@@ -25,10 +27,13 @@ export class CoreDataService {
   }
 
   private _isConfirmationModalOpen$$ = new Subject<boolean>();
+
   public isConfirmationModalOpen$ = this._isConfirmationModalOpen$$.asObservable();
 
   private _isActionConfirm$$ = new Subject<boolean | null>();
+
   public isActionConfirm$ = this._isActionConfirm$$.asObservable();
+
   public isActionConfirm: boolean | null = null;
 
   constructor() {

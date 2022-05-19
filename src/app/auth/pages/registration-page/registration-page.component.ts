@@ -15,7 +15,9 @@ import { TranslateService } from '@ngx-translate/core';
 
 export class RegistrationPageComponent implements OnInit {
   public errorMessage$: SubscriptionLike;
+
   public errorMessage: string = '';
+
   public visibleError: boolean = false;
 
   registrationForm!: FormGroup;

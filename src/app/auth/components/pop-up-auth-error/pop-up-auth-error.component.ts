@@ -11,7 +11,9 @@ import { Observable, SubjectLike, Subscribable, SubscriptionLike } from 'rxjs';
 
 export class PopUpAuthErrorComponent {
   @Input() public visible: boolean = false;
+
   @Input() public errorMessage: string = '';
+
   @Output() public visibleChange = new EventEmitter<boolean>();
 
   constructor(private authService: AuthService) {

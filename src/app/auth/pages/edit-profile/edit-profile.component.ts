@@ -14,7 +14,9 @@ import { StorageService } from '../../services/storage/storage.service';
 export class EditProfileComponent implements OnInit {
 
   userStorage: IResAuthLogin = <IResAuthLogin>this.storage.getData('user');
+
   oldUserName: string = this.userStorage.name;
+
   oldUserLogin: string = this.userStorage.login;
 
 

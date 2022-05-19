@@ -10,7 +10,7 @@ import { CoreDataService } from "../../../core/services/coreData/core-data.servi
   providedIn: 'root'
 })
 
-export class BoardsService implements OnInit {
+export class BoardsService {
   private _allBoards$$ = new Subject<IBoardData[] | null>();
 
   public allBoards$ = this._allBoards$$.asObservable();
@@ -59,10 +59,6 @@ export class BoardsService implements OnInit {
        this.deleteBoardItem(id);
     })
       .catch(() => {})
-  }
-
-  ngOnInit():void {
-    this.getAllBoards();
   }
 
   onDistroy(): void {

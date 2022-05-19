@@ -16,8 +16,11 @@ import { CoreDataService } from 'src/app/core/services/coreData/core-data.servic
 export class AuthService {
 
   private _user$$ = new BehaviorSubject<IResAuthLogin | null>(null);
+
   private _errorMessage$$ = new Subject<IErrorMessage>();
+
   private _millisecondInHoure: number = 3600000;
+
   private _tokenLifeTime: number = 24;
 
   public isLoggedIn$ = this._user$$.asObservable().pipe(map((user) => {
@@ -26,6 +29,7 @@ export class AuthService {
 
 
   public user$ = this._user$$.asObservable();
+
   public errorMessage$ = this._errorMessage$$.asObservable();
 
   constructor(

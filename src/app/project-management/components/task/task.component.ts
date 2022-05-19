@@ -14,13 +14,17 @@ import { PMDataService } from '../../services/PMData/pmdata.service';
 
 export class TaskComponent implements OnInit {
   @Input() public task: ITaskData | undefined;
+
   @Input() public columnId: string | undefined;
+
   public userSubscription: Subscription | null = null;
 
   public boardId: string = '';
 
   private _userName$$ = new Subject<string>();
+
   public userName$ = this._userName$$.asObservable();
+
   public userName: string = 'user deleted';
 
   public isEditTaskWindowOpen$: Observable<boolean>;
@@ -35,7 +39,7 @@ export class TaskComponent implements OnInit {
     this.isEditTaskWindowOpen$ = this.taskDataService.isEditTaskWindowOpen$;
   }
 
-  getName(id: string) {
+  getName(id: string): Observable<string> {
     return this.taskDataService.getUserName(id);
   }
 
@@ -48,14 +52,14 @@ export class TaskComponent implements OnInit {
     );
   }
 
-  deleteTask() {
+  deleteTask(): void {
     const type = 'task';
     const columnId = this.columnId ?? '';
     const taskId = this.task ? this.task.id : '';
     this.pmDataService.showConfirmationModal(type, columnId, taskId);
   }
 
-  editTask() {
+  editTask(): void {
     if (this.task) {
       this.taskDataService.editTask = this.task;
       this.taskDataService.editTaskColumnId = this.columnId ?? '';
