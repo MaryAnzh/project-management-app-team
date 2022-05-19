@@ -12,7 +12,7 @@ import { map, mergeMap, Observable } from 'rxjs';
 })
 export class BoardItemComponent {
 
-  tasks!: ITaskSearchData[]
+  tasks: ITaskSearchData[] = [];
 
   @Input() public board: IBoardData | undefined;
 
@@ -24,14 +24,17 @@ export class BoardItemComponent {
 
   goToBoard(id:string): void {
     this.boardsService.goToBoard(id);
-
-    this.getTasksOfBoard(id).subscribe((res) => console.log(res));
+    this.getTasksOfBoard(id).subscribe((res) => res);
+    console.log(this.tasks);
   }
 
   getTasksOfBoard(id: string) {
     return this.request.getColumns(id).pipe(
       map((el) => el.map((elem) => elem.id)),
-      mergeMap((ids) => ids.map((i) => this.request.getTasks(id, i).subscribe((res) => console.log(res))))
+      mergeMap((ids) => ids.map((i) => {
+        this.request.getTasks(id, i).subscribe((res) => this.tasks.push(...res));
+        return this.tasks;
+      }))
     )
   }
 
