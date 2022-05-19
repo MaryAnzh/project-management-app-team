@@ -14,13 +14,17 @@ import { PMDataService } from '../../services/PMData/pmdata.service';
 
 export class TaskComponent implements OnInit {
   @Input() public task: ITaskData | undefined;
+
   @Input() public columnId: string | undefined;
+
   public userSubscription: Subscription | null = null;
 
   public boardId: string = '';
 
   private _userName$$ = new Subject<string>();
+
   public userName$ = this._userName$$.asObservable();
+
   public userName: string = 'user deleted';
 
   public isEditTaskWindowOpen$: Observable<boolean>;

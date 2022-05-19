@@ -12,9 +12,11 @@ import { TranslateService } from '@ngx-translate/core';
 
 export class AppComponent {
   public isScroll: boolean = false;
+
   public isScrollUp: boolean = false;
 
   public isAuth: boolean = false;
+
   public isAuth$: SubscriptionLike;
 
   public cancelisConfirmationModalOpen$: Observable<boolean>;
@@ -34,7 +36,7 @@ export class AppComponent {
     this.cancelisConfirmationModalOpen$ = this.coreDataService.isConfirmationModalOpen$;
   }
 
-  @HostListener("window:scroll", []) onWindowScroll() {
+  @HostListener("window:scroll", []) onWindowScroll(): void {
 
     const pageYOffset = window.pageYOffset;
     if (this.isAuth) {

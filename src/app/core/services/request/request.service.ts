@@ -91,7 +91,7 @@ export class RequestService {
     return this.http.post<IColumnsData[]>(`/boards/${boardId}/columns/${columnId}`, httpOptions);
   }
 
-  deleteColumn(boardId: string, columnId: string) {
+  deleteColumn(boardId: string, columnId: string): Observable<IColumnsData[]> {
     return this.http.delete<IColumnsData[]>(`/boards/${boardId}/columns/${columnId}`, httpOptionsNoContent);
   }
 
@@ -108,7 +108,7 @@ export class RequestService {
   }
 
 
-  deleteTask(boardId: string, columnId: string, taskId: string) {
+  deleteTask(boardId: string, columnId: string, taskId: string): Observable<Object> {
     return this.http.delete(`/boards/${boardId}/columns/${columnId}/tasks/${taskId}`, httpOptionsNoContent);
   }
 
