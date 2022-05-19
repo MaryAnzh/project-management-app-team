@@ -30,10 +30,7 @@ export class ColumnComponent {
       const boardId = this.pmDataService.currentBoard.id;
       const columnid = this.column ? this.column.id : '';
       this.pmDataService.droptasksByOrder(tasks, boardId, columnid);
-      console.log('tasks');
-      console.log(tasks);
     }
-
   }
 
   blur() {
