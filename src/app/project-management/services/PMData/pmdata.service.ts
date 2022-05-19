@@ -291,6 +291,26 @@ export class PMDataService {
     return isTasksOrderChange;
   }
 
+  dropColumnByOrder(columns: IColumnsData[]): void {
+    if (columns.length > 0) {
+
+      const id = this.currentBoard ? this.currentBoard.id : '';
+      for (let i = 0; i < columns.length; i += 1) {
+        const column = columns[i];
+        if (column.order !== (i + 1)) {
+          const newOrder = i + 1;
+          if (this.currentBoard.columns) {
+            this.currentBoard.columns[i].order = newOrder;
+          }
+          this.updateColumns(column.id, column.title, newOrder);
+        }
+        if (column.tasks) {
+          this.sortYasksByOrder(column.tasks, id, column.id);
+        }
+      }
+    }
+  }
+
   droptasksByOrder(tasks: ITaskData[], boardId: string, columnId: string): boolean {
     let isTasksOrderChange = false;
     if (tasks.length > 0) {

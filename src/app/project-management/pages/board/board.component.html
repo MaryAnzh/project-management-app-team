@@ -56,12 +56,18 @@
           </div>
         </section>
 
-        <section class="board__column-wrap"
+        <section class="board__column-wrap example-list"
           *ngIf="columns">
-          <app-column
-            *ngFor="let column of columns"
-            [column]="column">
-          </app-column>
-        </section>
+          <div class="example-list"
+            cdkDropList
+            (cdkDropListDropped)="drop($event)">
+            <app-column
+              class="example-box"
+              *ngFor="let column of columns"
+              [column]="column"
+              cdkDrag>
+            </app-column>
+            </div>
+          </section>
 
-      </div>
+        </div>

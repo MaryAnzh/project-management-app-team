@@ -57,8 +57,8 @@
               cdkDropList
               (cdkDropListDropped)="drop($event)">
                 <app-task
-                    class="example-box"
                     *ngFor="let task of column.tasks"
+                    class="example-box"
                     cdkDrag
                     [task]="task"
                     [columnId]="column.id"></app-task>

@@ -4,6 +4,8 @@ import { IBoardData, IColumnsData } from 'src/app/core/models/request.model';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, SubscriptionLike, map, pipe } from 'rxjs';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+
 
 @Component({
   selector: 'app-board',
@@ -47,6 +49,13 @@ export class BoardComponent {
 
     translate.addLangs(['en', 'ru']);
     translate.setDefaultLang('en');
+  }
+
+  drop(event: CdkDragDrop<IColumnsData[]>) {
+    if (this.boardInfo && this.boardInfo.columns) {
+      const column = this.boardInfo.columns;
+      moveItemInArray(column, event.previousIndex, event.currentIndex);
+    }
   }
 
   makeButtonVisible() {
