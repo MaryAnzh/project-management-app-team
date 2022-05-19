@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "deploy": "ng deploy --base-href=https://github.com/MaryAnzh/project-management-app/"
+    "deploy": "ng deploy --base-href=https://github.com/MaryAnzh/project-management-app/project-management-app"
   },
   "private": true,
   "dependencies": {
@@ -23,6 +23,7 @@
     "@angular/router": "~13.3.0",
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
+    "firebase": "^9.8.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

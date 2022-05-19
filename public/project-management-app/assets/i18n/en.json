@@ -1,0 +1,115 @@
+{
+  "HEADER": {
+    "YOUR_WAY": "Your Way",
+    "TO_SUCCESS": "to Success",
+    "LOGIN": "Login",
+    "LOGOUT": "Logout",
+    "REGISTRATION": "Registration",
+    "NAV":{
+      "WELCOME": "Welcome",
+      "BOARDS": "My Boards",
+      "CREATE_BOARD":"Create new board",
+      "EDIT_PROFILE": "Edit profile"
+    }
+  },
+  "MAIN": {
+    "TITLE": "Project management app - Your Way to Success!!!",
+    "SUBTITLE": "Our advantages",
+    "TEXT_1": "Effective project management with visualization and task flow",
+    "TEXT_2": "Transparent workflow with real-time tracking of changes",
+    "TEXT_3": "Ease of implementation, optimization of working time and costs",
+    "TEAM": {
+      "TITLE": "OUR TEAM",
+      "ABOUT_US": {
+        "MARY": "Project Manager. Full stack developer.\t We are a team of students at The Rolling Scopes School developing the Project Management App. Time is the most precious thing in our life. Let's organize it right!",
+        "DIMA": "Fullstack developer. We are committed to effective project management so that your goals are achieved faster and at the lowest cost.",
+        "MARGO": "Frontend developer. We are working on setting up a connection between man and space, creating a harmony of their interaction."
+      }
+    }
+  },
+  "AUTH": {
+    "LOGIN_TITLE": "Login",
+    "REGISTRATION_TITLE": "Registration",
+    "EDIT_PROFILE": "Edit Profile",
+    "INPUTS": {
+      "EMAIL": "Email",
+      "EMAIL_PLACEHOLDER": "Enter Email",
+      "PASSWORD": "Password",
+      "PASSWORD_PLACEHOLDER": "Enter Password",
+      "USER_NAME": "User Name",
+      "USER_NAME_PLACEHOLDER": "Enter User Name",
+      "CONFIRM_PASSWORD": "Сonfirm password",
+      "CONFIRM_PASSWORD_PLACEHOLDER": "Сonfirm password",
+      "NEW_EMAIL": "New Email",
+      "NEW_PASSWORD": "New Password",
+      "NEW_USER_NAME": "New User Name",
+      "CONFIRM_NEW_PASSWORD": "Сonfirm New Password"
+    },
+    "VALIDATE": {
+      "EMAIL_REQUIRED":"Please enter a login email",
+      "EMAIL_VALID_EMAIL":"The login email is invalid",
+      "PASSWORD_REQUIRED":"Please enter a password",
+      "USER_NAME_REQUIRED":"Please enter a user-name",
+      "USER_NAME_MINLENGTH":"length must be at least",
+      "AT_LEAST": "at least",
+      "SYMBOLS": "symbols",
+      "CONTAIN": "The password must contain:",
+      "DIGT_VALIDATE": "at least one number",
+      "LOWER_CASE_VALIDATE": "at least one capital letter",
+      "UPPER_CASE_VALIDATE": "at least one uppercase letter",
+      "SYMBOL_VALIDATE": "at least one special character",
+      "CONFIRM_PASSWORD_REQUIRED": "Please confirm a password"
+    },
+    "BUTTONS": {
+      "LOGIN": "Login",
+      "REGISTRATION": "Registration",
+      "DELETE_PROFILE": "Delete Profile",
+      "UPDATE_PROFILE": "Uptdate Profile"
+
+    }
+  },
+  "BOARDS": {
+    "MY_BOARDS": "My Boards",
+    "BOARD_TITLE": "Board Title",
+    "BOARD_DESCRIPTION": "Board description",
+    "ERROR": "Error",
+    "TASK": "Task",
+    "TASKS": "Tasks",
+    "TASK_TITLE": "Task Title",
+    "TASK_DESCRIPTION": "Task Description",
+    "SELECT_COLUMN": "Select column",
+    "COLUMN_TITLE": "Column Title",
+    "DONE": "Done",
+    "BUTTONS": {
+      "CHANGE": "change",
+      "NEW_TASK": "New task",
+      "NEW_COLUMN": "New column",
+      "DELETE": "DELETE",
+      "TO_MAIN": "to main",
+      "CLOSE": "close",
+      "CREATE": "Create",
+      "CANCEL": "Cancel"
+    },
+    "VALIDATE": {
+      "TITLE_REQUIRED":"Please enter a Title",
+      "DISCRIPTION_REQUIRED":"Please enter a Description",
+      "MAXLENGTH":"length should not exceed",
+      "SYMBOLS": "symbols"
+    },
+    "ERRORS": {
+      "ERROR_TITLE": "title should not be empty,description should not be empty"
+    }
+  },
+  "MODAL": {
+    "CONFIRM_ACTION": "Confirm the action",
+    "CONFIRM": "Confirm",
+    "CANCEL": "Cancel"
+  },
+  "SEARCH": {
+    "SEARCH_FOR": "Search for",
+    "NUMBER": "number",
+    "TITLE": "title",
+    "USER": "user",
+    "DISCRIPTION": "description"
+  }
+}
