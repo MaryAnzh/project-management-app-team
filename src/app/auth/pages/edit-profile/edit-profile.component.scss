@@ -22,7 +22,6 @@ $contastColor: #A66F00;
     flex-direction: column;
     justify-content: center;
     row-gap: 10px;
-    width: 500px;
     border-radius: 5px;
 
     &__title {
@@ -33,6 +32,7 @@ $contastColor: #A66F00;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      column-gap: 20px;
 
       &__field {
         width: 100%;
@@ -74,8 +74,8 @@ $contastColor: #A66F00;
 
         }
 
-        .password-error {
-          height: 90px;
+        .high-container-error {
+          height: 120px;
         }
       }
 
