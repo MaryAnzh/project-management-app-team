@@ -14,7 +14,7 @@
 :host {
   width: 315px;
   min-height: 50px;
-  height: calc(100vh - 200px - 100px - 80px - 80px);
+  height: calc(100vh - 200px - 100px - 5px - 80px);
   background: #ffffff;
   border: 1px dashed $mainColorDark;
   margin-bottom: 10px;
@@ -122,7 +122,7 @@
 
     &__tasks-wrap {
       width: 100%;
-      height: calc(100vh - 200px - 100px - 80px - 80px - 50px);
+      height: calc(100vh - 200px - 100px - 5px - 80px - 50px);
       padding-left: 5px;
       background: linear-gradient(to top, #DEF5F5, #6C8CD5);
       overflow: auto;
@@ -147,6 +147,10 @@
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-.drag-box.cdk-drop-list-dragging .drag-list:not(.cdk-drag-placeholder) {
+.example-box:last-child {
+  border: none;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }

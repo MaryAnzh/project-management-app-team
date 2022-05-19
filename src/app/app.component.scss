@@ -6,6 +6,10 @@
   flex-direction: column;
   justify-content: space-between;
 
+  @media (max-width: 450px) {
+    min-height: 93vh;
+  }
+
   .sticky {
     position: sticky;
     top: 0;
